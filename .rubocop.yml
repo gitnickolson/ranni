@@ -1,0 +1,12 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 4.0.3
+Metrics/ClassLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/MultipleComparison:
+  Enabled: false
+  
