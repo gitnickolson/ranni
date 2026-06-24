@@ -1,0 +1,38 @@
+name: Ruby
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: ['4.0.3']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      - name: Install SDL2 libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run rubocop
+        run: bundle exec rubocop
