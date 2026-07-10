@@ -1,24 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/astra'
+require './lib/config/initializer'
 
-require 'zeitwerk'
-require 'dotenv'
-
-loader = Zeitwerk::Loader.new
-loader.push_dir(File.expand_path('../lib', __dir__))
-loader.setup
-
-if ENV['ENV']&.downcase == 'test'
-  project_root = File.expand_path('..', __dir__)
-  env_path = File.join(project_root, '.env.test')
-
-  puts "Loading env from: #{env_path}"
-  Dotenv.load(env_path)
-else
-  Dotenv.load
-end
+Config::Initializer.call
+DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)
 
 astra = Astra.new
 astra.start

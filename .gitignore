@@ -2,6 +2,9 @@
 .idea/encodings.xml
 *.db
 
+coverage 
+./coverage
+
 ### Environment ###
 .env*
 backups/
