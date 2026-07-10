@@ -7,6 +7,18 @@ Metrics/AbcSize:
   Enabled: false
 Style/Documentation:
   Enabled: false
-Style/MultipleComparison:
+
+RSpec/MultipleExpectations:
   Enabled: false
-  
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+
+plugins:
+  - rubocop-factory_bot
+  - rubocop-rake
+  - rubocop-rspec
+  - rubocop-sequel
