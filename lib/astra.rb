@@ -9,11 +9,12 @@ class Astra
   end
 
   def start
-    # server_id = ENV.fetch('SERVER_ID').to_i
+    server_id = ENV.fetch('SERVER_ID').to_i
 
     astra.ready do
       next if @running
 
+      initialize_commands(server_id)
       @running = true
     end
 
@@ -23,4 +24,10 @@ class Astra
   private
 
   attr_reader :astra, :running
+
+  def initialize_commands(server_id)
+    command_manager = Utility::CommandManager.new(astra:, server_id:)
+    command_manager.register_commands
+    command_manager.call_commands
+  end
 end
