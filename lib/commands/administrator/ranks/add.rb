@@ -39,7 +39,7 @@ module Commands
         end
 
         def server_accessor
-          @server_accessor ||= Utility::ServerAccessor.new(astra:, server_id:)
+          @server_accessor ||= Utility::ServerAccessor.new(bot:, server_id:)
         end
       end
     end

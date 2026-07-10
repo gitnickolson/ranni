@@ -15,7 +15,7 @@ module Commands
         end
 
         def create_embed_builder
-          embed_builder = builder.new(astra:, pagination_key:, max_page_items: 20)
+          embed_builder = builder.new(bot:, pagination_key:, max_page_items: 20)
 
           embed_builder.update_fields(fields:)
           embed_builder.add_title(text: "Ränge auf #{server.name}")
@@ -34,7 +34,7 @@ module Commands
         end
 
         def server_accessor
-          @server_accessor ||= Utility::ServerAccessor.new(astra:, server_id:)
+          @server_accessor ||= Utility::ServerAccessor.new(bot:, server_id:)
         end
       end
     end

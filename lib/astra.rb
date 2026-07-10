@@ -2,31 +2,31 @@
 
 require 'discordrb'
 
-class Astra
+class Bot
   def initialize
-    @astra = Discordrb::Bot.new(token: ENV.fetch('TOKEN'))
+    @bot = Discordrb::Bot.new(token: ENV.fetch('TOKEN'))
     @running = false
   end
 
   def start
     server_id = ENV.fetch('SERVER_ID').to_i
 
-    astra.ready do
+    bot.ready do
       next if @running
 
       initialize_commands(server_id)
       @running = true
     end
 
-    astra.run
+    bot.run
   end
 
   private
 
-  attr_reader :astra, :running
+  attr_reader :bot, :running
 
   def initialize_commands(server_id)
-    command_manager = Utility::CommandManager.new(astra:, server_id:)
+    command_manager = Utility::CommandManager.new(bot:, server_id:)
     command_manager.register_commands
     command_manager.call_commands
   end
