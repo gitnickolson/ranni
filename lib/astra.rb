@@ -9,12 +9,11 @@ class Bot
   end
 
   def start
-    server_id = ENV.fetch('SERVER_ID').to_i
-
-    bot.ready do
+    astra.ready do
       next if @running
 
-      initialize_commands(server_id)
+      server_ids = astra.servers.keys
+      server_ids.each { initialize_commands(it) }
       @running = true
     end
 
