@@ -9,8 +9,8 @@ Sequel.migration do
     end
 
     alter_table(:ranks) do
-      add_index :role_id, name: :unique_role_id, unique: true, concurrently: true
-      add_index :required_level, name: :unique_required_level, unique: true, concurrently: true
+      add_index :role_id, name: :unique_role_id, unique: true
+      add_index :required_level, name: :unique_required_level, unique: true
     end
   end
 end
