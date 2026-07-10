@@ -4,8 +4,8 @@ module Utility
   class ServerAccessor
     DEFAULT_COLOR_CODE = '#7022ff'
 
-    def initialize(astra:, server_id:)
-      @astra = astra
+    def initialize(bot:, server_id:)
+      @bot = bot
       @server_id = server_id
     end
 
@@ -23,14 +23,14 @@ module Utility
 
     private
 
-    attr_reader :astra, :server_id
+    attr_reader :bot, :server_id
 
     def roles
       server.roles
     end
 
     def server
-      astra.servers[server_id]
+      bot.servers[server_id]
     end
   end
 end

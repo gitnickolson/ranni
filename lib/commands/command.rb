@@ -5,8 +5,8 @@ module Commands
     NAME = :command
     DESCRIPTION = 'Command description'
 
-    def initialize(astra:, server_id:, dependency_container:)
-      @astra = astra
+    def initialize(bot:, server_id:, dependency_container:)
+      @bot = bot
       @server_id = server_id
       @dependency_container = dependency_container
     end
@@ -17,18 +17,18 @@ module Commands
     end
 
     def register
-      astra.register_application_command(self.class::NAME, self.class::DESCRIPTION, server_id:)
+      bot.register_application_command(self.class::NAME, self.class::DESCRIPTION, server_id:)
     end
 
     def call
-      astra.application_command(self.class::NAME) do |event|
+      bot.application_command(self.class::NAME) do |event|
         handle_event(event)
       end
     end
 
     private
 
-    attr_reader :astra, :server_id, :event, :dependency_container
+    attr_reader :bot, :server_id, :event, :dependency_container
 
     def handle_event(event)
       @event = event
@@ -79,7 +79,7 @@ module Commands
     end
 
     def server
-      astra.servers[server_id]
+      bot.servers[server_id]
     end
 
     def logger

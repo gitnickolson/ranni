@@ -9,8 +9,8 @@ module Commands
         SUBCOMMANDS = [Add, Remove, List].freeze
 
         def register
-          astra.register_application_command(self.class::NAME, self.class::DESCRIPTION,
-                                             server_id:) do |command|
+          bot.register_application_command(self.class::NAME, self.class::DESCRIPTION,
+                                           server_id:) do |command|
             register_subcommands(command)
           end
         end

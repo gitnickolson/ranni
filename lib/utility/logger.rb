@@ -30,7 +30,7 @@ module Utility
 
     def create_logging_tool
       Ougai::Logger
-        .new($stdout, progname: 'astra')
+        .new($stdout, progname: 'bot')
         .tap { |ougai_logger| ougai_logger.level = ::Logger::WARN }
     end
   end

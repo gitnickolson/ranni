@@ -4,17 +4,17 @@ module Utility
   class CommandManager
     COMMAND_INTERACTION_SLEEP_TIME = 2
 
-    def initialize(astra:, server_id:)
-      @astra = astra
+    def initialize(bot:, server_id:)
+      @bot = bot
       @server_id = server_id
 
-      permission_checker = PermissionChecker.new(astra:, server_id:)
+      permission_checker = PermissionChecker.new(bot:, server_id:)
       dependency_container = Commands::DependencyContainer.new(logger:,
                                                                message_transmitter: Messages::MessageTransmitter,
                                                                permission_checker:)
 
       @command_instances = all_commands.map do |command|
-        command.new(astra:, server_id:, dependency_container:)
+        command.new(bot:, server_id:, dependency_container:)
       end
     end
 
@@ -56,7 +56,7 @@ module Utility
 
     private
 
-    attr_reader :astra, :command_instances, :server_id
+    attr_reader :bot, :command_instances, :server_id
 
     def command_already_registered?(command)
       registered_application_commands.map(&:name).include?(command::NAME.to_s)
@@ -68,7 +68,7 @@ module Utility
       registered_application_commands.each do |command|
         sleep COMMAND_INTERACTION_SLEEP_TIME
 
-        astra.delete_application_command(command.id, server_id:)
+        bot.delete_application_command(command.id, server_id:)
         logger.log_info_and_print(message: "#{command.name} unregistered")
       end
 
@@ -83,7 +83,7 @@ module Utility
 
         sleep COMMAND_INTERACTION_SLEEP_TIME
 
-        astra.delete_application_command(command.id, server_id:)
+        bot.delete_application_command(command.id, server_id:)
         logger.log_info_and_print(message: "#{command.name} unregistered")
       end
 
@@ -91,7 +91,7 @@ module Utility
     end
 
     def registered_application_commands
-      @registered_application_commands ||= astra.get_application_commands(server_id:)
+      @registered_application_commands ||= bot.get_application_commands(server_id:)
     end
 
     def all_command_classes

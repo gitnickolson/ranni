@@ -6,13 +6,13 @@ module Utility
       class EmbedBuilder
         MIN_PAGE_NUMBER = 1
 
-        def initialize(astra:, pagination_key:, max_page_items: 20)
+        def initialize(bot:, pagination_key:, max_page_items: 20)
           @embed = Discordrb::Webhooks::Embed.new
           @fields = []
           @page = 1
           @max_page_items = max_page_items
           @pagination_key = pagination_key
-          @astra = astra
+          @bot = bot
         end
 
         attr_reader :pagination_key
@@ -31,7 +31,7 @@ module Utility
 
           return self unless pagination?
 
-          EmbedUpdateListener.new(embed_builder: self, pagination_key:, astra:).call
+          EmbedUpdateListener.new(embed_builder: self, pagination_key:, bot:).call
 
           self
         end
@@ -115,7 +115,7 @@ module Utility
 
         attr_accessor :title, :description, :thumbnail, :image, :color, :custom_footer_text, :footer_appendage_text,
                       :page, :fields
-        attr_reader :embed, :max_page_items, :astra, :icon_url
+        attr_reader :embed, :max_page_items, :bot, :icon_url
 
         def embed_setup
           embed.fields = []

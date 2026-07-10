@@ -6,10 +6,10 @@ module Utility
       class EmbedUpdateListener
         TEN_MINUTES = 600
 
-        def initialize(embed_builder:, pagination_key:, astra:)
+        def initialize(embed_builder:, pagination_key:, bot:)
           @embed_builder = embed_builder
           @pagination_key = pagination_key
-          @astra = astra
+          @bot = bot
         end
 
         def call
@@ -19,16 +19,16 @@ module Utility
           Thread.new do
             sleep TEN_MINUTES
 
-            [previous_page_button_handler, next_page_button_handler].each { astra.remove_handler(it) }
+            [previous_page_button_handler, next_page_button_handler].each { bot.remove_handler(it) }
           end
         end
 
         private
 
-        attr_reader :embed_builder, :pagination_key, :astra
+        attr_reader :embed_builder, :pagination_key, :bot
 
         def previous_page_button
-          astra.button(custom_id: "#{pagination_key}-previous") do |event|
+          bot.button(custom_id: "#{pagination_key}-previous") do |event|
             page = embed_builder.current_page == 1 ? embed_builder.total_pages : embed_builder.current_page - 1
 
             embed_builder.update_page(page:)
@@ -37,7 +37,7 @@ module Utility
         end
 
         def next_page_button
-          astra.button(custom_id: "#{pagination_key}-next") do |event|
+          bot.button(custom_id: "#{pagination_key}-next") do |event|
             page = embed_builder.current_page == embed_builder.total_pages ? 1 : embed_builder.current_page + 1
 
             embed_builder.update_page(page:)

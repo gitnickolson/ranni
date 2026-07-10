@@ -5,9 +5,9 @@ module Commands
     NAME = :subcommand
     DESCRIPTION = 'Subcommand description.'
 
-    def initialize(parent_command:, astra:, server_id:, dependency_container:)
+    def initialize(parent_command:, bot:, server_id:, dependency_container:)
       @parent_command = parent_command
-      super(astra:, server_id:, dependency_container:)
+      super(bot:, server_id:, dependency_container:)
     end
 
     def register(discordrb_parent_command:)
@@ -15,7 +15,7 @@ module Commands
     end
 
     def call
-      astra.application_command(parent_command.class::NAME).subcommand(self.class::NAME) do |event|
+      bot.application_command(parent_command.class::NAME).subcommand(self.class::NAME) do |event|
         handle_event(event)
       end
     end
