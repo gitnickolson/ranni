@@ -7,7 +7,7 @@ module Repositories
     end
 
     def all
-      Models::Rank.order(:required_level, server_id:).all
+      Models::Rank.where(server_id:).order(:required_level).all
     end
 
     def find_by_role(role_id:)
