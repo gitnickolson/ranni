@@ -5,8 +5,8 @@ module Utility
     module Embeds
       class EmbedField
         def initialize(name: '', value: '', inlined: false)
-          @name = name
-          @value = value
+          @name = name || ''
+          @value = value || ''
           @inlined = inlined
         end
 

@@ -4,7 +4,7 @@ require 'discordrb'
 
 class Bot
   def initialize
-    @bot = Discordrb::Bot.new(token: ENV.fetch('TOKEN'))
+    @bot = Discordrb::Bot.new(token: ENV.fetch('TOKEN'), name: 'Marika')
     @running = false
   end
 
