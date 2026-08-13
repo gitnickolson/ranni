@@ -2,8 +2,8 @@
 
 module Repositories
   class PreferencesRepository
-    def initialize(server_service:)
-      @server_service = server_service
+    def initialize(server_id:)
+      @server_id = server_id
     end
 
     def birthday_role_id
@@ -68,14 +68,10 @@ module Repositories
 
     private
 
-    attr_reader :server_service
+    attr_reader :server_id
 
     def preference
-      @preference ||= Models::Preferences.find_or_create(server_id:)
-    end
-
-    def server_id
-      server_service.server_id
+      @preference ||= Models::ServerPreferences.find_or_create(server_id: server_id.to_s)
     end
   end
 end
