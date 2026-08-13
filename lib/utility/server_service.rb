@@ -40,15 +40,15 @@ module Utility
     end
 
     def current_timezone
-      TZInfo::Timezone.get(TIMEZONE)
+      TZInfo::Timezone.get(preferences_repository.timezone)
     end
 
     def locale
-      LOCALE.downcase.capitalize
+      preferences_repository.locale.downcase.capitalize
     end
 
     def default_color_code
-      DEFAULT_COLOR_CODE
+      preferences_repository.server_color
     end
 
     private
@@ -65,6 +65,10 @@ module Utility
         identifier.to_s.downcase == member.username.downcase,
         nickname_check && identifier == member.display_name
       ].any?
+    end
+
+    def preferences_repository
+      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
     end
   end
 end
