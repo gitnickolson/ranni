@@ -39,7 +39,8 @@ module Commands
       command_action
     rescue StandardError => e
       logger.error("An error occured: #{e}")
-      transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.')
+      transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut oder schreibe ' \
+                                               'eine Nachricht an `nicknickolson`.')
     end
 
     def command_action
@@ -51,7 +52,7 @@ module Commands
 
       transmitter.error_response(
         event:,
-        text: "No action implemented for #{self.class::NAME}"
+        text: "Keine Funktionalität für #{self.class::NAME} implementiert."
       )
     end
 
