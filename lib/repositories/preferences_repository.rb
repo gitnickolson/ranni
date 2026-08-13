@@ -1,0 +1,81 @@
+# frozen_string_literal: true
+
+module Repositories
+  class PreferencesRepository
+    def initialize(server_service:)
+      @server_service = server_service
+    end
+
+    def birthday_role_id
+      prefernce.birthday_role_id
+    end
+
+    def add_birthday_role(role_id:)
+      preference.update(birthday_role_id: role_id)
+    end
+
+    def remove_birthday_role
+      preference.update(birthday_role_id: nil)
+    end
+
+    def max_text_level
+      preference.max_text_level
+    end
+
+    def add_max_text_level(level:)
+      preference.update(max_text_level: level)
+    end
+
+    def remove_max_text_level
+      preference.update(max_text_level: nil)
+    end
+
+    def max_voice_level
+      preference.max_voice_level
+    end
+
+    def add_max_voice_level(level:)
+      preference.update(max_voice_level: level)
+    end
+
+    def remove_max_voice_level
+      preference.update(max_voice_level: nil)
+    end
+
+    def timezone
+      preference.timezone
+    end
+
+    def update_timezone(timezone:)
+      preference.update(timezone:)
+    end
+
+    def locale
+      preference.locale
+    end
+
+    def update_locale(locale:)
+      preference.update(locale:)
+    end
+
+    def server_color
+      preference.server_color
+    end
+
+    def update_server_color(color_code:)
+      preference.update(server_color: color_code)
+    end
+
+    private
+
+    attr_reader :server_service
+
+    def preference
+      @preference ||= Models::Preferences.find_or_create(server_id:)
+    end
+
+    def server_id
+      server_service.server_id
+    end
+  end
+end
