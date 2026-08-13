@@ -11,7 +11,7 @@ module Repositories
     end
 
     def role_from_id(role_id:)
-      roles.find { |role| role.id == role_id }
+      roles.find { |role| role.id == role_id.to_i }
     end
 
     private

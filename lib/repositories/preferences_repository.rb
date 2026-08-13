@@ -7,7 +7,7 @@ module Repositories
     end
 
     def birthday_role_id
-      prefernce.birthday_role_id
+      preference.birthday_role_id
     end
 
     def add_birthday_role(role_id:)
