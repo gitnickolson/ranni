@@ -18,11 +18,15 @@ module Commands
         def command_action
           level = event.options['level'].to_i
 
-          result = Validation::LevelValidator.validate_max_level_setting(level:)
+          result = level_validator.validate_max_level_setting(level:)
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           preferences_repository.update_max_voice_level(level:)
           transmitter.response(event:, text: "Maximales Voice-Level erfolgreich auf #{level} gesetzt.")
+        end
+
+        def level_validator
+          @level_validator ||= Validation::LevelValidator.new(server_service:)
         end
 
         def preferences_repository
