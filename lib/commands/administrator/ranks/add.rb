@@ -28,7 +28,7 @@ module Commands
         end
 
         def validate_options(role_id, required_level)
-          unless server_accessor.role_exists?(role_id:)
+          unless roles_repository.role_exists?(role_id:)
             return Utility::Result.failure(error: 'Diese Rolle existiert nicht.')
           end
 
@@ -38,8 +38,8 @@ module Commands
           Validation::LevelValidator.validate(level: required_level)
         end
 
-        def server_accessor
-          @server_accessor ||= Utility::ServerAccessor.new(bot:, server_id:)
+        def roles_repository
+          @roles_repository ||= Repositories::RolesRepository.new(server_service:)
         end
       end
     end

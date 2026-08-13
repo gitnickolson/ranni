@@ -9,10 +9,10 @@ class Bot
   end
 
   def start
-    astra.ready do
+    bot.ready do
       next if @running
 
-      server_ids = astra.servers.keys
+      server_ids = bot.servers.keys
       server_ids.each { initialize_commands(it) }
       @running = true
     end
@@ -25,7 +25,9 @@ class Bot
   attr_reader :bot, :running
 
   def initialize_commands(server_id)
-    command_manager = Utility::CommandManager.new(bot:, server_id:)
+    server_service = Utility::ServerService.new(bot:, server_id:)
+
+    command_manager = Utility::CommandManager.new(bot:, server_service:)
     command_manager.register_commands
     command_manager.call_commands
   end

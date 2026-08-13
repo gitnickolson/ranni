@@ -2,9 +2,9 @@
 
 module Utility
   class PermissionChecker
-    def initialize(bot:, server_id:)
+    def initialize(bot:, server_service:)
       @bot = bot
-      @server_id = server_id
+      @server_service = server_service
     end
 
     def administrator?(user:)
@@ -23,14 +23,10 @@ module Utility
 
     private
 
-    attr_reader :bot, :server_id
+    attr_reader :bot, :server_service
 
     def member_for(user)
-      server.members.find { |member| member.id == user.id }
-    end
-
-    def server
-      bot.servers[server_id]
+      server_service.server.members.find { |member| member.id == user.id }
     end
   end
 end

@@ -5,9 +5,9 @@ module Commands
     NAME = :subcommand
     DESCRIPTION = 'Subcommand description.'
 
-    def initialize(parent_command:, bot:, server_id:, dependency_container:)
+    def initialize(parent_command:, bot:, dependency_container:)
       @parent_command = parent_command
-      super(bot:, server_id:, dependency_container:)
+      super(bot:, dependency_container:)
     end
 
     def register(discordrb_parent_command:)

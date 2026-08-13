@@ -5,9 +5,8 @@ module Commands
     NAME = :command
     DESCRIPTION = 'Command description'
 
-    def initialize(bot:, server_id:, dependency_container:)
+    def initialize(bot:, dependency_container:)
       @bot = bot
-      @server_id = server_id
       @dependency_container = dependency_container
     end
 
@@ -17,7 +16,7 @@ module Commands
     end
 
     def register
-      bot.register_application_command(self.class::NAME, self.class::DESCRIPTION, server_id:)
+      bot.register_application_command(self.class::NAME, self.class::DESCRIPTION, server_id: server.id)
     end
 
     def call
@@ -28,7 +27,7 @@ module Commands
 
     private
 
-    attr_reader :bot, :server_id, :event, :dependency_container
+    attr_reader :bot, :event, :dependency_container
 
     def handle_event(event)
       @event = event
@@ -79,7 +78,11 @@ module Commands
     end
 
     def server
-      bot.servers[server_id]
+      server_service.server
+    end
+
+    def server_service
+      dependency_container.server_service
     end
 
     def logger

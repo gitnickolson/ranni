@@ -6,13 +6,14 @@ module Utility
       class EmbedBuilder
         MIN_PAGE_NUMBER = 1
 
-        def initialize(bot:, pagination_key:, max_page_items: 20)
+        def initialize(bot:, server_service:, pagination_key:, max_page_items: 20)
           @embed = Discordrb::Webhooks::Embed.new
           @fields = []
           @page = 1
           @max_page_items = max_page_items
           @pagination_key = pagination_key
           @bot = bot
+          @server_service = server_service
         end
 
         attr_reader :pagination_key
@@ -115,7 +116,7 @@ module Utility
 
         attr_accessor :title, :description, :thumbnail, :image, :color, :custom_footer_text, :footer_appendage_text,
                       :page, :fields
-        attr_reader :embed, :max_page_items, :bot, :icon_url
+        attr_reader :embed, :max_page_items, :icon_url, :bot, :server_service
 
         def embed_setup
           embed.fields = []
@@ -123,7 +124,7 @@ module Utility
           embed.description = description || ''
           embed.thumbnail = thumbnail
           embed.image = image
-          embed.color = color || ServerAccessor.server_color_code
+          embed.color = server_service.default_color_code
           embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: footer_text, icon_url:)
         end
 

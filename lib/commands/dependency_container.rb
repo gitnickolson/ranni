@@ -2,12 +2,13 @@
 
 module Commands
   class DependencyContainer
-    def initialize(logger:, message_transmitter:, permission_checker:)
+    def initialize(server_service:, logger:, message_transmitter:, permission_checker:)
+      @server_service = server_service
       @logger = logger
       @message_transmitter = message_transmitter
       @permission_checker = permission_checker
     end
 
-    attr_reader :logger, :message_transmitter, :permission_checker
+    attr_reader :server_service, :logger, :message_transmitter, :permission_checker
   end
 end
