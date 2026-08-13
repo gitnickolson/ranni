@@ -23,11 +23,6 @@ module Utility
       logging_tool.error(message)
     end
 
-    def log_info_and_print(message:)
-      logging_tool.info(message)
-      pp message
-    end
-
     private
 
     attr_reader :logging_tool

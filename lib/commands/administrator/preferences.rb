@@ -37,11 +37,11 @@ module Commands
       end
 
       def max_text_level_field
-        field.new(name: 'Maximales Text-Level:', value: preferences_repository.max_text_level || '∞', inlined: true)
+        field.new(name: 'Maximales Text-Level:', value: preferences_repository.max_text_level, inlined: true)
       end
 
       def max_voice_level_field
-        field.new(name: 'Maximales Voice-Level:', value: preferences_repository.max_voice_level || '∞', inlined: true)
+        field.new(name: 'Maximales Voice-Level:', value: preferences_repository.max_voice_level, inlined: true)
       end
 
       def birthday_role

@@ -26,12 +26,12 @@ module Utility
       unregistered_commands.each do |command|
         command_instance = command_instances.find { |command_instance| command_instance.instance_of?(command) }
         command_instance.register
-        logger.log_info_and_print(message: "#{command::NAME} registered")
+        logger.info(message: "#{command::NAME} registered")
 
         sleep COMMAND_INTERACTION_SLEEP_TIME
       end
 
-      'Successfully registered all unregistered commands!'
+      logger.info(message: 'Successfully registered all unregistered commands!')
     end
 
     def call_commands
@@ -63,20 +63,20 @@ module Utility
     end
 
     def unregister_all_commands
-      logger.log_info_and_print(message: 'Unregistering all commands...')
+      logger.info(message: 'Unregistering all commands...')
 
       registered_application_commands.each do |command|
         sleep COMMAND_INTERACTION_SLEEP_TIME
 
         bot.delete_application_command(command.id, server_id:)
-        logger.log_info_and_print(message: "#{command.name} unregistered")
+        logger.info(message: "#{command.name} unregistered")
       end
 
-      logger.log_info_and_print(message: 'Successfully unregistered commands!')
+      logger.info(message: 'Successfully unregistered commands!')
     end
 
     def unregister_filtered_commands(names)
-      logger.log_info_and_print(message: "Unregistering commands with filters: #{names}")
+      logger.info(message: "Unregistering commands with filters: #{names}")
 
       registered_application_commands.each do |command|
         next unless names.include?(command.name)
@@ -84,10 +84,10 @@ module Utility
         sleep COMMAND_INTERACTION_SLEEP_TIME
 
         bot.delete_application_command(command.id, server_id:)
-        logger.log_info_and_print(message: "#{command.name} unregistered")
+        logger.info(message: "#{command.name} unregistered")
       end
 
-      logger.log_info_and_print(message: 'Successfully unregistered commands!')
+      logger.info(message: 'Successfully unregistered commands!')
     end
 
     def registered_application_commands
