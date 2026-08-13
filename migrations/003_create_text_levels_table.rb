@@ -10,7 +10,7 @@ Sequel.migration do
       Integer :experience_points, default: 0, null: false
     end
 
-    alter_table(:server_preferences) do
+    alter_table(:text_levels) do
       add_index %i[server_id user_id], name: :unique_level_per_server, unique: true
     end
   end

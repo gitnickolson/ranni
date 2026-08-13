@@ -22,7 +22,7 @@ module Commands
 
       def fields
         [
-          field.new(name: 'Standardfarbcode:', value: "##{preferences_repository.server_color}", inlined: true),
+          field.new(name: 'Standardfarbcode:', value: preferences_repository.server_color, inlined: true),
           field.new(name: 'Zeitzone:', value: preferences_repository.timezone, inlined: true),
           field.new(name: 'Sprache:', value: preferences_repository.locale, inlined: true),
           birthday_field,
