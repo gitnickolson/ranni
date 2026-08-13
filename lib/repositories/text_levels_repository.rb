@@ -11,26 +11,32 @@ module Repositories
 
       return levels unless active
 
-      levels.select { server_service.user_ids.include?(it.user_id) }
+      levels.select { server_service.user_ids.include?(it.user_id.to_i) }
     end
 
     def find_by_user_id(user_id:)
-      Models::TextLevel.where(server_id:, user_id:).first
+      Models::TextLevel.where(server_id:, user_id: user_id.to_s).first
     end
 
     def update_numeric(user_id:, numeric:)
       numeric = preferences_repository.max_text_level if numeric > preferences_repository.max_text_level
 
-      Models::TextLevel.where(server_id:, user_id:).update_or_create(numeric:,
-                                                                     experience_points: xp_from_numeric(numeric))
+      Models::TextLevel.update_or_create(
+        { server_id:, user_id: user_id.to_s },
+        numeric:,
+        experience_points: xp_from_numeric(numeric)
+      )
     end
 
     def update_xp(user_id:, experience_points:)
       max_xp = (xp_from_numeric(preferences_repository.max_text_level + 1) - 1)
-      experience_points = max_xp if experience_points > max_xp
 
-      Models::TextLevel.where(server_id:, user_id:).update_or_create(numeric: numeric_from_xp(experience_points),
-                                                                     experience_points:)
+      Models::TextLevel.update_or_create(server_id:, user_id: user_id.to_s) do |text_level|
+        total_xp = (text_level.experience_points || 0) + experience_points
+        total_xp = max_xp if total_xp > max_xp
+
+        text_level.set(numeric: numeric_from_xp(total_xp), experience_points: total_xp)
+      end
     end
 
     private

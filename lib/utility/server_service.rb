@@ -28,7 +28,7 @@ module Utility
     end
 
     def user_ids
-      server.members.map(&:user_id)
+      server.members.map(&:id)
     end
 
     def now

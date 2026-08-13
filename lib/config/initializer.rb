@@ -9,6 +9,8 @@ module Config
       def call
         ZeitwerkInitializer.call
         EnvironmentInitializer.call
+
+        Sequel::Model.plugin(:update_or_create)
       end
     end
   end

@@ -1,0 +1,58 @@
+# frozen_string_literal: true
+
+module Features
+  module Leveling
+    module Text
+      class TextLevelingManager
+        COOLDOWN_LENGTH = 20
+
+        def initialize(server_service:)
+          @server_service = server_service
+          @cooldown_list = []
+          @cooldown_mutex = Mutex.new
+        end
+
+        def handle_message(user_id:, message_length:)
+          return if user_on_cooldown?(user_id)
+
+          experience_points = random_xp_amount(message_length)
+          text_levels_repository.update_xp(user_id:, experience_points:)
+
+          start_cooldown_for_user(user_id)
+        end
+
+        private
+
+        attr_reader :server_service, :cooldown_list, :cooldown_mutex
+
+        def user_on_cooldown?(user_id)
+          cooldown_mutex.synchronize { cooldown_list.include?(user_id) }
+        end
+
+        def start_cooldown_for_user(user_id)
+          cooldown_mutex.synchronize do
+            cooldown_list << user_id
+          end
+
+          Thread.new do
+            sleep COOLDOWN_LENGTH
+            cooldown_mutex.synchronize do
+              cooldown_list.delete(user_id)
+            end
+          end
+        end
+
+        def random_xp_amount(message_length)
+          return rand(15...40) if message_length < 150
+          return rand(20...60) if message_length < 300
+
+          rand(40...80)
+        end
+
+        def text_levels_repository
+          @text_levels_repository ||= Repositories::TextLevelsRepository.new(server_service:)
+        end
+      end
+    end
+  end
+end
