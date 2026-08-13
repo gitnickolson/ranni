@@ -9,10 +9,10 @@ class Bot
   end
 
   def start
-    astra.ready do
+    bot.ready do
       next if @running
 
-      server_ids = astra.servers.keys
+      server_ids = bot.servers.keys
       server_ids.each { initialize_commands(it) }
       @running = true
     end

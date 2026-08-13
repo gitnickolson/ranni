@@ -6,5 +6,5 @@ require './lib/config/initializer'
 Config::Initializer.call
 DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)
 
-bot = bot.new
+bot = Bot.new
 bot.start
