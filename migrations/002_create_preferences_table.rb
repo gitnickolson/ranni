@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+Sequel.migration do
+  change do
+    create_table(:server_preferences) do
+      primary_key :id
+      string :server_id, null: false
+      string :birthday_role_id, null: true
+      string :birthday_celebration_channel_id, null: true
+      int :max_text_level, null: true
+      int :max_voice_level, null: true
+    end
+
+    alter_table(:server_preferences) do
+      add_index :server_id, name: :unique_preferences_per_server, unique: true
+    end
+  end
+end
