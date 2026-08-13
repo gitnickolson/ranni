@@ -2,21 +2,39 @@
 
 module Validation
   class LevelValidator
-    DEFAULT_MAX_LEVEL = 250
-    DEFAULT_MIN_LEVEL = 0
+    MIN_LEVEL = 0
+    MAX_POSSIBLE_LEVEL = 100_000
 
-    class << self
-      def validate(level:)
-        if level < DEFAULT_MIN_LEVEL
-          return Utility::Result.failure(error: "Das Level muss mindestens #{DEFAULT_MIN_LEVEL} betragen.")
-        end
+    def initialize(server_service:)
+      @server_service = server_service
+    end
 
-        if level > DEFAULT_MAX_LEVEL
-          return Utility::Result.failure(error: "Das Level darf maximal #{DEFAULT_MAX_LEVEL} betragen.")
-        end
+    def validate_text_level(level:)
+      return Utility::Result.failure(error: "Das Level muss mindestens #{MIN_LEVEL} betragen.") if level < MIN_LEVEL
 
-        Utility::Result.ok
+      if level > preferences_repository.max_text_level
+        return Utility::Result.failure(error: 'Das Level darf nicht höher als das maximale Server-Level sein.')
       end
+
+      Utility::Result.ok
+    end
+
+    def validate_max_level_setting(level:)
+      return Utility::Result.failure(error: 'Das maximale Level darf nicht negativ sein.') if level.negative?
+
+      if level > MAX_POSSIBLE_LEVEL
+        return Utility::Result.failure(error: 'Das maximale Level darf 100.000 nicht überschreiten.')
+      end
+
+      Utility::Result.ok
+    end
+
+    private
+
+    attr_reader :server_service
+
+    def preferences_repository
+      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
     end
   end
 end

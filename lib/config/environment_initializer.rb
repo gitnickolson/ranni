@@ -16,7 +16,7 @@ module Config
         env_message = "Loading env from: #{env_path}"
 
         logger = Utility::Logger.instance
-        logger.log_info_and_print(message: env_message)
+        logger.info(message: env_message)
       end
     end
   end

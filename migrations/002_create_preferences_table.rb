@@ -7,8 +7,8 @@ Sequel.migration do
       String :server_id, null: false
       String :birthday_role_id, null: true
       String :birthday_celebration_channel_id, null: true
-      Integer :max_text_level, null: true
-      Integer :max_voice_level, null: true
+      Integer :max_text_level, default: 100, null: false
+      Integer :max_voice_level, default: 100, null: false
       String :timezone, default: 'Europe/Berlin'
       String :locale, default: 'DE'
       String :server_color, default: '#8a43ff'

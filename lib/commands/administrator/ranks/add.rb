@@ -35,7 +35,11 @@ module Commands
           rank_result = Validation::RanksValidator.validate_creation(role_id:, required_level:)
           return rank_result if rank_result.failure?
 
-          Validation::LevelValidator.validate(level: required_level)
+          level_validator.validate_text_level(level: required_level)
+        end
+
+        def level_validator
+          @level_validator ||= Validation::LevelValidator.new(server_service:)
         end
 
         def roles_repository
