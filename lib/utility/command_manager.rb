@@ -4,17 +4,17 @@ module Utility
   class CommandManager
     COMMAND_INTERACTION_SLEEP_TIME = 2
 
-    def initialize(bot:, server_id:)
+    def initialize(bot:, server_service:)
       @bot = bot
       @server_id = server_id
 
-      permission_checker = PermissionChecker.new(bot:, server_id:)
-      dependency_container = Commands::DependencyContainer.new(logger:,
+      permission_checker = PermissionChecker.new(bot:, server_service:)
+      dependency_container = Commands::DependencyContainer.new(server_service:, logger:,
                                                                message_transmitter: Messages::MessageTransmitter,
                                                                permission_checker:)
 
       @command_instances = all_commands.map do |command|
-        command.new(bot:, server_id:, dependency_container:)
+        command.new(bot:, dependency_container:)
       end
     end
 

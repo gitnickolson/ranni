@@ -15,7 +15,7 @@ module Commands
         end
 
         def create_embed_builder
-          embed_builder = builder.new(bot:, pagination_key:, max_page_items: 20)
+          embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: 20)
 
           embed_builder.update_fields(fields:)
           embed_builder.add_title(text: "Ränge auf #{server.name}")
@@ -25,7 +25,7 @@ module Commands
         def fields
           ranks.map do |rank|
             field.new(name: "Level #{rank.required_level}",
-                      value: server_accessor.role_from_id(role_id: rank.role_id.to_i).mention.to_s)
+                      value: roles_repository.role_from_id(role_id: rank.role_id.to_i).mention.to_s)
           end
         end
 
@@ -33,8 +33,8 @@ module Commands
           Repositories::RanksRepository.all
         end
 
-        def server_accessor
-          @server_accessor ||= Utility::ServerAccessor.new(bot:, server_id:)
+        def roles_repository
+          @roles_repository ||= Repositories::RolesRepository.new(server_service:)
         end
       end
     end

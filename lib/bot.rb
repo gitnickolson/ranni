@@ -25,7 +25,9 @@ class Bot
   attr_reader :bot, :running
 
   def initialize_commands(server_id)
-    command_manager = Utility::CommandManager.new(bot:, server_id:)
+    server_service = Utility::ServerService.new(bot:, server_id:)
+
+    command_manager = Utility::CommandManager.new(bot:, server_service:)
     command_manager.register_commands
     command_manager.call_commands
   end

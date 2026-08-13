@@ -10,7 +10,7 @@ module Commands
 
         def register
           bot.register_application_command(self.class::NAME, self.class::DESCRIPTION,
-                                           server_id:) do |command|
+                                           server_id: server.id) do |command|
             register_subcommands(command)
           end
         end

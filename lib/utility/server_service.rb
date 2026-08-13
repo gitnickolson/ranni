@@ -1,0 +1,70 @@
+# frozen_string_literal: true
+
+module Utility
+  class ServerService
+    TIMEZONE = 'Europe/Berlin'
+    LOCALE = 'DE'
+    DEFAULT_COLOR_CODE = '#8a43ff'
+
+    def initialize(bot:, server_id:)
+      @bot = bot
+      @server_id = server_id
+    end
+
+    attr_reader :server_id
+
+    def server
+      bot.servers[server_id]
+    end
+
+    def member_from(identifier:, nickname_check: false)
+      server.members.find do |member|
+        matching_id?(identifier, member) || matching_name_identifier?(identifier, member, nickname_check:)
+      end
+    end
+
+    def display_name(user_id:, full: false)
+      member = member_from(identifier: user_id)
+
+      return member.display_name unless full
+
+      member.display_name ? "#{member.display_name} (#{member.username})" : member.username
+    end
+
+    def role_for(id:)
+      server.roles.find { it.id == id }
+    end
+
+    def now
+      current_timezone.now
+    end
+
+    def current_timezone
+      TZInfo::Timezone.get(TIMEZONE)
+    end
+
+    def locale
+      LOCALE.downcase.capitalize
+    end
+
+    def default_color_code
+      DEFAULT_COLOR_CODE
+    end
+
+    private
+
+    attr_reader :bot
+
+    def matching_id?(identifier, member)
+      identifier == member.id.to_s || identifier == member.id
+    end
+
+    def matching_name_identifier?(identifier, member, nickname_check: false)
+      [
+        identifier == member.mention,
+        identifier.to_s.downcase == member.username.downcase,
+        nickname_check && identifier == member.display_name
+      ].any?
+    end
+  end
+end
