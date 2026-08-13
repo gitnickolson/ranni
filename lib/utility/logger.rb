@@ -19,6 +19,10 @@ module Utility
       logging_tool.info(message)
     end
 
+    def error(message:)
+      logging_tool.error(message)
+    end
+
     def log_info_and_print(message:)
       logging_tool.info(message)
       pp message
@@ -29,9 +33,11 @@ module Utility
     attr_reader :logging_tool
 
     def create_logging_tool
+      $stdout.sync = true
+
       Ougai::Logger
         .new($stdout, progname: 'bot')
-        .tap { |ougai_logger| ougai_logger.level = ::Logger::WARN }
+        .tap { |ougai_logger| ougai_logger.level = ::Logger::INFO }
     end
   end
 end

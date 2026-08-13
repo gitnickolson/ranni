@@ -2,10 +2,6 @@
 
 module Utility
   class ServerService
-    TIMEZONE = 'Europe/Berlin'
-    LOCALE = 'DE'
-    DEFAULT_COLOR_CODE = '#8a43ff'
-
     def initialize(bot:, server_id:)
       @bot = bot
       @server_id = server_id
