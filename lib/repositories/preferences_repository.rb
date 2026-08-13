@@ -71,7 +71,7 @@ module Repositories
     attr_reader :server_id
 
     def preference
-      @preference ||= Models::ServerPreferences.find_or_create(server_id: server_id.to_s)
+      Models::ServerPreferences.find_or_create(server_id: server_id.to_s)
     end
   end
 end

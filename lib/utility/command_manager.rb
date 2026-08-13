@@ -6,7 +6,7 @@ module Utility
 
     def initialize(bot:, server_service:)
       @bot = bot
-      @server_id = server_id
+      @server_id = server_service.server_id
 
       permission_checker = PermissionChecker.new(bot:, server_service:)
       dependency_container = Commands::DependencyContainer.new(server_service:, logger:,
@@ -91,7 +91,7 @@ module Utility
     end
 
     def registered_application_commands
-      @registered_application_commands ||= bot.get_application_commands(server_id:)
+      bot.get_application_commands(server_id:)
     end
 
     def all_command_classes
