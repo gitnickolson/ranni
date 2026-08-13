@@ -37,6 +37,9 @@ module Commands
       end
 
       command_action
+    rescue StandardError => e
+      logger.error("An error occured: #{e}")
+      transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.')
     end
 
     def command_action
