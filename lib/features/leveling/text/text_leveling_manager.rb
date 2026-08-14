@@ -13,6 +13,7 @@ module Features
         end
 
         def handle_message(user_id:, message_length:)
+          return unless preferences_repository.text_leveling_enabled?
           return if user_on_cooldown?(user_id)
 
           update_user_level(user_id, message_length)
@@ -63,6 +64,10 @@ module Features
 
         def text_levels_repository
           @text_levels_repository ||= Repositories::TextLevelsRepository.new(server_service:)
+        end
+
+        def preferences_repository
+          @preferences_repository ||= Repositories::PreferencesRepository.new(server_service:)
         end
       end
     end

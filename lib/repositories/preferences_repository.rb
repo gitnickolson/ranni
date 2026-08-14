@@ -30,6 +30,14 @@ module Repositories
       preference.update(level_up_congratulation_channel_id: nil)
     end
 
+    def text_leveling_enabled?
+      preference.text_leveling_enabled
+    end
+
+    def update_text_leveling_status(turned_on:)
+      preference.update(text_leveling_enabled: turned_on)
+    end
+
     def max_text_level
       preference.max_text_level
     end
