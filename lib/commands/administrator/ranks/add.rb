@@ -23,7 +23,7 @@ module Commands
           result = validate_options(role_id, required_level)
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
-          Repositories::RanksRepository.create(role_id:, required_level:)
+          ranks_repository.create(role_id:, required_level:)
           transmitter.response(event:, text: 'Der Rang wurde erfolgreich erstellt.')
         end
 
@@ -32,14 +32,22 @@ module Commands
             return Utility::Result.failure(error: 'Diese Rolle existiert nicht.')
           end
 
-          rank_result = Validation::RanksValidator.validate_creation(role_id:, required_level:)
+          rank_result = ranks_validator.validate_creation(role_id:, required_level:)
           return rank_result if rank_result.failure?
 
           level_validator.validate_text_level(level: required_level)
         end
 
+        def ranks_validator
+          @ranks_validator ||= Validation::RanksValidator.new(server_service:)
+        end
+
         def level_validator
           @level_validator ||= Validation::LevelValidator.new(server_service:)
+        end
+
+        def ranks_repository
+          @ranks_repository ||= Repositories::RanksRepository.new(server_service:)
         end
 
         def roles_repository

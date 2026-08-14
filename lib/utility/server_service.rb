@@ -27,8 +27,12 @@ module Utility
       member.display_name ? "#{member.display_name} (#{member.username})" : member.username
     end
 
-    def role_for(id:)
-      server.roles.find { it.id == id }
+    def user_ids
+      server.members.map(&:id)
+    end
+
+    def channel_from_id(channel_id:)
+      server.channels.find { it.id == channel_id.to_i }
     end
 
     def now

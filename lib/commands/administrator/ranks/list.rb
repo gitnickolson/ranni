@@ -30,7 +30,11 @@ module Commands
         end
 
         def ranks
-          Repositories::RanksRepository.all
+          ranks_repository.all
+        end
+
+        def ranks_repository
+          @ranks_repository ||= Repositories::RanksRepository.new(server_service:)
         end
 
         def roles_repository

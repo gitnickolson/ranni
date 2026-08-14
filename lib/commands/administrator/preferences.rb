@@ -4,7 +4,7 @@ module Commands
   module Administrator
     class Preferences < Command
       NAME = :preferences
-      DESCRIPTION = 'Rufe die Boteinstellunge auf diesem Server ab'
+      DESCRIPTION = 'Rufe die Boteinstellungen für diesen Server ab'
 
       private
 
@@ -20,20 +20,24 @@ module Commands
         embed_builder.add_title(text: "Eingestellte Präferenzen für #{bot.name} auf #{server.name}")
       end
 
-      def fields
+      def fields # rubocop:disable Metrics/MethodLength
         [
-          field.new(name: 'Standardfarbcode:', value: "##{preferences_repository.server_color}", inlined: true),
+          field.new(name: 'Standardfarbcode:', value: preferences_repository.server_color, inlined: true),
           field.new(name: 'Zeitzone:', value: preferences_repository.timezone, inlined: true),
           field.new(name: 'Sprache:', value: preferences_repository.locale, inlined: true),
           birthday_field,
           field.new,
           max_text_level_field,
-          max_voice_level_field
+          max_voice_level_field,
+          text_leveling_status_field,
+          level_up_messages_channel_field
         ].compact
       end
 
       def birthday_field
-        field.new(name: 'Geburtstagsrolle:', value: birthday_role.mention, inlined: true) unless birthday_role.nil?
+        return if birthday_role.nil?
+
+        field.new(name: 'Geburtstagsrolle:', value: birthday_role.mention, inlined: true)
       end
 
       def max_text_level_field
@@ -42,6 +46,21 @@ module Commands
 
       def max_voice_level_field
         field.new(name: 'Maximales Voice-Level:', value: preferences_repository.max_voice_level, inlined: true)
+      end
+
+      def text_leveling_status_field
+        field.new(name: 'Text-Leveling Status:',
+                  value: preferences_repository.text_leveling_enabled? ? 'Eingeschalten' : 'Ausgeschalten')
+      end
+
+      def level_up_messages_channel_field
+        return if level_up_congratulation_channel.nil?
+
+        field.new(name: 'Level-Up Nachrichten Kanal:', value: level_up_congratulation_channel.mention)
+      end
+
+      def level_up_congratulation_channel
+        server_service.channel_from_id(channel_id: preferences_repository.level_up_congratulation_channel_id)
       end
 
       def birthday_role

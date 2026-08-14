@@ -18,12 +18,16 @@ module Commands
         def command_action
           role_id = event.options['rolle']
 
-          if Repositories::RanksRepository.find_by_role(role_id:).nil?
+          if ranks_repository.find_by_role(role_id:).nil?
             return transmitter.error_response(event:, text: 'Für diese Rolle gibt es keinen zugehörigen Rang.')
           end
 
-          Repositories::RanksRepository.delete(role_id:)
+          ranks_repository.delete(role_id:)
           transmitter.response(event:, text: 'Rang erfolgreich entfernt.')
+        end
+
+        def ranks_repository
+          @ranks_repository ||= Repositories::RanksRepository.new(server_service:)
         end
       end
     end
