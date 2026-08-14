@@ -15,7 +15,7 @@ module Features
         def handle_message(user_id:, message_length:, server_id:)
           @server_service = Utility::ServerService.new(bot:, server_id:)
 
-          return unless preferences_repository.text_leveling_enabled?
+          return unless text_leveling_enabled?(server_id)
           return if user_on_cooldown?(user_id)
 
           update_user_level(user_id, message_length)
@@ -27,12 +27,14 @@ module Features
         attr_reader :bot, :server_service, :cooldown_list, :cooldown_mutex
 
         def update_user_level(user_id, message_length)
-          previous_level = text_levels_repository.find_by_user_id(user_id:)
-          updated_level = text_levels_repository.update_xp(user_id:,
-                                                           experience_points: random_xp_amount(message_length))
+          levels_repository = Repositories::TextLevelsRepository.new(server_service:)
+          previous_level = levels_repository.find_by_user_id(user_id:)
+          updated_level = levels_repository.update_xp(user_id:,
+                                                      experience_points: random_xp_amount(message_length))
 
           return unless updated_level.numeric > previous_level.numeric
 
+          level_up_manager = LevelUpManager.new(server_service:)
           level_up_manager.call(updated_level:)
         end
 
@@ -62,16 +64,9 @@ module Features
           rand(40...80)
         end
 
-        def level_up_manager
-          @level_up_manager ||= LevelUpManager.new(server_service:)
-        end
-
-        def text_levels_repository
-          @text_levels_repository ||= Repositories::TextLevelsRepository.new(server_service:)
-        end
-
-        def preferences_repository
-          @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
+        def text_leveling_enabled?(server_id)
+          preferences_repository = Repositories::PreferencesRepository.new(server_id:)
+          preferences_repository.text_leveling_enabled?
         end
       end
     end
