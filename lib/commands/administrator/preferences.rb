@@ -30,7 +30,8 @@ module Commands
           max_text_level_field,
           max_voice_level_field,
           text_leveling_status_field,
-          level_up_messages_channel_field
+          level_up_message_channel_field,
+          welcome_message_channel_field
         ].compact
       end
 
@@ -53,14 +54,20 @@ module Commands
                   value: preferences_repository.text_leveling_enabled? ? 'Eingeschalten' : 'Ausgeschalten')
       end
 
-      def level_up_messages_channel_field
-        return if level_up_congratulation_channel.nil?
+      def level_up_message_channel_field
+        field.new(name: 'Level-Up-Nachrichten Kanal:', value: level_up_congratulation_channel&.mention || '//')
+      end
 
-        field.new(name: 'Level-Up Nachrichten Kanal:', value: level_up_congratulation_channel.mention)
+      def welcome_message_channel_field
+        field.new(name: 'Willkommensnachrichten Kanal:', value: welcome_message_channel&.mention || '//')
       end
 
       def level_up_congratulation_channel
         server_service.channel_from_id(channel_id: preferences_repository.level_up_congratulation_channel_id)
+      end
+
+      def welcome_message_channel
+        server_service.channel_from_id(channel_id: preferences_repository.welcome_message_channel_id)
       end
 
       def birthday_role
