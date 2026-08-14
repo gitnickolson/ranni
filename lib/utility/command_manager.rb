@@ -95,9 +95,9 @@ module Utility
     end
 
     def all_command_classes
-      Utility::ClassCollector.all_classes_under(mod: Commands::Administrator) # +
+      Utility::ClassCollector.all_classes_under(mod: Commands::Administrator) +
+        Utility::ClassCollector.all_classes_under(mod: Commands::Public) # +
       # Utility::ClassCollector.all_classes_under(mod: Commands::Booster) +
-      # Utility::ClassCollector.all_classes_under(mod: Commands::Public)
     end
 
     def logger
