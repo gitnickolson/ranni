@@ -39,7 +39,7 @@ module Features
         end
 
         def user_on_cooldown?(user_id)
-          cooldown_mutex.synchronize { cooldown_list.include?(user_id) }
+          cooldown_mutex.synchronize { cooldown_list.include?("#{server_service.server_id}:#{user_id}") }
         end
 
         def start_cooldown_for_user(user_id)
