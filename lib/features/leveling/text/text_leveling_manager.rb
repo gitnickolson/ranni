@@ -15,15 +15,23 @@ module Features
         def handle_message(user_id:, message_length:)
           return if user_on_cooldown?(user_id)
 
-          experience_points = random_xp_amount(message_length)
-          text_levels_repository.update_xp(user_id:, experience_points:)
-
+          update_user_level(user_id, message_length)
           start_cooldown_for_user(user_id)
         end
 
         private
 
         attr_reader :server_service, :cooldown_list, :cooldown_mutex
+
+        def update_user_level(user_id, message_length)
+          previous_level = text_levels_repository.find_by_user_id(user_id:)
+          updated_level = text_levels_repository.update_xp(user_id:,
+                                                           experience_points: random_xp_amount(message_length))
+
+          return unless updated_level.numeric > previous_level.numeric
+
+          level_up_manager.call(updated_level:)
+        end
 
         def user_on_cooldown?(user_id)
           cooldown_mutex.synchronize { cooldown_list.include?(user_id) }
@@ -47,6 +55,10 @@ module Features
           return rand(20...60) if message_length < 300
 
           rand(40...80)
+        end
+
+        def level_up_manager
+          @level_up_manager ||= LevelUpManager.new(server_service:)
         end
 
         def text_levels_repository

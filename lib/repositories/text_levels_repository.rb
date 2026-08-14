@@ -15,7 +15,11 @@ module Repositories
     end
 
     def find_by_user_id(user_id:)
-      Models::TextLevel.where(server_id:, user_id: user_id.to_s).first
+      level = Models::TextLevel.where(server_id:, user_id: user_id.to_s).first
+
+      return level unless level.nil?
+
+      Models::TextLevel.create(user_id:, server_id:)
     end
 
     def update_numeric(user_id:, numeric:)

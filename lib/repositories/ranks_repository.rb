@@ -26,6 +26,14 @@ module Repositories
       Models::Rank.where(role_id: role_id.to_s, server_id:).delete
     end
 
+    def previous_rank_for(rank:)
+      Models::Rank
+        .where(server_id:)
+        .where { required_level < rank.required_level }
+        .order(:required_level)
+        .last
+    end
+
     private
 
     attr_reader :server_service
