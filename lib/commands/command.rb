@@ -5,29 +5,20 @@ module Commands
     NAME = :command
     DESCRIPTION = 'Command description'
 
-    def initialize(bot:, dependency_container:)
-      @bot = bot
-      @dependency_container = dependency_container
+    def self.register(bot:)
+      bot.register_application_command(self::NAME, self::DESCRIPTION)
     end
 
-    def command_permission_level
-      namespace = self.class.name.split('::')[1]
-      namespace.downcase.to_sym
-    end
-
-    def register
-      bot.register_application_command(self.class::NAME, self.class::DESCRIPTION, server_id: server.id)
-    end
-
-    def call
-      bot.application_command(self.class::NAME) do |event|
-        handle_event(event)
+    def self.listen(bot:)
+      bot.application_command(self::NAME) do |event|
+        command = new(bot:)
+        command.handle_event(event)
       end
     end
 
-    private
-
-    attr_reader :bot, :event, :dependency_container
+    def initialize(bot:)
+      @bot = bot
+    end
 
     def handle_event(event)
       @event = event
@@ -43,6 +34,10 @@ module Commands
       transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut oder schreibe ' \
                                                'eine Nachricht an `nicknickolson`.')
     end
+
+    private
+
+    attr_reader :bot, :event, :server_service
 
     def command_action
       unimplemented_command_response
@@ -60,7 +55,7 @@ module Commands
     def user_permitted?
       user = event.user
 
-      case command_permission_level
+      case permission_level
       when :administrator
         permission_checker.administrator?(user:)
       when :booster
@@ -68,6 +63,11 @@ module Commands
       else
         true
       end
+    end
+
+    def permission_level
+      namespace = self.class.name.split('::')[1]
+      namespace.downcase.to_sym
     end
 
     def builder
@@ -87,15 +87,15 @@ module Commands
     end
 
     def logger
-      dependency_container.logger
+      Utility::Logger.instance
     end
 
     def transmitter
-      dependency_container.message_transmitter
+      Utility::Messages::MessageTransmitter
     end
 
     def permission_checker
-      dependency_container.permission_checker
+      Utility::PermissionChecker.new(bot:, server_service:)
     end
   end
 end

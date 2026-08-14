@@ -5,23 +5,15 @@ module Commands
     NAME = :subcommand
     DESCRIPTION = 'Subcommand description.'
 
-    def initialize(parent_command:, bot:, dependency_container:)
-      @parent_command = parent_command
-      super(bot:, dependency_container:)
+    def self.register(discordrb_parent_command:)
+      discordrb_parent_command.subcommand(self::NAME, self::DESCRIPTION)
     end
 
-    def register(discordrb_parent_command:)
-      discordrb_parent_command.subcommand(self.class::NAME, self.class::DESCRIPTION)
-    end
-
-    def call
-      bot.application_command(parent_command.class::NAME).subcommand(self.class::NAME) do |event|
-        handle_event(event)
+    def self.listen(bot:, parent_command:)
+      bot.application_command(parent_command::NAME).subcommand(self::NAME) do |event|
+        command = new(bot:)
+        command.handle_event(event)
       end
     end
-
-    private
-
-    attr_reader :parent_command
   end
 end

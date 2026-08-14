@@ -11,7 +11,8 @@ module Features
 
               text_leveling_manager.handle_message(
                 user_id: event.user.id,
-                message_length: event.message.content.length
+                message_length: event.message.content.length,
+                server_id: event.server.id
               )
             end
           end

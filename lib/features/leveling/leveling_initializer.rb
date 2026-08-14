@@ -3,13 +3,12 @@
 module Features
   module Leveling
     class LevelingInitializer
-      def initialize(bot:, server_service:)
+      def initialize(bot:)
         @bot = bot
-        @server_service = server_service
       end
 
       def call
-        text_leveling_manager = Text::TextLevelingManager.new(server_service:)
+        text_leveling_manager = Text::TextLevelingManager.new
         Text::MessageListener.call(bot:, text_leveling_manager:)
       end
 

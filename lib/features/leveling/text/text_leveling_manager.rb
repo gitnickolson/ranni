@@ -6,15 +6,18 @@ module Features
       class TextLevelingManager
         COOLDOWN_LENGTH = 17
 
-        def initialize(server_service:)
-          @server_service = server_service
+        def initialize
           @cooldown_list = []
           @cooldown_mutex = Mutex.new
         end
 
-        def handle_message(user_id:, message_length:)
+        def handle_message(user_id:, message_length:, server_id:)
+          @server_service = Utility::ServerService.new(bot:, server_id:)
+
           return unless preferences_repository.text_leveling_enabled?
           return if user_on_cooldown?(user_id)
+
+          pp user_id
 
           update_user_level(user_id, message_length)
           start_cooldown_for_user(user_id)
@@ -39,14 +42,16 @@ module Features
         end
 
         def start_cooldown_for_user(user_id)
+          server_id = server_service.server_id
+
           cooldown_mutex.synchronize do
-            cooldown_list << user_id
+            cooldown_list << "#{server_id}:#{user_id}"
           end
 
           Thread.new do
             sleep COOLDOWN_LENGTH
             cooldown_mutex.synchronize do
-              cooldown_list.delete(user_id)
+              cooldown_list.delete("#{server_id}:#{user_id}")
             end
           end
         end
