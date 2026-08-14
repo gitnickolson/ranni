@@ -3,7 +3,7 @@
 module Commands
   module Administrator
     module TextLeveling
-      class Enable < ParentCommand
+      class Enable < Subcommand
         NAME = :enable
         DESCRIPTION = 'Schalte Text-Leveling ein'
 
@@ -15,7 +15,7 @@ module Commands
         end
 
         def preferences_repository
-          @preferences_repository ||= Repositories::PreferencesRepository.new(server_service:)
+          @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
         end
       end
     end

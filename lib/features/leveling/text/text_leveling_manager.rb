@@ -67,7 +67,7 @@ module Features
         end
 
         def preferences_repository
-          @preferences_repository ||= Repositories::PreferencesRepository.new(server_service:)
+          @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
         end
       end
     end
