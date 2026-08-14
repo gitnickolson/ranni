@@ -31,6 +31,7 @@ module Commands
 
     def handle_event(event)
       @event = event
+      @server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
 
       unless user_permitted?
         return transmitter.error_response(event:, text: 'Du hast nicht die benötigten Berechtigungen.')
@@ -83,10 +84,6 @@ module Commands
 
     def server
       server_service.server
-    end
-
-    def server_service
-      dependency_container.server_service
     end
 
     def logger
