@@ -18,6 +18,10 @@ module Repositories
       preference.update(birthday_role_id: nil)
     end
 
+    def level_up_congratulation_channel_id
+      preference.level_up_congratulation_channel_id
+    end
+
     def add_level_up_congratulation_channel(channel_id:)
       preference.update(level_up_congratulation_channel_id: channel_id)
     end

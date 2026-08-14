@@ -28,12 +28,15 @@ module Commands
           birthday_field,
           field.new,
           max_text_level_field,
-          max_voice_level_field
+          max_voice_level_field,
+          level_up_messages_channel_field
         ].compact
       end
 
       def birthday_field
-        field.new(name: 'Geburtstagsrolle:', value: birthday_role.mention, inlined: true) unless birthday_role.nil?
+        return if birthday_role.nil?
+
+        field.new(name: 'Geburtstagsrolle:', value: birthday_role.mention, inlined: true)
       end
 
       def max_text_level_field
@@ -42,6 +45,16 @@ module Commands
 
       def max_voice_level_field
         field.new(name: 'Maximales Voice-Level:', value: preferences_repository.max_voice_level, inlined: true)
+      end
+
+      def level_up_messages_channel_field
+        return if level_up_congratulation_channel.nil?
+
+        field.new(name: 'Level-Up Nachrichten Kanal:', value: level_up_congratulation_channel.mention)
+      end
+
+      def level_up_congratulation_channel
+        server_service.channel_from_id(channel_id: preferences_repository.level_up_congratulation_channel_id)
       end
 
       def birthday_role

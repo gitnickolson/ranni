@@ -4,7 +4,7 @@ module Features
   module Leveling
     module Text
       class TextLevelingManager
-        COOLDOWN_LENGTH = 20
+        COOLDOWN_LENGTH = 17
 
         def initialize(server_service:)
           @server_service = server_service

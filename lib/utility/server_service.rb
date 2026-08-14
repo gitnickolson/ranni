@@ -31,6 +31,10 @@ module Utility
       server.members.map(&:id)
     end
 
+    def channel_from_id(channel_id:)
+      server.channels.find { it.id == channel_id.to_i }
+    end
+
     def now
       current_timezone.now
     end

@@ -9,12 +9,10 @@ module Features
         end
 
         def call(updated_level:)
-          level_up_congratulator.congratulate(updated_level:)
-
           next_rank = ranks_repository.find_by_level(required_level: updated_level.numeric)
 
-          role_manager.handle_rank_up(updated_level:, next_rank:) if next_rank.nil?
-          level_up_congratulator.congratulate(updated_level:, next_rank:)
+          role_manager.handle_rank_up(updated_level:, next_rank:) unless next_rank.nil?
+          level_up_congratulator.call(updated_level:, next_rank:)
         end
 
         private

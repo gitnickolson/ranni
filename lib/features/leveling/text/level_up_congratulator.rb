@@ -9,7 +9,8 @@ module Features
         end
 
         def call(updated_level:, next_rank: nil)
-          congratulation_channel = preferences_repository.level_up_congratulation_channel
+          congratulation_channel_id = preferences_repository.level_up_congratulation_channel_id
+          congratulation_channel = server_service.channel_from_id(channel_id: congratulation_channel_id)
           return if congratulation_channel.nil?
 
           message = build_congratulation_message(updated_level, next_rank)
@@ -23,13 +24,14 @@ module Features
 
         def build_congratulation_message(updated_level, next_rank)
           member = server_service.member_from(identifier: updated_level.user_id)
-          new_role = roles_repository.role_from_id(role_id: next_rank.role_id)
 
           if next_rank.nil?
-            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht."
+            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht!"
           else
-            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht. Du steigst" /
-              "somit zum Rang #{new_role.mention} auf!"
+            new_role = roles_repository.role_from_id(role_id: next_rank.role_id)
+
+            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht. Du steigst " \
+              "somit zum Rang #{new_role.mention} auf."
           end
         end
 
