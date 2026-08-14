@@ -8,7 +8,7 @@ module Features
       end
 
       def call
-        text_leveling_manager = Text::TextLevelingManager.new
+        text_leveling_manager = Text::TextLevelingManager.new(bot:)
         Text::MessageListener.call(bot:, text_leveling_manager:)
       end
 
