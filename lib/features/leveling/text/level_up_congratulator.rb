@@ -10,15 +10,9 @@ module Features
 
         def call(updated_level:, next_rank: nil)
           congratulation_channel = preferences_repository.level_up_congratulation_channel
-          member = server_service.member_from(identifier: updated_level.user_id)
-          new_role = roles_repository.role_from_id(role_id: next_rank.role_id)
+          return if congratulation_channel.nil?
 
-          message = if next_rank.nil?
-                      "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht."
-                    else
-                      "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht. Du steigst" /
-                        "somit zum Rang #{new_role.mention} auf!"
-                    end
+          message = build_congratulation_message(updated_level, next_rank)
 
           Utility::Messages::MessageTransmitter.send_message(channel: congratulation_channel, text: message)
         end
@@ -26,6 +20,18 @@ module Features
         private
 
         attr_reader :server_service
+
+        def build_congratulation_message(updated_level, next_rank)
+          member = server_service.member_from(identifier: updated_level.user_id)
+          new_role = roles_repository.role_from_id(role_id: next_rank.role_id)
+
+          if next_rank.nil?
+            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht."
+          else
+            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht. Du steigst" /
+              "somit zum Rang #{new_role.mention} auf!"
+          end
+        end
 
         def roles_repository
           @roles_repository ||= Repositories::RolesRepository.new(server_service:)
