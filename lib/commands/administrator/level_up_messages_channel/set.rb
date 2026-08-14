@@ -7,7 +7,7 @@ module Commands
         NAME = :set
         DESCRIPTION = 'Setze den Kanal für Level-Up Nachrichten'
 
-        def register(discordrb_parent_command:)
+        def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
             subcommand.channel('kanal', 'Der neue Kanal für Level-Up Nachrichten.', required: true)
           end

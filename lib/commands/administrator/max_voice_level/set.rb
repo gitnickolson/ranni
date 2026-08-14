@@ -7,7 +7,7 @@ module Commands
         NAME = :set
         DESCRIPTION = 'Setze das maximale Voice-level'
 
-        def register(discordrb_parent_command:)
+        def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
             subcommand.integer('level', 'Das neue Level-Maximum.', required: true)
           end

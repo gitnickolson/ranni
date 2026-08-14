@@ -4,18 +4,8 @@ module Utility
   class CommandManager
     COMMAND_INTERACTION_SLEEP_TIME = 2
 
-    def initialize(bot:, server_service:)
+    def initialize(bot:)
       @bot = bot
-      @server_id = server_service.server_id
-
-      permission_checker = PermissionChecker.new(bot:, server_service:)
-      dependency_container = Commands::DependencyContainer.new(server_service:, logger:,
-                                                               message_transmitter: Messages::MessageTransmitter,
-                                                               permission_checker:)
-
-      @command_instances = all_commands.map do |command|
-        command.new(bot:, dependency_container:)
-      end
     end
 
     def register_commands
@@ -24,8 +14,7 @@ module Utility
       return if unregistered_commands.empty?
 
       unregistered_commands.each do |command|
-        command_instance = command_instances.find { |command_instance| command_instance.instance_of?(command) }
-        command_instance.register
+        command.register(bot:)
         logger.info(message: "#{command::NAME} registered")
 
         sleep COMMAND_INTERACTION_SLEEP_TIME
@@ -34,17 +23,8 @@ module Utility
       logger.info(message: 'Successfully registered all unregistered commands!')
     end
 
-    def call_commands
-      command_instances.each(&:call)
-    end
-
-    def all_commands
-      @all_commands ||= begin
-        commands = all_command_classes.reject do |command|
-          command < Commands::Subcommand
-        end
-        commands.sort_by { |command_class| command_class::NAME }
-      end
+    def enable_commands
+      all_commands.each { it.listen(bot:) }
     end
 
     # This method exists because I need to unregister registered application commands occasionally
@@ -56,7 +36,7 @@ module Utility
 
     private
 
-    attr_reader :bot, :command_instances, :server_id
+    attr_reader :bot
 
     def command_already_registered?(command)
       registered_application_commands.map(&:name).include?(command::NAME.to_s)
@@ -68,7 +48,7 @@ module Utility
       registered_application_commands.each do |command|
         sleep COMMAND_INTERACTION_SLEEP_TIME
 
-        bot.delete_application_command(command.id, server_id:)
+        bot.delete_application_command(command.id)
         logger.info(message: "#{command.name} unregistered")
       end
 
@@ -83,7 +63,7 @@ module Utility
 
         sleep COMMAND_INTERACTION_SLEEP_TIME
 
-        bot.delete_application_command(command.id, server_id:)
+        bot.delete_application_command(command.id)
         logger.info(message: "#{command.name} unregistered")
       end
 
@@ -91,10 +71,20 @@ module Utility
     end
 
     def registered_application_commands
-      bot.get_application_commands(server_id:)
+      bot.get_application_commands
     end
 
-    def all_command_classes
+    def all_commands
+      @all_commands ||= begin
+        commands = all_commands_and_subcommands.reject do |command|
+          command < Commands::Subcommand
+        end
+
+        commands.sort_by { |command| command::NAME }
+      end
+    end
+
+    def all_commands_and_subcommands
       Utility::ClassCollector.all_classes_under(mod: Commands::Administrator) +
         Utility::ClassCollector.all_classes_under(mod: Commands::Public) # +
       # Utility::ClassCollector.all_classes_under(mod: Commands::Booster) +

@@ -4,29 +4,14 @@ module Commands
   class ParentCommand < Command
     SUBCOMMANDS = [].freeze
 
-    def register
-      bot.register_application_command(self.class::NAME, self.class::DESCRIPTION,
-                                       server_id: server.id) do |command|
-        register_subcommands(command)
+    def self.register(bot:)
+      bot.register_application_command(self::NAME, self::DESCRIPTION) do |command|
+        self::SUBCOMMANDS.each { it.register(discordrb_parent_command: command) }
       end
     end
 
-    def call
-      subcommand_instances.map(&:call)
-    end
-
-    private
-
-    def register_subcommands(command)
-      subcommand_instances.each do |instance|
-        instance.register(discordrb_parent_command: command)
-      end
-    end
-
-    def subcommand_instances
-      @subcommand_instances ||= self.class::SUBCOMMANDS.map do |subcommand|
-        subcommand.new(parent_command: self, bot:, dependency_container:)
-      end
+    def self.listen(bot:)
+      self::SUBCOMMANDS.map { it.listen(bot:, parent_command: self) }
     end
   end
 end

@@ -7,7 +7,7 @@ module Commands
         NAME = :remove
         DESCRIPTION = 'Entferne einen Rang aus den Levelrängen'
 
-        def register(discordrb_parent_command:)
+        def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
             subcommand.role('rolle', 'Gib die Rolle an, die aus den Rängen entfernt werden soll', required: true)
           end

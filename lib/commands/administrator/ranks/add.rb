@@ -7,7 +7,7 @@ module Commands
         NAME = :add
         DESCRIPTION = 'Füge einen neuen Rang zu den Levelrängen hinzu'
 
-        def register(discordrb_parent_command:)
+        def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
             subcommand.role('rolle', 'Gib die zugehörige Rolle für den Rang an', required: true)
             subcommand.integer('level', 'Gib das benötigte level an', required: true)

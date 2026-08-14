@@ -12,11 +12,12 @@ class Bot
     bot.ready do
       next if @running
 
-      server_ids = bot.servers.keys
-      server_ids.each { initialize_features_for(it) }
+      initialize_commands
 
       @running = true
     end
+
+    initialize_leveling
 
     bot.run
   end
@@ -25,22 +26,15 @@ class Bot
 
   attr_reader :bot, :running
 
-  def initialize_features_for(server_id)
-    server_service = Utility::ServerService.new(bot:, server_id:)
-
-    initialize_commands(server_service)
-    initialize_leveling(server_service)
-  end
-
-  def initialize_commands(server_service)
-    command_manager = Utility::CommandManager.new(bot:, server_service:)
+  def initialize_commands
+    command_manager = Utility::CommandManager.new(bot:)
 
     command_manager.register_commands
-    command_manager.call_commands
+    command_manager.enable_commands
   end
 
-  def initialize_leveling(server_service)
-    leveling_initializer = Features::Leveling::LevelingInitializer.new(bot:, server_service:)
+  def initialize_leveling
+    leveling_initializer = Features::Leveling::LevelingInitializer.new(bot:)
     leveling_initializer.call
   end
 end
