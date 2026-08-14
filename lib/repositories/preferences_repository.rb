@@ -18,6 +18,18 @@ module Repositories
       preference.update(birthday_role_id: nil)
     end
 
+    def welcome_message_channel_id
+      preference.welcome_message_channel_id
+    end
+
+    def add_welcome_message_channel(channel_id:)
+      preference.update(welcome_message_channel_id: channel_id)
+    end
+
+    def remove_welcome_message_channel
+      preference.update(welcome_message_channel_id: nil)
+    end
+
     def level_up_congratulation_channel_id
       preference.level_up_congratulation_channel_id
     end

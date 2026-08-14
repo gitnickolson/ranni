@@ -5,7 +5,7 @@ module Commands
     module LevelUpMessagesChannel
       class LevelUpMessagesChannel < ParentCommand
         NAME = :level_up_messages_channel
-        DESCRIPTION = 'Optionen zum Level-Up Nachrichten Kanal'
+        DESCRIPTION = 'Optionen zum Level-Up-Nachrichten Kanal'
         SUBCOMMANDS = [Set, Remove].freeze
       end
     end
