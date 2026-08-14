@@ -68,15 +68,15 @@ module Utility
           self
         end
 
-        def add_image(image: nil, image_url: nil)
-          return self unless image || image_url
+        def add_image(image: nil, url: nil)
+          return self unless image || url
 
           if image
             @image = image
             return self
           end
 
-          @image = Discordrb::Webhooks::EmbedThumbnail.new(url: image_url)
+          @image = Discordrb::Webhooks::EmbedThumbnail.new(url: url)
 
           self
         end

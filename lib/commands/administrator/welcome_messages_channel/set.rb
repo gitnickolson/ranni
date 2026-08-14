@@ -2,14 +2,14 @@
 
 module Commands
   module Administrator
-    module LevelUpMessagesChannel
+    module WelcomeMessagesChannel
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Setze den Kanal für Level-Up-Nachrichten'
+        DESCRIPTION = 'Setze den Kanal für Willkommensnachrichten'
 
         def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.channel('kanal', 'Der neue Kanal für Level-Up-Nachrichten.', required: true)
+            subcommand.channel('kanal', 'Der neue Kanal für Willkommensnachrichten.', required: true)
           end
         end
 
@@ -19,8 +19,8 @@ module Commands
           channel_id = event.options['kanal'].to_i
           channel = server_service.channel_from_id(channel_id:)
 
-          preferences_repository.add_level_up_congratulation_channel(channel_id:)
-          transmitter.response(event:, text: "Level-Up-Nachrichten erscheinen nun in #{channel.mention}.")
+          preferences_repository.add_welcome_message_channel(channel_id:)
+          transmitter.response(event:, text: "Willkommensnachrichten erscheinen nun in #{channel.mention}.")
         end
 
         def preferences_repository

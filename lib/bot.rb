@@ -13,11 +13,11 @@ class Bot
       next if @running
 
       initialize_commands
-
       @running = true
     end
 
     initialize_leveling
+    register_events
 
     bot.run
   end
@@ -36,5 +36,10 @@ class Bot
   def initialize_leveling
     leveling_initializer = Features::Leveling::LevelingInitializer.new(bot:)
     leveling_initializer.call
+  end
+
+  def register_events
+    event_manager = Utility::EventManager.new(bot:)
+    event_manager.register_events
   end
 end
