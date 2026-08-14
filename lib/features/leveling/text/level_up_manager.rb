@@ -9,16 +9,21 @@ module Features
         end
 
         def call(updated_level:)
+          level_up_congratulator.congratulate(updated_level:)
+
           next_rank = ranks_repository.find_by_level(required_level: updated_level.numeric)
 
-          return if next_rank.nil?
-
-          role_manager.handle_rank_up(updated_level:, next_rank:)
+          role_manager.handle_rank_up(updated_level:, next_rank:) if next_rank.nil?
+          level_up_congratulator.congratulate(updated_level:, next_rank:)
         end
 
         private
 
         attr_reader :server_service
+
+        def level_up_congratulator
+          @level_up_congratulator ||= LevelUpCongratulator.new(server_service:)
+        end
 
         def role_manager
           @role_manager ||= RoleManager.new(server_service:)
