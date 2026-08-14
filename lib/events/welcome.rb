@@ -2,7 +2,7 @@
 
 module Events
   class Welcome
-    WELCOME_MESSAGE_GIF = 'https://tenor.com/view/discord-wallpaper-gif-8266287349020874611'
+    WELCOME_MESSAGE_GIF = 'https://klipy.com/gifs/elden-ring-9'
 
     def self.listen(bot:)
       bot.member_join do |event|
