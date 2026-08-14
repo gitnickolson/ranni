@@ -14,7 +14,7 @@ Sequel.migration do
       Integer :max_voice_level, default: 100, null: false
       String :timezone, default: 'Europe/Berlin', null: false
       String :locale, default: 'DE', null: false
-      String :server_color, default: '#8a43ff', null: false
+      String :server_color, default: '#9EB9E6', null: false
     end
 
     alter_table(:server_preferences) do
