@@ -33,14 +33,18 @@ module Repositories
     end
 
     def update_xp(user_id:, experience_points:)
-      max_xp = (xp_from_numeric(preferences_repository.max_text_level + 1) - 1)
-
       Models::TextLevel.update_or_create(server_id:, user_id: user_id.to_s) do |text_level|
         total_xp = (text_level.experience_points || 0) + experience_points
         total_xp = max_xp if total_xp > max_xp
 
         text_level.set(numeric: numeric_from_xp(total_xp), experience_points: total_xp)
       end
+    end
+
+    def required_xp_for(level_numeric:)
+      return max_xp if level_numeric > max_xp
+
+      (level_numeric * (level_numeric + 1) / 2) * 100
     end
 
     private
@@ -57,6 +61,10 @@ module Repositories
 
     def xp_from_numeric(numeric)
       (((((2 * numeric) + 1)**2) - 1) * 100 / 8).to_i
+    end
+
+    def max_xp
+      (xp_from_numeric(preferences_repository.max_text_level + 1) - 1)
     end
 
     def preferences_repository
