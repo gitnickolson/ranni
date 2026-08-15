@@ -58,6 +58,7 @@ POSTGRES_USER="admin"
 POSTGRES_PASSWORD="admin"
 POSTGRES_URL="postgres://admin:admin@localhost:5432/ranni_db"
 ```
+> ⚠️ **NOTE:**  Don't use such simple login data on an important production database :)
 
 Now for the slightly trickier part - you'll need to [install Docker](https://docs.docker.com/desktop/) to run the database server.
 
@@ -146,8 +147,9 @@ If you're adding a bigger feature, you'll probably need to persist some data too
 I'll keep this brief, since I'd expect anyone attempting this to already be fairly comfortable with how databases work. Here's a quick checklist:
 
 1. Add a new migration file with a Sequel migration in `./migrations`. This defines your table structure.
-2. Add a new file to `./lib/models` that defines your Sequel model.
-3. Add a repository class that adds an abstraction layer to prevent direct access to the model.
-4. Use your repository to access and modify entities from within your command handlers (at least for any commands that manipulate data).
+2. Run `bundle exec rake db:migrate` to migrate your database.
+3. Add a new file to `./lib/models` that defines your Sequel model.
+4. Add a repository class that adds an abstraction layer to prevent direct access to the model.
+5. Use your repository to access and modify entities from within your command handlers (at least for any commands that manipulate data).
 
 For reference, check out the corresponding files (migration, model, repository) for the `Ranks` table and its entities. These are also manipulated via administrator commands, found in `./lib/commands/administrator/ranks`.
