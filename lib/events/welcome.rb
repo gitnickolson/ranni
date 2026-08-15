@@ -2,7 +2,7 @@
 
 module Events
   class Welcome
-    WELCOME_MESSAGE_GIF = 'https://klipy.com/gifs/elden-ring-9'
+    WELCOME_MESSAGE_GIF = 'https://static2.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/ce/d4/FGiYVznU.gif'
 
     def self.listen(bot:)
       bot.member_join do |event|
@@ -36,7 +36,7 @@ module Events
       embed_builder = Utility::Messages::Embeds::EmbedBuilder.new(bot:, server_service:,
                                                                   pagination_key: pagination_key(event))
       embed_builder.add_title(text: "**Willkommen auf #{server_service.server.name}!**")
-      embed_builder.add_description(text: "**#{event.user.mention} (#{event.user.username}) ist dem Server" \
+      embed_builder.add_description(text: "**#{event.user.mention} (#{event.user.username}) ist dem Server " \
                                           "beigetreten.**\n" \
                                           'Machs dir hier gemütlich!')
       embed_builder.add_image(url: WELCOME_MESSAGE_GIF)
