@@ -113,7 +113,7 @@ Then create a new class named `RandomGif` inside that file. The class should inh
 
 Your command class also needs to define `NAME` and `DESCRIPTION` constants. `NAME` should be a symbol and will be used by Discord to display the name of the command (so `:random_gif`, following the example above). `DESCRIPTION` is what Discord shows in the slash-command dropdown.
 
-You'll then add a private `#handle_event` method containing all of your command's logic.
+You'll then add a private `#command_action` method containing all of your command's logic.
 
 If your command needs custom parameters, you'll also need to write a `.register` class method. You can find an example of this in `./lib/commands/public/userinfo`, which defines a custom `user` parameter that lets someone select a user when using the command on Discord.
 
@@ -134,7 +134,7 @@ Your command class needs to define `NAME`, `DESCRIPTION`, and `SUBCOMMANDS` cons
 
 That's it for the main command class. Follow the same steps as before to create the subcommand classes: Create the corresponding Ruby files inside the `game_info` folder and define classes nested inside modules matching the folder structure. Subcommand classes should inherit from `Subcommand` instead of `ParentCommand`, unlike the main command class. They don't need a `SUBCOMMANDS` constant as well - just `NAME` and `DESCRIPTION`. Again, feel free to reference an existing command like in `./lib/commands/administrator/default_color` to see how the pieces fit together.
 
-Each subcommand also needs a private `#handle_event` instance method containing its logic.
+Each subcommand also needs a private `#command_action` instance method containing its logic.
 
 If a subcommand needs custom parameters, write a `.register` class method for it, just like with simple commands. You can find an example in `./lib/commands/administrator/default_color/change.rb`, which defines a custom `color` parameter that lets someone enter a color code when using the command on Discord.
 
