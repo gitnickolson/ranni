@@ -86,16 +86,24 @@ module Commands
       server_service.server
     end
 
+    def t(key)
+      key_translator.translate(key)
+    end
+
+    def key_translator
+      @key_translator ||= Utility::KeyTranslator.new(server_service:)
+    end
+
+    def permission_checker
+      @permission_checker ||= Utility::PermissionChecker.new(bot:, server_service:)
+    end
+
     def logger
       Utility::Logger.instance
     end
 
     def transmitter
       Utility::Messages::MessageTransmitter
-    end
-
-    def permission_checker
-      Utility::PermissionChecker.new(bot:, server_service:)
     end
   end
 end
