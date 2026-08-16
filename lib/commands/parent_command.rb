@@ -2,10 +2,15 @@
 
 module Commands
   class ParentCommand < Command
+    NAME = :parent_command
+    DESCRIPTION = 'Parent command description.'
     SUBCOMMANDS = [].freeze
 
     def self.register(bot:)
-      bot.register_application_command(self::NAME, self::DESCRIPTION) do |command|
+      t = { 'de' => Translations::KeyTranslator.translate_command_description(command_name: self::NAME, locale: 'de',
+                                                                              fallback_description: self::DESCRIPTION) }
+
+      bot.register_application_command(self::NAME, self::DESCRIPTION, description_localizations: t) do |command|
         self::SUBCOMMANDS.each { it.register(discordrb_parent_command: command) }
       end
     end

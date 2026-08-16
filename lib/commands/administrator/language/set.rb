@@ -7,10 +7,8 @@ module Commands
         NAME = :set
         DESCRIPTION = 'Stelle die Sprache ein'
 
-        def self.register(discordrb_parent_command:)
-          discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.string('sprache', 'Die neue Sprache', choices: { De: 'De', En: 'En' }, required: true)
-          end
+        def self.register_parameters(command)
+          command.string('sprache', 'Die neue Sprache', choices: { De: 'De', En: 'En' }, required: true)
         end
 
         private

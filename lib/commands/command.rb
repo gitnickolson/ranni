@@ -5,10 +5,17 @@ module Commands
     NAME = :command
     DESCRIPTION = 'Command description'
 
-    include Translations::Translatable
-
     def self.register(bot:)
-      bot.register_application_command(self::NAME, self::DESCRIPTION, server_id: 1_517_484_209_260_728_414)
+      t = { 'de' => Translations::KeyTranslator.translate_command_description(command_name: self::NAME, locale: 'de',
+                                                                              fallback_description: self::DESCRIPTION) }
+
+      bot.register_application_command(self::NAME, self::DESCRIPTION, description_localizations: t) do |command|
+        register_parameters(command)
+      end
+    end
+
+    def self.register_parameters(command)
+      command
     end
 
     def self.listen(bot:)
@@ -18,9 +25,15 @@ module Commands
       end
     end
 
+    include Translations::Translatable
+
     def initialize(bot:)
       @bot = bot
     end
+
+    private
+
+    attr_reader :bot, :event, :server_service
 
     def handle_event(event)
       @event = event
@@ -34,10 +47,6 @@ module Commands
       transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut oder schreibe ' \
                                                'eine Nachricht an `nicknickolson`.')
     end
-
-    private
-
-    attr_reader :bot, :event, :server_service
 
     def command_action
       unimplemented_command_response

@@ -6,10 +6,8 @@ module Commands
       NAME = :userinfo
       DESCRIPTION = 'Rufe Informationen zu dir oder einem anderen Nutzer ab.'
 
-      def self.register(bot:)
-        bot.register_application_command(NAME, DESCRIPTION) do |command|
-          command.user('user', 'Spezifiziere einen Nutzer.', required: false)
-        end
+      def self.register_parameters(command)
+        command.user('user', 'Spezifiziere einen Nutzer.', required: false)
       end
 
       private

@@ -7,10 +7,8 @@ module Commands
         NAME = :change
         DESCRIPTION = 'Verändere die Standardfarbe von Anzeigen des Bots'
 
-        def self.register(discordrb_parent_command:)
-          discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.string('farbcode', 'Gib die Farbe als Hexcode an (z.B. FF3321)', required: true)
-          end
+        def self.register_parameters(command)
+          command.string('farbcode', 'Gib die Farbe als Hexcode an (z.B. FF3321)', required: true)
         end
 
         private
