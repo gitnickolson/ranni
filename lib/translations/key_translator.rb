@@ -6,7 +6,6 @@ module Translations
       translations = Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
       translations.dig(:commands, *command_path, :description) || fallback_description
     rescue StandardError
-      logger.error(message: "Translation key not found: commands.#{command_path.join('.')}.description")
       fallback_description
     end
 
@@ -15,8 +14,6 @@ module Translations
       translations.dig(:commands, *command_path, :parameters, parameter_name.to_sym,
                        :description) || fallback_description
     rescue StandardError
-      logger.error(message:
-      "Translation key not found: commands.#{command_path.join('.')}.parameters.#{parameter_name}.description")
       fallback_description
     end
 
