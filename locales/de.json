@@ -133,7 +133,7 @@
         }
       },
       "preferences": {
-        "description": "Rufe die präferenzierten Boteinstellungen für diesen Server ab",
+        "description": "Rufe die konfigurierten Boteinstellungen für diesen Server ab",
         "embed_title": "Eingestellte Präferenzen für {bot_name} auf {server_name}",
         "default_color": "Standardfarbe",
         "timezone": "Zeitzone",
@@ -142,15 +142,15 @@
         "max_text_level": "Maximales Text-Level",
         "max_voice_level": "Maximales Voice-Level",
         "text_leveling_status": "Text-Leveling Status",
-        "on": "Eingeschalten",
-        "off": "Ausgeschalten",
+        "on": "Eingeschaltet",
+        "off": "Ausgeschaltet",
         "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
         "welcome_messages_channel": "Willkommensnachrichten Kanal"
       }
     },
     "public": {
       "userinfo": {
-        "description": "Rufe Informationen zur dir oder einem anderen Nutzer ab",
+        "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
         "general_info": "Generelles",
         "rank": "Rang:",
         "status": "Status:",
@@ -177,7 +177,7 @@
   },
   "validation": {
     "color_code_validator": {
-      "color_code_invalid": "Der Farbcode ist Invalide."
+      "color_code_invalid": "Der Farbcode ist Ungültig."
     },
     "level_validator": {
       "not_higher_than_min_level": "Das Level muss mindestens {min_level} betragen.",
