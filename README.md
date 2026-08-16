@@ -21,7 +21,7 @@ It supports administrative commands, text- and voice-leveling, event reactions l
   * [Registering your commands on Discord](#registering-your-commands-on-discord)
 * [How to add a new database entity](#how-to-add-a-new-database-entity)
 * [Translations](#translations)
-  * [Key naming conventions](#key-naming-convention)
+  * [Key naming convention](#key-naming-convention)
   * [Using translations in your code](#using-translations-in-your-code)
   * [Command and parameter descriptions](#command-and-parameter-descriptions)
   * [Skipping translations](#skipping-translations)

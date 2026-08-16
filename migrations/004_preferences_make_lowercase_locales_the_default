@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+Sequel.migration do
+  up do
+    alter_table(:server_preferences) do
+      set_column_default :locale, 'de'
+    end
+
+    from(:server_preferences).where(locale: 'DE').update(locale: 'de')
+  end
+
+  down do
+    alter_table(:server_preferences) do
+      set_column_default :locale, 'DE'
+    end
+
+    from(:server_preferences).where(locale: 'de').update(locale: 'DE')
+  end
+end

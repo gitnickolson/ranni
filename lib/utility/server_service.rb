@@ -44,7 +44,7 @@ module Utility
     end
 
     def locale
-      preferences_repository.locale.downcase.capitalize
+      preferences_repository.locale.downcase
     end
 
     def default_color_code
