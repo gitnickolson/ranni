@@ -7,6 +7,25 @@ Ranni is a self-hostable, general-purpose Discord bot written in Ruby using the 
 
 It supports administrative commands, text- and voice-leveling, event reactions like welcome messages, and general information about various things (e.g. `/userinfo` to get info about a user, or `/serverinfo` to get info about a Discord server). There's a bit more to it, but you can check out all the existing commands with `/help`.
 
+## Table of contents
+
+* [How to self-host Ranni](#how-to-self-host-ranni)
+  * [Adding Ranni to your Server](#adding-ranni-to-your-server)
+  * [Cloning the Repository](#cloning-the-repository)
+  * [Generating a token](#generating-a-token)
+  * [Setting up Ranni's database](#setting-up-rannis-database)
+  * [Starting Ranni](#starting-ranni)
+* [How to add a new command](#how-to-add-a-new-command)
+  * [Adding a simple command (without subcommands)](#adding-a-simple-command-without-subcommands)
+  * [Adding a command with subcommands](#adding-a-command-with-subcommands)
+  * [Registering your commands on Discord](#registering-your-commands-on-discord)
+* [How to add a new database entity](#how-to-add-a-new-database-entity)
+* [Translations](#translations)
+  * [Key naming conventions](#key-naming-convention)
+  * [Using translations in your code](#using-translations-in-your-code)
+  * [Command and parameter descriptions](#command-and-parameter-descriptions)
+  * [Skipping translations](#skipping-translations)
+
 ## How to self-host Ranni
 
 The following steps might be useful if you want to host Ranni yourself - on a private server, an old laptop, or your own PC.
@@ -146,6 +165,7 @@ As before, custom parameters can be read via `event.options['your_custom_paramet
 Once you've added a new command class, Ranni will automatically register it with Discord on startup. However, if you later rename a command or change its description, Discord will still have the old version registered - your changes won't take effect on their own.
 
 To force an update, temporarily change the `command_manager.register_commands` call in `./lib/bot.rb` to `command_manager.unregister_commands`. On the next bot start, this will unregister every command. If you'd rather not remove everything, pass a list of command names to only unregister specific ones:
+
 ```ruby
 command_manager.unregister_commands(names: ['test_command', 'other_command'])
 ```
@@ -179,6 +199,7 @@ Translation keys follow the folder structure of the component that uses them. Fo
 ### Using translations in your code
 
 Translations are read via the `Translations::KeyTranslator` class, exposed through the `Translations::Translatable` module. All commands classes already include this module, so you can call `t(key)` from any instance method inside your command:
+
 ```ruby
 def command_action
   transmitter.response(event:, text: t('commands.public.hello_world.greeting'))
@@ -186,6 +207,7 @@ end
 ```
 
 `t` also accepts a hash of parameters for interpolation:
+
 ```ruby
 t('commands.public.hello_world.greeting', { name: event.user.username })
 ```
