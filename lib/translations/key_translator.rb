@@ -44,7 +44,7 @@ module Translations
     end
 
     def translations
-      locale = preferences_repository.locale.downcase
+      locale = preferences_repository.locale
       Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
     end
 
