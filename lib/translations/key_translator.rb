@@ -26,7 +26,7 @@ module Translations
       value = translations.dig(*fields)
       interpolate(value, parameters)
     rescue StandardError
-      logger.error(message: "Translation key not found for locale #{preferences_repository.locale}: #{key}")
+      logger.error(message: "Translation key not found: #{key}")
       key
     end
 
@@ -45,8 +45,6 @@ module Translations
 
     def translations
       locale = preferences_repository.locale
-      pp locale
-      pp File.exist?('locales/de.json')
       Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
     end
 
