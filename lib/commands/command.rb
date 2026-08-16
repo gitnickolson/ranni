@@ -24,9 +24,7 @@ module Commands
       @event = event
       @server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
 
-      unless user_permitted?
-        return transmitter.error_response(event:, text: 'Du hast nicht die benötigten Berechtigungen.')
-      end
+      return transmitter.error_response(event:, text: t('commands.command.not_permitted')) unless user_permitted?
 
       command_action
     rescue StandardError => e
@@ -48,7 +46,7 @@ module Commands
 
       transmitter.error_response(
         event:,
-        text: "Keine Funktionalität für #{self.class::NAME} implementiert."
+        text: t('commands.command.no_functionality_implemented', { command_name: self.class::NAME })
       )
     end
 
@@ -86,12 +84,12 @@ module Commands
       server_service.server
     end
 
-    def t(key)
-      key_translator.translate(key)
+    def t(key, parameters = {})
+      key_translator.translate(key, parameters)
     end
 
     def key_translator
-      @key_translator ||= Utility::KeyTranslator.new(server_service:)
+      @key_translator ||= Translations::KeyTranslator.new(server_service:)
     end
 
     def permission_checker
@@ -99,7 +97,7 @@ module Commands
     end
 
     def logger
-      Utility::Logger.instance
+      @logger ||= Utility::Logger.instance
     end
 
     def transmitter

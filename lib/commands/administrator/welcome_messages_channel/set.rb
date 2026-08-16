@@ -20,7 +20,11 @@ module Commands
           channel = server_service.channel_from_id(channel_id:)
 
           preferences_repository.add_welcome_message_channel(channel_id:)
-          transmitter.response(event:, text: "Willkommensnachrichten erscheinen nun in #{channel.mention}.")
+          transmitter.response(event:,
+                               text: t(
+                                 'commands.administrator.welcome_messages_channel.channel_successfully_set',
+                                 { channel: channel.mention }
+                               ))
         end
 
         def preferences_repository

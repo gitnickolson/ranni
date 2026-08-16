@@ -22,7 +22,9 @@ module Commands
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           preferences_repository.update_max_text_level(level:)
-          transmitter.response(event:, text: "Maximales Text-Level erfolgreich auf #{level} gesetzt.")
+          transmitter.response(event:,
+                               text: t('commands.administrator.max_text_level.max_level_successfully_set',
+                                       { level: }))
         end
 
         def level_validator

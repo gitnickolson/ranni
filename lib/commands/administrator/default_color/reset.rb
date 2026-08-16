@@ -12,7 +12,11 @@ module Commands
 
         def command_action
           preferences_repository.update_server_color(color_code: DEFAULT_COLOR_CODE)
-          transmitter.response(event:, text: "Farbcode erfolgreich zu `#{DEFAULT_COLOR_CODE}` zurückgesetzt.")
+          transmitter.response(event:,
+                               text: t(
+                                 'commands.administrator.default_color.color_successfully_reset',
+                                 { color_code: DEFAULT_COLOR_CODE }
+                               ))
         end
 
         def preferences_repository

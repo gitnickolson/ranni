@@ -36,10 +36,12 @@ module Commands
 
       def fields(member)
         [
-          field.new(name: 'Generelles', value: general_info_string(member)),
+          field.new(name: t('commands.public.userinfo.general_info'), value: general_info_string(member)),
           field.new,
-          field.new(name: 'Account erstellt', value: "`#{parse_date(member.creation_time)}`", inlined: true),
-          field.new(name: 'Beigetreten', value: "`#{parse_date(member.joined_at)}`", inlined: true),
+          field.new(name: t('commands.public.userinfo.account_created'),
+                    value: "`#{parse_date(member.creation_time)}`", inlined: true),
+          field.new(name: t('commands.public.userinfo.joined'),
+                    value: "`#{parse_date(member.joined_at)}`", inlined: true),
           boosting_field(member),
           text_level_field(member)
         ].compact
@@ -48,19 +50,20 @@ module Commands
       def boosting_field(member)
         return unless member.boosting?
 
-        field.new(name: 'Boostet seit', value: "`#{parse_date(member.boosting_since)}`", inlined: true)
+        field.new(name: t('commands.public.userinfo.boosting_since'), value: "`#{parse_date(member.boosting_since)}`",
+                  inlined: true)
       end
 
       def general_info_string(member)
-        "Rang: #{member.highest_role.mention}\n" \
-          "Status: #{member.status.to_s.capitalize}\n" \
-          "#{"Boostet diesen Server \n" if member.boosting?}"
+        "#{t('commands.public.userinfo.rank')} #{member.highest_role.mention}\n" \
+          "#{t('commands.public.userinfo.status')} #{member.status.to_s.capitalize}\n" \
+          "#{t('commands.public.userinfo.boosting') if member.boosting?}"
       end
 
       def text_level_field(member)
         return unless preferences_repository.text_leveling_enabled?
 
-        field.new(name: '**Text-Level**', value: text_level_field_content(member))
+        field.new(name: "**#{t('commands.public.userinfo.text_level')}**", value: text_level_field_content(member))
       end
 
       def text_level_field_content(member)
@@ -70,8 +73,8 @@ module Commands
         numeric = level.numeric
         xp = level.experience_points
 
-        "Level: #{numeric}\n" \
-          "XP: `#{humanize(xp)}`/" \
+        "#{t('commands.public.userinfo.level')}: #{numeric}\n" \
+          "#{t('commands.public.userinfo.xp')}: `#{humanize(xp)}`/" \
           "`#{humanize(text_levels_repository.required_xp_for(level_numeric: numeric + 1))}`"
       end
 

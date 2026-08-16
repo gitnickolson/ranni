@@ -24,12 +24,12 @@ module Commands
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           ranks_repository.create(role_id:, required_level:)
-          transmitter.response(event:, text: 'Der Rang wurde erfolgreich erstellt.')
+          transmitter.response(event:, text: t('commands.administrator.rank.rank_successfully_created'))
         end
 
         def validate_options(role_id, required_level)
           unless roles_repository.role_exists?(role_id:)
-            return Utility::Result.failure(error: 'Diese Rolle existiert nicht.')
+            return Utility::Result.failure(error: t('commands.administrator.rank.role_does_not_exist'))
           end
 
           rank_result = ranks_validator.validate_creation(role_id:, required_level:)

@@ -11,7 +11,8 @@ module Commands
 
         def command_action
           preferences_repository.update_text_leveling_status(turned_on: true)
-          transmitter.response(event:, text: 'Text-Leveling wurde erfolgreich eingeschaltet.')
+          transmitter.response(event:,
+                               text: t('commands.administrator.text_leveling.text_leveling_successfully_enabled'))
         end
 
         def preferences_repository

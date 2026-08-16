@@ -11,7 +11,8 @@ module Commands
 
         def command_action
           preferences_repository.remove_level_up_congratulation_channel
-          transmitter.response(event:, text: 'Es erscheinen nun keine Level-Up-Nachrichten mehr.')
+          transmitter.response(event:,
+                               text: t('commands.administrator.level_up_messages_channel.channel_successfully_removed'))
         end
 
         def preferences_repository

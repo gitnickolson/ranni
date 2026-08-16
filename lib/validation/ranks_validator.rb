@@ -8,11 +8,11 @@ module Validation
 
     def validate_creation(role_id:, required_level:)
       unless repository.find_by_role(role_id:).nil?
-        return Utility::Result.failure(error: 'Ein Rang mit dieser Rolle existiert schon.')
+        return Utility::Result.failure(error: t('validation.ranks_validator.rank_for_role_already_exists'))
       end
 
       unless repository.find_by_level(required_level:).nil?
-        return Utility::Result.failure(error: 'Ein Rang für dieses Level existiert schon.')
+        return Utility::Result.failure(error: t('validation.ranks_validator.rank_for_level_already_exists'))
       end
 
       Utility::Result.ok
@@ -21,6 +21,14 @@ module Validation
     private
 
     attr_reader :server_service
+
+    def t(key, parameters = {})
+      key_translator.translate(key, parameters)
+    end
+
+    def key_translator
+      @key_translator ||= Translations::KeyTranslator.new(server_service:)
+    end
 
     def repository
       @repository ||= Repositories::RanksRepository.new(server_service:)

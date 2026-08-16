@@ -20,7 +20,9 @@ module Commands
           channel = server_service.channel_from_id(channel_id:)
 
           preferences_repository.add_level_up_congratulation_channel(channel_id:)
-          transmitter.response(event:, text: "Level-Up-Nachrichten erscheinen nun in #{channel.mention}.")
+          transmitter.response(event:,
+                               text: t('commands.administrator.level_up_messages_channel.channel_successfully_set',
+                                       { channel: channel.mention }))
         end
 
         def preferences_repository

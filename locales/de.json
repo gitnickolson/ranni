@@ -1,0 +1,90 @@
+{
+  "commands": {
+    "command": {
+      "not_permitted": "Du hast nicht die benötigten Berechtigungen.",
+      "no_functionality_implemented": "Keine Funktionalität für {command_name} implementiert."
+    },
+    "administrator": {
+      "default_color": {
+        "color_successfully_set": "Standardfarbe erfolgreich zu `{color_code}` verändert",
+        "color_successfully_reset": "Standardfarbe erfolgreich zu `{color_code}` zurückgesetzt."
+      },
+      "level_up_messages_channel": {
+        "channel_successfully_set": "Level-Up-Nachrichten erscheinen nun in {channel}.",
+        "channel_successfully_removed": "Es erscheinen nun keine Level-Up-Nachrichten mehr."
+      },
+      "max_text_level": {
+        "max_level_successfully_set": "Maximales Text-Level erfolgreich auf {level} gesetzt."
+      },
+      "max_voice_level": {
+        "max_level_successfully_set": "Maximales Voice-Level erfolgreich auf {level} gesetzt."
+      },
+      "rank": {
+        "rank_successfully_created": "Der Rang wurde erfolgreich erstellt.",
+        "rank_successfully_removed": "Rang erfolgreich entfernt.",
+        "list_title": "Ränge auf {server_name}",
+        "list_length": "{ranks_count} Ränge",
+        "list_entry_title": "Level {level}",
+        "role_does_not_exist": "Diese Rolle existiert nicht.",
+        "no_matching_rank": "Für diese Rolle gibt es keinen zugehörigen Rang."
+      },
+      "text_leveling": {
+        "text_leveling_successfully_enabled": "Text-Leveling wurde erfolgreich eingeschaltet.",
+        "text_leveling_successfully_disabled": "Text-Leveling wurde erfolgreich ausgeschaltet."
+      },
+      "welcome_messages_channel": {
+        "channel_successfully_set": "Willkommensnachrichten erscheinen nun in {channel}.",
+        "channel_successfully_removed": "Es erscheinen nun keine Willkommensnachrichten mehr."
+      },
+      "preferences": {
+        "embed_title": "Eingestellte Präferenzen für {bot_name} auf {server_name}",
+        "default_color": "Standardfarbe",
+        "timezone": "Zeitzone",
+        "language": "Sprache",
+        "birthday_role": "Geburtstagsrolle",
+        "max_text_level": "Maximales Text-Level",
+        "max_voice_level": "Maximales Voice-Level",
+        "text_leveling_status": "Text-Leveling Status",
+        "on": "Eingeschalten",
+        "off": "Ausgeschalten",
+        "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
+        "welcome_messages_channel": "Willkommensnachrichten Kanal"
+      }
+    },
+    "public": {
+      "userinfo": {
+        "general_info": "Generelles",
+        "rank": "Rang:",
+        "status": "Status:",
+        "boosting": "Boostet diesen Server \n",
+        "account_created": "Account erstellt",
+        "joined": "Beigetreten",
+        "boosting_since": "Boostet seit",
+        "text_level": "Text-Level",
+        "level": "Level",
+        "xp": "XP"
+      }
+    }
+  },
+  "events": {
+    "welcome": {
+      "embed_title": "**Willkommen auf {server_name}!**",
+      "embed_description": "**{user_mention} ({username}) ist dem Server beigetreten.**\nMachs dir hier gemütlich!"
+    }
+  },
+  "validation": {
+    "color_code_validator": {
+      "color_code_invalid": "Der Farbcode ist Invalide."
+    },
+    "level_validator": {
+      "not_higher_than_min_level": "Das Level muss mindestens {min_level} betragen.",
+      "level_must_be_below_max_level": "Das Level darf nicht höher als das maximale Server-Level sein.",
+      "max_level_must_be_positive": "Das maximale Level darf nicht negativ sein.",
+      "max_level_must_be_below_100k": "Das maximale Level darf 100.000 nicht überschreiten."
+    },
+    "ranks_validator": {
+      "rank_for_role_already_exists": "Ein Rang mit dieser Rolle existiert schon.",
+      "rank_for_level_already_exists": "Ein Rang für dieses Level existiert schon."
+    }
+  }
+}

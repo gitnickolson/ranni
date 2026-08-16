@@ -35,16 +35,23 @@ module Events
     def create_embed_builder(event)
       embed_builder = Utility::Messages::Embeds::EmbedBuilder.new(bot:, server_service:,
                                                                   pagination_key: pagination_key(event))
-      embed_builder.add_title(text: "**Willkommen auf #{server_service.server.name}!**")
-      embed_builder.add_description(text: "**#{event.user.mention} (#{event.user.username}) ist dem Server " \
-                                          "beigetreten.**\n" \
-                                          'Machs dir hier gemütlich!')
+      embed_builder.add_title(text: t('events.welcome.embed_title', { server_name: server_service.server.name }))
+      embed_builder.add_description(text: t('events.welcome.embed_description',
+                                            { user_mention: event.user.mention, username: event.user.username }))
       embed_builder.add_image(url: WELCOME_MESSAGE_GIF)
       embed_builder.change_footer(text: '')
     end
 
     def pagination_key(event)
       "welcome-#{event.user.id}-#{Time.now.to_i}"
+    end
+
+    def t(key, parameters = {})
+      key_translator.translate(key, parameters)
+    end
+
+    def key_translator
+      @key_translator ||= Translations::KeyTranslator.new(server_service:)
     end
 
     def preferences_repository

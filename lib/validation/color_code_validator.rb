@@ -2,16 +2,30 @@
 
 module Validation
   class ColorCodeValidator
-    class << self
-      def validate(color_code:)
-        hex_regex = /\A#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})\z/
+    def initialize(server_service:)
+      @server_service = server_service
+    end
 
-        if color_code.nil? || !color_code.match?(hex_regex)
-          return Utility::Result.failure(error: 'Der Farbcode ist Invalide.')
-        end
+    def validate(color_code:)
+      hex_regex = /\A#?([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6})\z/
 
-        Utility::Result.ok
+      if color_code.nil? || !color_code.match?(hex_regex)
+        return Utility::Result.failure(error: t('validation.color_code_validator.color_code_invalid'))
       end
+
+      Utility::Result.ok
+    end
+
+    private
+
+    attr_reader :server_service
+
+    def t(key, parameters = {})
+      key_translator.translate(key, parameters)
+    end
+
+    def key_translator
+      @key_translator ||= Translations::KeyTranslator.new(server_service:)
     end
   end
 end

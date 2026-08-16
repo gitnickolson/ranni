@@ -1,41 +1,44 @@
 # frozen_string_literal: true
 
-require 'locale'
-
 module Translations
   class KeyTranslator
     def initialize(server_service:)
       @server_service = server_service
     end
 
-    def translate(key, params = {})
+    def translate(key, parameters = {})
       fields = key.split('.').map(&:to_sym)
       value = translations.dig(*fields)
-      interpolate(value, params)
+      interpolate(value, parameters)
     rescue StandardError
-      puts "Translation key not found: #{key}"
+      logger.error(message: "Translation key not found: #{key}")
+      key
     end
 
     private
 
     attr_reader :server_service
 
-    def interpolate(value, params)
-      return value unless value.is_a?(String) && params.any?
+    def interpolate(value, parameters)
+      return value unless value.is_a?(String) && parameters.any?
 
       value.gsub(/%?\{(\w+)\}/) do
         param_key = Regexp.last_match(1).to_sym
-        params.key?(param_key) ? params[param_key].to_s : Regexp.last_match(0)
+        parameters.key?(param_key.to_sym) ? parameters[param_key].to_s : Regexp.last_match(0)
       end
     end
 
     def translations
-      locale = preferences_repository.locale
+      locale = preferences_repository.locale.downcase
       Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
     end
 
     def preferences_repository
       @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
+    end
+
+    def logger
+      @logger ||= Utility::Logger.instance
     end
   end
 end

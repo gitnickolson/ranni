@@ -11,7 +11,8 @@ module Commands
 
         def command_action
           preferences_repository.remove_welcome_message_channel
-          transmitter.response(event:, text: 'Es erscheinen nun keine Willkommensnachrichten mehr.')
+          transmitter.response(event:,
+                               text: t('commands.administrator.welcome_messages_channel.channel_successfully_removed'))
         end
 
         def preferences_repository
