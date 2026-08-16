@@ -7,7 +7,7 @@ module Commands
         NAME = :set
         DESCRIPTION = 'Set the bot language'
         PARAMETERS = [{ type: :string, name: :language, required: true, description: 'Choose the new language',
-                        choices: { De: 'De', En: 'En' } }].freeze
+                        choices: { de: 'de', en: 'en' } }].freeze
 
         private
 
