@@ -6,10 +6,8 @@ module Commands
       class Set < Subcommand
         NAME = :set
         DESCRIPTION = 'Setze das maximale Text-level'
-
-        def self.register_parameters(command)
-          command.integer('level', 'Das neue Level-Maximum', required: true)
-        end
+        PARAMETERS = [{ type: :integer, name: :level, required: true,
+                        description: 'Das neue Level-Maximum' }].freeze
 
         private
 

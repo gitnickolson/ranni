@@ -6,10 +6,8 @@ module Commands
       class Set < Subcommand
         NAME = :set
         DESCRIPTION = 'Stelle die Sprache ein'
-
-        def self.register_parameters(command)
-          command.string('sprache', 'Die neue Sprache', choices: { De: 'De', En: 'En' }, required: true)
-        end
+        PARAMETERS = [{ type: :string, name: :language, required: true, description: 'Die neue Sprache',
+                        choice: { De: 'De', En: 'En' } }].freeze
 
         private
 

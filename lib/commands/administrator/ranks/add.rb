@@ -6,11 +6,10 @@ module Commands
       class Add < Subcommand
         NAME = :add
         DESCRIPTION = 'Füge einen neuen Rang zu den Levelrängen hinzu'
-
-        def self.register_parameters(command)
-          command.role('rolle', 'Gib die zugehörige Rolle für den Rang an', required: true)
-          command.integer('level', 'Gib das benötigte level an', required: true)
-        end
+        PARAMETERS = [{ type: :role, name: :role, required: true,
+                        description: 'Gib die zugehörige Rolle für den Rang an' },
+                      { type: :integer, name: :level, required: true,
+                        description: 'Gib das benötigte Level an' }].freeze
 
         private
 

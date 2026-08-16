@@ -6,6 +6,8 @@ module Commands
       class Change < Subcommand
         NAME = :change
         DESCRIPTION = 'Verändere die Standardfarbe von Anzeigen des Bots'
+        PARAMETERS = [{ type: :string, name: :color_code, required: true,
+                        description: 'Gib die Farbe als Hexcode an (z.B. FF3321)' }].freeze
 
         def self.register_parameters(command)
           command.string('farbcode', 'Gib die Farbe als Hexcode an (z.B. FF3321)', required: true)

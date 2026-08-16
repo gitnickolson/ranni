@@ -6,10 +6,8 @@ module Commands
       class Set < Subcommand
         NAME = :set
         DESCRIPTION = 'Setze den Kanal für Level-Up-Nachrichten'
-
-        def self.register_parameters(command)
-          command.channel('kanal', 'Der neue Kanal für Level-Up-Nachrichten', required: true)
-        end
+        PARAMETERS = [{ type: :channel, name: :channel,  required: true,
+                        description: 'Der neue Kanal für Level-Up-Nachrichten' }].freeze
 
         private
 

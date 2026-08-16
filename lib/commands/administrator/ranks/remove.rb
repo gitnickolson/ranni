@@ -6,10 +6,8 @@ module Commands
       class Remove < Subcommand
         NAME = :remove
         DESCRIPTION = 'Entferne einen Rang aus den Levelrängen'
-
-        def self.register_paramters(command)
-          command.role('rolle', 'Gib die Rolle an, die aus den Rängen entfernt werden soll', required: true)
-        end
+        PARAMETERS = [{ type: :role, name: :role, required: true,
+                        description: 'Gib die Rolle an, die aus den Rängen entfernt werden soll' }].freeze
 
         private
 

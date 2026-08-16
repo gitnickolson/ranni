@@ -5,10 +5,7 @@ module Commands
     class Userinfo < Command
       NAME = :userinfo
       DESCRIPTION = 'Rufe Informationen zu dir oder einem anderen Nutzer ab.'
-
-      def self.register_parameters(command)
-        command.user('user', 'Spezifiziere einen Nutzer.', required: false)
-      end
+      PARAMETERS = [{ type: :user, name: :user, required: false, description: 'Spezifiziere einen Nutzer' }].freeze
 
       private
 

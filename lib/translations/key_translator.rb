@@ -2,11 +2,21 @@
 
 module Translations
   class KeyTranslator
-    def self.translate_command_description(command_name:, locale:, fallback_description:)
+    def self.translate_command_description(command_path:, locale:, fallback_description:)
       translations = Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
-      translations.dig(:commands, command_name.to_sym, :description) || fallback_description
+      translations.dig(:commands, *command_path, :description) || fallback_description
     rescue StandardError
-      logger.error(message: "Translation key not found: commands.#{command_name}.description")
+      logger.error(message: "Translation key not found: commands.#{command_path.join('.')}.description")
+      fallback_description
+    end
+
+    def self.translate_parameter_description(command_path:, parameter_name:, locale:, fallback_description:)
+      translations = Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
+      translations.dig(:commands, *command_path, :parameters, parameter_name.to_sym,
+                       :description) || fallback_description
+    rescue StandardError
+      logger.error(message:
+      "Translation key not found: commands.#{command_path.join('.')}.parameters.#{parameter_name}.description")
       fallback_description
     end
 
