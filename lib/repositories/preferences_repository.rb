@@ -75,7 +75,6 @@ module Repositories
     end
 
     def locale
-      pp preference.locale
       preference.locale
     end
 
