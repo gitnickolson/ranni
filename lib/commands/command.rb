@@ -5,8 +5,10 @@ module Commands
     NAME = :command
     DESCRIPTION = 'Command description'
 
+    include Translations::Translatable
+
     def self.register(bot:)
-      bot.register_application_command(self::NAME, self::DESCRIPTION)
+      bot.register_application_command(self::NAME, self::DESCRIPTION, server_id: 1_517_484_209_260_728_414)
     end
 
     def self.listen(bot:)
@@ -82,14 +84,6 @@ module Commands
 
     def server
       server_service.server
-    end
-
-    def t(key, parameters = {})
-      key_translator.translate(key, parameters)
-    end
-
-    def key_translator
-      @key_translator ||= Translations::KeyTranslator.new(server_service:)
     end
 
     def permission_checker

@@ -9,7 +9,7 @@ module Commands
 
         def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.integer('level', 'Das neue Level-Maximum.', required: true)
+            subcommand.integer('level', 'Das neue Level-Maximum', required: true)
           end
         end
 

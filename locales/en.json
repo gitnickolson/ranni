@@ -9,6 +9,9 @@
         "color_successfully_set": "Default color successfully changed to `{color_code}`",
         "color_successfully_reset": "Default color successfully reset to `{color_code}`."
       },
+      "language": {
+        "language_successfully_set": "The language was successfully changed to **{locale}**."
+      },
       "level_up_messages_channel": {
         "channel_successfully_set": "Level-up messages will now appear in {channel}.",
         "channel_successfully_removed": "Level-up messages will no longer appear."
@@ -86,5 +89,12 @@
       "rank_for_role_already_exists": "A rank with this role already exists.",
       "rank_for_level_already_exists": "A rank for this level already exists."
     }
+  },
+  "embed_builder": {
+    "pages_count": "Page {current_page} of {total_pages}"
+  },
+  "level_up_congratulator": {
+    "reached_next_rank": "{member_mention}, you've just reached Level **{level_numeric}**!",
+    "reached_next_rank_with_role": "{member_mention}, you've just reached Level **{level_numeric}**! You are therefore promoted to the {role_mention} rank."
   }
 }

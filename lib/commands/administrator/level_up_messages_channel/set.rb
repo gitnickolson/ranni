@@ -9,7 +9,7 @@ module Commands
 
         def self.register(discordrb_parent_command:)
           discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.channel('kanal', 'Der neue Kanal für Level-Up-Nachrichten.', required: true)
+            subcommand.channel('kanal', 'Der neue Kanal für Level-Up-Nachrichten', required: true)
           end
         end
 

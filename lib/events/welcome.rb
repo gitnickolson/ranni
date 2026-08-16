@@ -4,6 +4,8 @@ module Events
   class Welcome
     WELCOME_MESSAGE_GIF = 'https://static2.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/ce/d4/FGiYVznU.gif'
 
+    include Translations::Translatable
+
     def self.listen(bot:)
       bot.member_join do |event|
         server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
@@ -44,14 +46,6 @@ module Events
 
     def pagination_key(event)
       "welcome-#{event.user.id}-#{Time.now.to_i}"
-    end
-
-    def t(key, parameters = {})
-      key_translator.translate(key, parameters)
-    end
-
-    def key_translator
-      @key_translator ||= Translations::KeyTranslator.new(server_service:)
     end
 
     def preferences_repository

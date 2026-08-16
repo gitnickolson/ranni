@@ -2,6 +2,8 @@
 
 module Validation
   class ColorCodeValidator
+    include Translations::Translatable
+
     def initialize(server_service:)
       @server_service = server_service
     end
@@ -19,13 +21,5 @@ module Validation
     private
 
     attr_reader :server_service
-
-    def t(key, parameters = {})
-      key_translator.translate(key, parameters)
-    end
-
-    def key_translator
-      @key_translator ||= Translations::KeyTranslator.new(server_service:)
-    end
   end
 end

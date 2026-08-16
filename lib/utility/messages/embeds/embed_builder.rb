@@ -6,6 +6,8 @@ module Utility
       class EmbedBuilder
         MIN_PAGE_NUMBER = 1
 
+        include Translations::Translatable
+
         def initialize(bot:, server_service:, pagination_key:, max_page_items: 20)
           @embed = Discordrb::Webhooks::Embed.new
           @fields = []
@@ -136,7 +138,7 @@ module Utility
         end
 
         def default_footer_text
-          "Seite #{current_page} von #{total_pages}"
+          t('embed_builder.pages_count', { current_page:, total_pages: })
         end
 
         def fields_on_page

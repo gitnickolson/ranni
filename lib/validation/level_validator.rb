@@ -5,6 +5,8 @@ module Validation
     MIN_LEVEL = 0
     MAX_POSSIBLE_LEVEL = 100_000
 
+    include Translations::Translatable
+
     def initialize(server_service:)
       @server_service = server_service
     end
@@ -16,7 +18,7 @@ module Validation
       end
 
       if level > preferences_repository.max_text_level
-        return Utility::Result.failure(error: t('validation.level_validator.must_be_below_max_level'))
+        return Utility::Result.failure(error: t('validation.level_validator.level_must_be_below_max_level'))
       end
 
       Utility::Result.ok
@@ -37,14 +39,6 @@ module Validation
     private
 
     attr_reader :server_service
-
-    def t(key, parameters = {})
-      key_translator.translate(key, parameters)
-    end
-
-    def key_translator
-      @key_translator ||= Translations::KeyTranslator.new(server_service:)
-    end
 
     def preferences_repository
       @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)

@@ -24,7 +24,7 @@ module Translations
 
       value.gsub(/%?\{(\w+)\}/) do
         param_key = Regexp.last_match(1).to_sym
-        parameters.key?(param_key.to_sym) ? parameters[param_key].to_s : Regexp.last_match(0)
+        parameters.key?(param_key) ? parameters[param_key].to_s : Regexp.last_match(0)
       end
     end
 
