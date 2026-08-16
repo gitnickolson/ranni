@@ -58,7 +58,8 @@ POSTGRES_USER="admin"
 POSTGRES_PASSWORD="admin"
 POSTGRES_URL="postgres://admin:admin@localhost:5432/ranni_db"
 ```
-> ⚠️ **NOTE:**  Don't use such simple login data on an important production database :)
+
+> ⚠️ **NOTE:** Don't use such simple login data on an important production database :)
 
 Now for the slightly trickier part - you'll need to [install Docker](https://docs.docker.com/desktop/) to run the database server.
 
@@ -128,7 +129,7 @@ For these commands, create a folder named after your command (e.g. `game_info`) 
 1. The main command file (a Ruby file named `game_info.rb`, following the example above)
 2. Files defining your subcommands (e.g. `lol.rb` and `valorant.rb`, if the command should return info on those specific games)
 
-The main command file, `game_info.rb`, should then define a new class named `GameInfo`. This class should inherit from `ParentCommand` and be nested inside modules matching the folder structure, since this project uses [zeitwerk](https://github.com/fxn/zeitwerk) for autoloading. If that doesn't quite click, copy the structure of an existing command with subcommands (e.g. `./lib/commands/administrator/default_color/default_color.rb`) as a starting point.
+The main command file, `game_info.rb`, should then define a new class named `GameInfo`. This class should inherit from `ParentCommand` and be nested inside modules matching the folder structure, since this project uses [zeitwerk](https://github.com/fxn/zeitwerk) for autoloading. If that doesn't quite click, copy the structure of an existing command with subcommands (e.g. `./lib/commands/administrator/default_color/display_color.rb`) as a starting point.
 
 Your command class needs to define `NAME`, `DESCRIPTION`, and `SUBCOMMANDS` constants. `NAME` should be a symbol and will be used by Discord to display the name of the command (so `:game_info`, following the example above). `DESCRIPTION` is what Discord shows in the slash-command dropdown. `SUBCOMMANDS` should be an array of the subcommand classes you'll create next. For the `GameInfo` example, it would look like this: `SUBCOMMANDS = [Lol, Valorant]`.
 

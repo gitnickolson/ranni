@@ -4,8 +4,8 @@ module Commands
   module Public
     class Userinfo < Command
       NAME = :userinfo
-      DESCRIPTION = 'Rufe Informationen zu dir oder einem anderen Nutzer ab.'
-      PARAMETERS = [{ type: :user, name: :user, required: false, description: 'Spezifiziere einen Nutzer' }].freeze
+      DESCRIPTION = 'Get information about yourself or another user'
+      PARAMETERS = [{ type: :user, name: :user, required: false, description: 'Specify a user' }].freeze
 
       private
 

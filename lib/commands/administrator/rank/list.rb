@@ -2,10 +2,10 @@
 
 module Commands
   module Administrator
-    module Ranks
+    module Rank
       class List < Subcommand
         NAME = :list
-        DESCRIPTION = 'Rufe eine Liste aller Ränge ab'
+        DESCRIPTION = 'Retrieve a list of all ranks'
 
         private
 
@@ -18,14 +18,16 @@ module Commands
           embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: 20)
 
           embed_builder.update_fields(fields:)
-          embed_builder.add_title(text: t('commands.administrator.rank.list_title', { server_name: server.name }))
-          embed_builder.change_footer(text: t('commands.administrator.rank.list_length', { ranks_count: ranks.length }),
-                                      append_to_default: true)
+          embed_builder.add_title(text: t('commands.administrator.rank.list.list_title', { server_name: server.name }))
+          embed_builder.change_footer(
+            text: t('commands.administrator.rank.list.list_length', { ranks_count: ranks.length }),
+            append_to_default: true
+          )
         end
 
         def fields
           ranks.map do |rank|
-            field.new(name: t('commands.administrator.rank.list_entry_title', { level: rank.required_level }),
+            field.new(name: t('commands.administrator.rank.list.list_entry_title', { level: rank.required_level }),
                       value: roles_repository.role_from_id(role_id: rank.role_id.to_i).mention.to_s)
           end
         end

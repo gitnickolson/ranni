@@ -6,10 +6,8 @@ module Commands
     DESCRIPTION = 'Subcommand description.'
 
     def self.register(discordrb_parent_command:)
-      t = { 'de' => Translations::KeyTranslator.translate_command_description(command_name: self::NAME, locale: 'de',
-                                                                              fallback_description: self::DESCRIPTION) }
-
-      discordrb_parent_command.subcommand(self::NAME, self::DESCRIPTION, description_localizations: t) do |command|
+      discordrb_parent_command.subcommand(self::NAME, self::DESCRIPTION,
+                                          description_localizations: command_localizations) do |command|
         register_parameters(command)
       end
     end

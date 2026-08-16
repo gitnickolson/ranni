@@ -5,7 +5,7 @@ module Commands
     module MaxVoiceLevel
       class MaxVoiceLevel < ParentCommand
         NAME = :max_voice_level
-        DESCRIPTION = 'Bearbeite das maximale Voice-Level'
+        DESCRIPTION = 'Edit the maximum voice level'
         SUBCOMMANDS = [Set].freeze
       end
     end

@@ -5,41 +5,135 @@
       "no_functionality_implemented": "No functionality implemented for {command_name}."
     },
     "administrator": {
-      "default_color": {
-        "color_successfully_set": "Default color successfully changed to `{color_code}`",
-        "color_successfully_reset": "Default color successfully reset to `{color_code}`."
+      "display_color": {
+        "description": "Change the display color of the bot",
+        "reset": {
+          "description": "Reset the display color of the bot to default (8a43ff)",
+          "color_successfully_reset": "Display color successfully reset to `{color_code}`."
+        },
+        "set": {
+          "description": "Change the display color of the bot",
+          "color_successfully_set": "Display color successfully changed to `{color_code}`",
+          "parameters": {
+            "color_code": {
+              "description": "Enter the hex code of the desired color (e.g. FF3321)"
+            }
+          }
+        }
       },
       "language": {
-        "language_successfully_set": "The language was successfully changed to **{locale}**."
+        "description": "Change the bot's language",
+        "set": {
+          "description": "Set the bot's language",
+          "language_successfully_set": "The language was successfully changed to **{locale}**.",
+          "parameters": {
+            "language": {
+              "description": "Choose a new language"
+            }
+          }
+        }
       },
       "level_up_messages_channel": {
-        "channel_successfully_set": "Level-up messages will now appear in {channel}.",
-        "channel_successfully_removed": "Level-up messages will no longer appear."
+        "description": "Options for the level-up messages channel",
+        "set": {
+          "description": "Set the channel for level-up messages",
+          "channel_successfully_set": "Level-up messages will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for level-up messages"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for level-up messages",
+          "channel_successfully_removed": "Level-up messages will no longer appear."
+        }
       },
       "max_text_level": {
-        "max_level_successfully_set": "Maximum text level successfully set to {level}."
+        "description": "Edit the maximum text level",
+        "set": {
+          "description": "Set the maximum text level",
+          "max_level_successfully_set": "Maximum text level successfully set to {level}.",
+          "parameters": {
+            "level": {
+              "description": "Choose the new maximum level"
+            }
+          }
+        }
       },
       "max_voice_level": {
-        "max_level_successfully_set": "Maximum voice level successfully set to {level}."
+        "description": "Edit the maximum voice level",
+        "set": {
+          "description": "Set the maximum voice level",
+          "max_level_successfully_set": "Maximum voice level successfully set to {level}.",
+          "parameters": {
+            "level": {
+              "description": "Choose the new maximum level"
+            }
+          }
+        }
       },
       "rank": {
-        "rank_successfully_created": "The rank was successfully created.",
-        "rank_successfully_removed": "Rank successfully removed.",
-        "list_title": "Ranks on {server_name}",
-        "list_length": "{ranks_count} ranks",
-        "list_entry_title": "Level {level}",
-        "role_does_not_exist": "This role does not exist.",
-        "no_matching_rank": "There is no rank associated with this role."
+        "description": "Manage the level-based ranks of the server",
+        "add": {
+          "description": "Add a new rank",
+          "rank_successfully_created": "The rank was successfully created.",
+          "role_does_not_exist": "This role does not exist.",
+          "parameters": {
+            "role": {
+              "description": "Choose the corresponding role"
+            },
+            "level": {
+              "description": "Enter the required level"
+            }
+          }
+        },
+        "list": {
+          "description": "Retrieve a list of all ranks",
+          "list_title": "Ranks on {server_name}",
+          "list_length": "{ranks_count} ranks",
+          "list_entry_title": "Level {level}"
+        },
+        "remove": {
+          "description": "Remove a rank",
+          "rank_successfully_removed": "Rank successfully removed.",
+          "no_matching_rank": "There is no rank associated with this role.",
+          "parameters": {
+            "role": {
+              "description": "Choose the role that should be removed from ranks"
+            }
+          }
+        }
       },
       "text_leveling": {
-        "text_leveling_successfully_enabled": "Text leveling has been successfully enabled.",
-        "text_leveling_successfully_disabled": "Text leveling has been successfully disabled."
+        "description": "Enable or disable text leveling",
+        "enable": {
+          "description": "Enable text leveling",
+          "text_leveling_successfully_enabled": "Text leveling has been successfully enabled."
+        },
+        "disable": {
+          "description": "Disable text leveling",
+          "text_leveling_successfully_disabled": "Text leveling has been successfully disabled."
+        }
       },
       "welcome_messages_channel": {
-        "channel_successfully_set": "Welcome messages will now appear in {channel}.",
-        "channel_successfully_removed": "Welcome messages will no longer appear."
+        "description": "Options for the welcome messages channel",
+        "set": {
+          "description": "Set the channel for welcome messages",
+          "channel_successfully_set": "Welcome messages will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for welcome messages"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for welcome messages",
+          "channel_successfully_removed": "Welcome messages will no longer appear."
+        }
       },
       "preferences": {
+        "description": "Retrieve the configured bot preferences for this server",
         "embed_title": "Configured preferences for {bot_name} on {server_name}",
         "default_color": "Default color",
         "timezone": "Timezone",
@@ -56,6 +150,7 @@
     },
     "public": {
       "userinfo": {
+        "description": "Get information about yourself or another user",
         "general_info": "General",
         "rank": "Rank:",
         "status": "Status:",
@@ -65,7 +160,12 @@
         "boosting_since": "Boosting since",
         "text_level": "Text level",
         "level": "Level",
-        "xp": "XP"
+        "xp": "XP",
+        "parameters": {
+          "user": {
+            "description": "Specify a user"
+          }
+        }
       }
     }
   },
@@ -94,7 +194,7 @@
     "pages_count": "Page {current_page} of {total_pages}"
   },
   "level_up_congratulator": {
-    "reached_next_rank": "{member_mention}, you've just reached Level **{level_numeric}**!",
-    "reached_next_rank_with_role": "{member_mention}, you've just reached Level **{level_numeric}**! You are therefore promoted to the {role_mention} rank."
+    "reached_next_rank": "{member_mention}, you have reached level **{level_numeric}**!",
+    "reached_next_rank_with_role": "{member_mention}, you have reached level **{level_numeric}**! You have been promoted to the rank {role_mention}."
   }
 }

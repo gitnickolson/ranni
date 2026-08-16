@@ -5,7 +5,7 @@ module Commands
     module MaxTextLevel
       class MaxTextLevel < ParentCommand
         NAME = :max_text_level
-        DESCRIPTION = 'Bearbeite das maximale Text-Level'
+        DESCRIPTION = 'Edit the maximum text level'
         SUBCOMMANDS = [Set].freeze
       end
     end

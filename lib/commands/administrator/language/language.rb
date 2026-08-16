@@ -5,7 +5,7 @@ module Commands
     module Language
       class Language < ParentCommand
         NAME = :language
-        DESCRIPTION = 'Passe die Sprache des Bots an'
+        DESCRIPTION = 'Change the bot language'
         SUBCOMMANDS = [Set].freeze
       end
     end

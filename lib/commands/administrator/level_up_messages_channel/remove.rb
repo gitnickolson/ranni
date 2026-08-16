@@ -5,14 +5,16 @@ module Commands
     module LevelUpMessagesChannel
       class Remove < Subcommand
         NAME = :remove
-        DESCRIPTION = 'Entferne den Kanal für Level-Up-Nachrichten'
+        DESCRIPTION = 'Remove the current channel for level-up messages'
 
         private
 
         def command_action
           preferences_repository.remove_level_up_congratulation_channel
           transmitter.response(event:,
-                               text: t('commands.administrator.level_up_messages_channel.channel_successfully_removed'))
+                               text: t(
+                                 'commands.administrator.level_up_messages_channel.remove.channel_successfully_removed'
+                               ))
         end
 
         def preferences_repository

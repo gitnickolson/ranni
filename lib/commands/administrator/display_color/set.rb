@@ -2,28 +2,24 @@
 
 module Commands
   module Administrator
-    module DefaultColor
-      class Change < Subcommand
-        NAME = :change
-        DESCRIPTION = 'Verändere die Standardfarbe von Anzeigen des Bots'
+    module DisplayColor
+      class Set < Subcommand
+        NAME = :set
+        DESCRIPTION = 'Change the default color that the bot uses for displays'
         PARAMETERS = [{ type: :string, name: :color_code, required: true,
-                        description: 'Gib die Farbe als Hexcode an (z.B. FF3321)' }].freeze
-
-        def self.register_parameters(command)
-          command.string('farbcode', 'Gib die Farbe als Hexcode an (z.B. FF3321)', required: true)
-        end
+                        description: 'Enter the Hexcode of the desired color (e.g. FF3321)' }].freeze
 
         private
 
         def command_action
-          color_code = event.options['farbcode']
+          color_code = event.options['color_code']
 
           result = validate_color_code(color_code)
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           preferences_repository.update_server_color(color_code:)
           transmitter.response(event:,
-                               text: t('commands.administrator.default_color.color_successfully_set',
+                               text: t('commands.administrator.display_color.set.color_successfully_set',
                                        { color_code: }))
         end
 

@@ -5,7 +5,7 @@ module Commands
     module TextLeveling
       class TextLeveling < ParentCommand
         NAME = :text_leveling
-        DESCRIPTION = 'Schalte Text-Leveling ein oder aus'
+        DESCRIPTION = 'Enable or disable text leveling'
         SUBCOMMANDS = [Enable, Disable].freeze
       end
     end

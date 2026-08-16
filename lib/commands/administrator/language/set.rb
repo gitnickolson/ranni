@@ -5,18 +5,18 @@ module Commands
     module Language
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Stelle die Sprache ein'
-        PARAMETERS = [{ type: :string, name: :language, required: true, description: 'Die neue Sprache',
-                        choice: { De: 'De', En: 'En' } }].freeze
+        DESCRIPTION = 'Set the bot language'
+        PARAMETERS = [{ type: :string, name: :language, required: true, description: 'Choose the new language',
+                        choices: { De: 'De', En: 'En' } }].freeze
 
         private
 
         def command_action
-          locale = event.options['sprache']
+          locale = event.options['language']
 
           preferences_repository.update_locale(locale:)
           transmitter.response(event:,
-                               text: t('commands.administrator.language.language_successfully_set',
+                               text: t('commands.administrator.language.set.language_successfully_set',
                                        { locale: }))
         end
 

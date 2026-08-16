@@ -5,7 +5,7 @@ module Commands
     module WelcomeMessagesChannel
       class WelcomeMessagesChannel < ParentCommand
         NAME = :welcome_messages_channel
-        DESCRIPTION = 'Optionen zum Willkommensnachrichten-Kanal'
+        DESCRIPTION = 'Options regarding the welcome messages channel'
         SUBCOMMANDS = [Set, Remove].freeze
       end
     end

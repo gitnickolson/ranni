@@ -5,9 +5,9 @@ module Commands
     module MaxVoiceLevel
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Setze das maximale Voice-level'
+        DESCRIPTION = 'Set the maximum voice level'
         PARAMETERS = [{ type: :integer, name: :level, required: true,
-                        description: 'Das neue Level-Maximum' }].freeze
+                        description: 'Choose the new maximum level' }].freeze
 
         private
 
@@ -19,7 +19,7 @@ module Commands
 
           preferences_repository.update_max_voice_level(level:)
           transmitter.response(event:,
-                               text: t('commands.administrator.max_voice_level.max_level_successfully_set',
+                               text: t('commands.administrator.max_voice_level.set.max_level_successfully_set',
                                        { level: }))
         end
 

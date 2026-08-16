@@ -2,24 +2,24 @@
 
 module Commands
   module Administrator
-    module Ranks
+    module Rank
       class Remove < Subcommand
         NAME = :remove
-        DESCRIPTION = 'Entferne einen Rang aus den Levelrängen'
+        DESCRIPTION = 'Remove a rank'
         PARAMETERS = [{ type: :role, name: :role, required: true,
-                        description: 'Gib die Rolle an, die aus den Rängen entfernt werden soll' }].freeze
+                        description: 'Choose the role that should be removed from ranks' }].freeze
 
         private
 
         def command_action
-          role_id = event.options['rolle']
+          role_id = event.options['role'].to_i
 
           if ranks_repository.find_by_role(role_id:).nil?
-            return transmitter.error_response(event:, text: t('commands.administrator.rank.no_matching_rank'))
+            return transmitter.error_response(event:, text: t('commands.administrator.rank.remove.no_matching_rank'))
           end
 
           ranks_repository.delete(role_id:)
-          transmitter.response(event:, text: t('commands.administrator.rank.rank_successfully_removed'))
+          transmitter.response(event:, text: t('commands.administrator.rank.remove.rank_successfully_removed'))
         end
 
         def ranks_repository

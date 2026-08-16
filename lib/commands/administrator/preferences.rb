@@ -4,7 +4,7 @@ module Commands
   module Administrator
     class Preferences < Command
       NAME = :preferences
-      DESCRIPTION = 'Rufe die Boteinstellungen für diesen Server ab'
+      DESCRIPTION = 'Retrieve the set preferences for the bot on this server'
 
       private
 
