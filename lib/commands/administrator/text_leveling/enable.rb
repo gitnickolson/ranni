@@ -5,17 +5,19 @@ module Commands
     module TextLeveling
       class Enable < Subcommand
         NAME = :enable
-        DESCRIPTION = 'Schalte Text-Leveling ein'
+        DESCRIPTION = 'Enable text leveling'
 
         private
 
         def command_action
           preferences_repository.update_text_leveling_status(turned_on: true)
-          transmitter.response(event:, text: 'Text-Leveling wurde erfolgreich eingeschaltet.')
+          transmitter.response(event:,
+                               text:
+                               t('commands.administrator.text_leveling.enable.text_leveling_successfully_enabled'))
         end
 
         def preferences_repository
-          @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
+          @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.server.id)
         end
       end
     end

@@ -58,7 +58,8 @@ POSTGRES_USER="admin"
 POSTGRES_PASSWORD="admin"
 POSTGRES_URL="postgres://admin:admin@localhost:5432/ranni_db"
 ```
-> ⚠️ **NOTE:**  Don't use such simple login data on an important production database :)
+
+> ⚠️ **NOTE:** Don't use such simple login data on an important production database :)
 
 Now for the slightly trickier part - you'll need to [install Docker](https://docs.docker.com/desktop/) to run the database server.
 
@@ -115,7 +116,7 @@ Your command class also needs to define `NAME` and `DESCRIPTION` constants. `NAM
 
 You'll then add a private `#command_action` method containing all of your command's logic.
 
-If your command needs custom parameters, you'll also need to write a `.register` class method. You can find an example of this in `./lib/commands/public/userinfo`, which defines a custom `user` parameter that lets someone select a user when using the command on Discord.
+If your command needs custom parameters, you'll also need to add a `PARAMETERS` array constant. You can find an example of this in `./lib/commands/public/userinfo`, which defines a custom `user` parameter that lets someone select a user when using the command on Discord.
 
 Custom parameters can then be read from an options hash on the event object available inside each command instance - just call `event.options['your_custom_parameter_name']` from any instance method to access what the user entered.
 
@@ -128,17 +129,28 @@ For these commands, create a folder named after your command (e.g. `game_info`) 
 1. The main command file (a Ruby file named `game_info.rb`, following the example above)
 2. Files defining your subcommands (e.g. `lol.rb` and `valorant.rb`, if the command should return info on those specific games)
 
-The main command file, `game_info.rb`, should then define a new class named `GameInfo`. This class should inherit from `ParentCommand` and be nested inside modules matching the folder structure, since this project uses [zeitwerk](https://github.com/fxn/zeitwerk) for autoloading. If that doesn't quite click, copy the structure of an existing command with subcommands (e.g. `./lib/commands/administrator/default_color/default_color.rb`) as a starting point.
+The main command file, `game_info.rb`, should then define a new class named `GameInfo`. This class should inherit from `ParentCommand` and be nested inside modules matching the folder structure, since this project uses [zeitwerk](https://github.com/fxn/zeitwerk) for autoloading. If that doesn't quite click, copy the structure of an existing command with subcommands (e.g. `./lib/commands/administrator/display_color/display_color.rb`) as a starting point.
 
 Your command class needs to define `NAME`, `DESCRIPTION`, and `SUBCOMMANDS` constants. `NAME` should be a symbol and will be used by Discord to display the name of the command (so `:game_info`, following the example above). `DESCRIPTION` is what Discord shows in the slash-command dropdown. `SUBCOMMANDS` should be an array of the subcommand classes you'll create next. For the `GameInfo` example, it would look like this: `SUBCOMMANDS = [Lol, Valorant]`.
 
-That's it for the main command class. Follow the same steps as before to create the subcommand classes: Create the corresponding Ruby files inside the `game_info` folder and define classes nested inside modules matching the folder structure. Subcommand classes should inherit from `Subcommand` instead of `ParentCommand`, unlike the main command class. They don't need a `SUBCOMMANDS` constant as well - just `NAME` and `DESCRIPTION`. Again, feel free to reference an existing command like in `./lib/commands/administrator/default_color` to see how the pieces fit together.
+That's it for the main command class. Follow the same steps as before to create the subcommand classes: Create the corresponding Ruby files inside the `game_info` folder and define classes nested inside modules matching the folder structure. Subcommand classes should inherit from `Subcommand` instead of `ParentCommand`, unlike the main command class. They don't need a `SUBCOMMANDS` constant as well - just `NAME` and `DESCRIPTION`. Again, feel free to reference an existing command like in `./lib/commands/administrator/display_color` to see how the pieces fit together.
 
 Each subcommand also needs a private `#command_action` instance method containing its logic.
 
-If a subcommand needs custom parameters, write a `.register` class method for it, just like with simple commands. You can find an example in `./lib/commands/administrator/default_color/change.rb`, which defines a custom `color` parameter that lets someone enter a color code when using the command on Discord.
+If a subcommand needs custom parameters, add a `PARAMETERS` array constant definition, just like for the simple commands. You can find an example in `./lib/commands/administrator/display_color/change.rb`, which defines a custom `color` parameter that lets someone enter a color code when using the command on Discord.
 
 As before, custom parameters can be read via `event.options['your_custom_parameter_name']` from any instance method within the class.
+
+### Registering your commands on Discord
+
+Once you've added a new command class, Ranni will automatically register it with Discord on startup. However, if you later rename a command or change its description, Discord will still have the old version registered - your changes won't take effect on their own.
+
+To force an update, temporarily change the `command_manager.register_commands` call in `./lib/bot.rb` to `command_manager.unregister_commands`. On the next bot start, this will unregister every command. If you'd rather not remove everything, pass a list of command names to only unregister specific ones:
+```ruby
+command_manager.unregister_commands(names: ['test_command', 'other_command'])
+```
+
+Once the relevant commands have been unregistered, revert your change back to `command_manager.register_commands` and restart the bot. It will then re-register your commands with the updated names or descriptions.
 
 ## How to add a new database entity
 
@@ -153,3 +165,37 @@ I'll keep this brief, since I'd expect anyone attempting this to already be fair
 5. Use your repository to access and modify entities from within your command handlers (at least for any commands that manipulate data).
 
 For reference, check out the corresponding files (migration, model, repository) for the `Ranks` table and its entities. These are also manipulated via administrator commands, found in `./lib/commands/administrator/ranks`.
+
+## Translations
+
+If you add a new feature that sends messages to Discord, you might as well want to offer it in more than one language.
+
+Ranni currently supports German and English, represented by `./locales/de.json` and `./locales/en.json`. Add a translation key for every string an end-user might see. If you'd like to add a new language, just add a new corresponding json file with the correctly translated keys inside of it. You'll need to also adjust the language parameter in `.lib/commands/administrator/language/set.rb` and the localization options in the `./lib/commands/registerable.rb` module.
+
+### Key naming convention
+
+Translation keys follow the folder structure of the component that uses them. For example, a string `"Hey there!"` in the public command `/hello_world` would get a key like: `commands.public.hello_world.greeting`
+
+### Using translations in your code
+
+Translations are read via the `Translations::KeyTranslator` class, exposed through the `Translations::Translatable` module. All commands classes already include this module, so you can call `t(key)` from any instance method inside your command:
+```ruby
+def command_action
+  transmitter.response(event:, text: t('commands.public.hello_world.greeting'))
+end
+```
+
+`t` also accepts a hash of parameters for interpolation:
+```ruby
+t('commands.public.hello_world.greeting', { name: event.user.username })
+```
+
+### Command and parameter descriptions
+
+Translation keys for command and parameter descriptions must follow the same folder-based naming scheme and end in `.description` - this is required by the `Commands::Registerable` module (extended by the base command classes) so it can localize slash-command descriptions automatically.
+
+The fallback description is always English, so you don't necessarily need to add description keys to `./locales/en.json` - you can just hardcode the English text directly into your command's `DESCRIPTION` constant. Only add a `.description` key to `./locales/de.json` (and any other non-English locale files) if you want a localized version.
+
+### Skipping translations
+
+Translations are entirely optional. If you don't add any keys for a feature, the bot will still work fine using whatever raw strings you write directly into your feature - running `/language set` just won't have any effect on that feature's messages.

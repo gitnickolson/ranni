@@ -5,25 +5,32 @@ module Validation
     MIN_LEVEL = 0
     MAX_POSSIBLE_LEVEL = 100_000
 
+    include Translations::Translatable
+
     def initialize(server_service:)
       @server_service = server_service
     end
 
     def validate_text_level(level:)
-      return Utility::Result.failure(error: "Das Level muss mindestens #{MIN_LEVEL} betragen.") if level < MIN_LEVEL
+      if level < MIN_LEVEL
+        return Utility::Result.failure(error: t('validation.level_validator.not_higher_than_min_level',
+                                                { min_level: MIN_LEVEL }))
+      end
 
       if level > preferences_repository.max_text_level
-        return Utility::Result.failure(error: 'Das Level darf nicht höher als das maximale Server-Level sein.')
+        return Utility::Result.failure(error: t('validation.level_validator.level_must_be_below_max_level'))
       end
 
       Utility::Result.ok
     end
 
     def validate_max_level_setting(level:)
-      return Utility::Result.failure(error: 'Das maximale Level darf nicht negativ sein.') if level.negative?
+      if level.negative?
+        return Utility::Result.failure(error: t('validation.level_validator.max_level_must_be_positive'))
+      end
 
       if level > MAX_POSSIBLE_LEVEL
-        return Utility::Result.failure(error: 'Das maximale Level darf 100.000 nicht überschreiten.')
+        return Utility::Result.failure(error: t('validation.level_validator.max_level_must_be_below_100k'))
       end
 
       Utility::Result.ok

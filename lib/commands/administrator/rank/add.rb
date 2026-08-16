@@ -2,34 +2,31 @@
 
 module Commands
   module Administrator
-    module Ranks
+    module Rank
       class Add < Subcommand
         NAME = :add
-        DESCRIPTION = 'Füge einen neuen Rang zu den Levelrängen hinzu'
-
-        def self.register(discordrb_parent_command:)
-          discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.role('rolle', 'Gib die zugehörige Rolle für den Rang an', required: true)
-            subcommand.integer('level', 'Gib das benötigte level an', required: true)
-          end
-        end
+        DESCRIPTION = 'Add a new rank'
+        PARAMETERS = [{ type: :role, name: :role, required: true,
+                        description: 'Choose the corresponding role' },
+                      { type: :integer, name: :level, required: true,
+                        description: 'Enter the required level' }].freeze
 
         private
 
         def command_action
-          role_id = event.options['rolle'].to_i
+          role_id = event.options['role'].to_i
           required_level = event.options['level'].to_i
 
           result = validate_options(role_id, required_level)
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           ranks_repository.create(role_id:, required_level:)
-          transmitter.response(event:, text: 'Der Rang wurde erfolgreich erstellt.')
+          transmitter.response(event:, text: t('commands.administrator.rank.add.rank_successfully_created'))
         end
 
         def validate_options(role_id, required_level)
           unless roles_repository.role_exists?(role_id:)
-            return Utility::Result.failure(error: 'Diese Rolle existiert nicht.')
+            return Utility::Result.failure(error: t('commands.administrator.rank.add.role_does_not_exist'))
           end
 
           rank_result = ranks_validator.validate_creation(role_id:, required_level:)

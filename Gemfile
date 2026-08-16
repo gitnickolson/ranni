@@ -3,7 +3,7 @@
 source 'https://rubygems.org/'
 
 gem 'base64'
-gem 'discordrb', git: 'https://github.com/shardlab/discordrb'
+gem 'discordrb', git: 'https://github.com/gitnickolson/discordrb'
 gem 'dotenv'
 gem 'ougai'
 gem 'pg'

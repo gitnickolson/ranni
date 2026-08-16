@@ -5,22 +5,22 @@ module Commands
     module WelcomeMessagesChannel
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Setze den Kanal für Willkommensnachrichten'
-
-        def self.register(discordrb_parent_command:)
-          discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.channel('kanal', 'Der neue Kanal für Willkommensnachrichten.', required: true)
-          end
-        end
+        DESCRIPTION = 'Set the welcome messages channel'
+        PARAMETERS = [{ type: :channel, name: :channel, required: true,
+                        description: 'Choose the channel for welcome messages' }].freeze
 
         private
 
         def command_action
-          channel_id = event.options['kanal'].to_i
+          channel_id = event.options['channel'].to_i
           channel = server_service.channel_from_id(channel_id:)
 
           preferences_repository.add_welcome_message_channel(channel_id:)
-          transmitter.response(event:, text: "Willkommensnachrichten erscheinen nun in #{channel.mention}.")
+          transmitter.response(event:,
+                               text: t(
+                                 'commands.administrator.welcome_messages_channel.set.channel_successfully_set',
+                                 { channel: channel.mention }
+                               ))
         end
 
         def preferences_repository

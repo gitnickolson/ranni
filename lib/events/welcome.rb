@@ -4,6 +4,8 @@ module Events
   class Welcome
     WELCOME_MESSAGE_GIF = 'https://static2.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/ce/d4/FGiYVznU.gif'
 
+    include Translations::Translatable
+
     def self.listen(bot:)
       bot.member_join do |event|
         server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
@@ -35,10 +37,9 @@ module Events
     def create_embed_builder(event)
       embed_builder = Utility::Messages::Embeds::EmbedBuilder.new(bot:, server_service:,
                                                                   pagination_key: pagination_key(event))
-      embed_builder.add_title(text: "**Willkommen auf #{server_service.server.name}!**")
-      embed_builder.add_description(text: "**#{event.user.mention} (#{event.user.username}) ist dem Server " \
-                                          "beigetreten.**\n" \
-                                          'Machs dir hier gemütlich!')
+      embed_builder.add_title(text: t('events.welcome.embed_title', { server_name: server_service.server.name }))
+      embed_builder.add_description(text: t('events.welcome.embed_description',
+                                            { user_mention: event.user.mention, username: event.user.username }))
       embed_builder.add_image(url: WELCOME_MESSAGE_GIF)
       embed_builder.change_footer(text: '')
     end

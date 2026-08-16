@@ -1,0 +1,200 @@
+{
+  "commands": {
+    "command": {
+      "not_permitted": "Du hast nicht die benötigten Berechtigungen.",
+      "no_functionality_implemented": "Keine Funktionalität für {command_name} implementiert."
+    },
+    "administrator": {
+      "display_color": {
+        "description": "Passe die Anzeigefarbe des Bots an",
+        "reset": {
+          "description": "Setze die Anzeigefarbe des Bots auf den Standard zurück (8a43ff)",
+          "color_successfully_reset": "Anzeigefarbe erfolgreich zu `{color_code}` zurückgesetzt."
+        },
+        "set": {
+          "description": "Passe die Anzeigefarbe des Bots an",
+          "color_successfully_set": "Anzeigefarbe erfolgreich zu `{color_code}` verändert",
+          "parameters": {
+            "color_code": {
+              "description": "Gib den Hexcode der gewünschten Farbe an (z.B. FF3321)"
+            }
+          }
+        }
+      },
+      "language": {
+        "description": "Passe die Sprache des Bots an",
+        "set": {
+          "description": "Setze die Sprache des Bots",
+          "language_successfully_set": "Die Sprache wurde erfolgreich zu **{locale}** geändert.",
+          "parameters": {
+            "language": {
+              "description": "Wähle eine neue Sprache aus"
+            }
+          }
+        }
+      },
+      "level_up_messages_channel": {
+        "description": "Optionen zum Level-Up-Nachrichten Kanal",
+        "set": {
+          "description": "Setze den Kanal für Level-Up-Nachrichten",
+          "channel_successfully_set": "Level-Up-Nachrichten erscheinen nun in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Level-Up-Nachrichten"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Level-Up-Nachrichten",
+          "channel_successfully_removed": "Es erscheinen nun keine Level-Up-Nachrichten mehr."
+        }
+      },
+      "max_text_level": {
+        "description": "Bearbeite das maximale Text-Level",
+        "set": {
+          "description": "Setze das maximale Text-Level",
+          "max_level_successfully_set": "Maximales Text-Level erfolgreich auf {level} gesetzt.",
+          "parameters": {
+            "level": {
+              "description": "Wähle das neue maximale Level aus"
+            }
+          }
+        }
+      },
+      "max_voice_level": {
+        "description": "Bearbeite das maximale Voice-Level",
+        "set": {
+          "description": "Setze das maximale Voice-Level",
+          "max_level_successfully_set": "Maximales Voice-Level erfolgreich auf {level} gesetzt.",
+          "parameters": {
+            "level": {
+              "description": "Wähle das neue maximale Level aus"
+            }
+          }
+        }
+      },
+      "rank": {
+        "description": "Bearbeite die Level-basierten Ränge des Servers",
+        "add": {
+          "description": "Füge einen neuen Rang hinzu",
+          "rank_successfully_created": "Der Rang wurde erfolgreich erstellt.",
+          "role_does_not_exist": "Diese Rolle existiert nicht.",
+          "parameters": {
+            "role": {
+              "description": "Wähle die zugehörige Rolle aus"
+            },
+            "level": {
+              "description": "Gib das benötigte Level an"
+            }
+          }
+        },
+        "list": {
+          "description": "Rufe eine Liste aller Ränge ab",
+          "list_title": "Ränge auf {server_name}",
+          "list_length": "{ranks_count} Ränge",
+          "list_entry_title": "Level {level}"
+        },
+        "remove": {
+          "description": "Entferne einen Rang",
+          "rank_successfully_removed": "Rang erfolgreich entfernt.",
+          "no_matching_rank": "Für diese Rolle gibt es keinen zugehörigen Rang.",
+          "parameters": {
+            "role": {
+              "description": "Wähle die Rolle aus, die aus den Rängen entfernt werden soll"
+            }
+          }
+        }
+      },
+      "text_leveling": {
+        "description": "Schalte Text-Leveling ein oder aus",
+        "enable": {
+          "description": "Schalte Text-Leveling ein",
+          "text_leveling_successfully_enabled": "Text-Leveling wurde erfolgreich eingeschaltet."
+        },
+        "disable": {
+          "description": "Schalte Text-Leveling aus",
+          "text_leveling_successfully_disabled": "Text-Leveling wurde erfolgreich ausgeschaltet."
+        }
+      },
+      "welcome_messages_channel": {
+        "description": "Optionen zum Willkommensnachrichten Kanal",
+        "set": {
+          "description": "Setze den Kanal für Willkommensnachrichten",
+          "channel_successfully_set": "Willkommensnachrichten erscheinen nun in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Willkommensnachrichten"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Willkommensnachrichten",
+          "channel_successfully_removed": "Es erscheinen nun keine Willkommensnachrichten mehr."
+        }
+      },
+      "preferences": {
+        "description": "Rufe die präferenzierten Boteinstellungen für diesen Server ab",
+        "embed_title": "Eingestellte Präferenzen für {bot_name} auf {server_name}",
+        "default_color": "Standardfarbe",
+        "timezone": "Zeitzone",
+        "language": "Sprache",
+        "birthday_role": "Geburtstagsrolle",
+        "max_text_level": "Maximales Text-Level",
+        "max_voice_level": "Maximales Voice-Level",
+        "text_leveling_status": "Text-Leveling Status",
+        "on": "Eingeschalten",
+        "off": "Ausgeschalten",
+        "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
+        "welcome_messages_channel": "Willkommensnachrichten Kanal"
+      }
+    },
+    "public": {
+      "userinfo": {
+        "description": "Rufe Informationen zur dir oder einem anderen Nutzer ab",
+        "general_info": "Generelles",
+        "rank": "Rang:",
+        "status": "Status:",
+        "boosting": "Boostet diesen Server \n",
+        "account_created": "Account erstellt",
+        "joined": "Beigetreten",
+        "boosting_since": "Boostet seit",
+        "text_level": "Text-Level",
+        "level": "Level",
+        "xp": "XP",
+        "parameters": {
+          "user": {
+            "description": "Spezifiziere einen Nutzer"
+          }
+        }
+      }
+    }
+  },
+  "events": {
+    "welcome": {
+      "embed_title": "**Willkommen auf {server_name}!**",
+      "embed_description": "**{user_mention} ({username}) ist dem Server beigetreten.**\nMachs dir hier gemütlich!"
+    }
+  },
+  "validation": {
+    "color_code_validator": {
+      "color_code_invalid": "Der Farbcode ist Invalide."
+    },
+    "level_validator": {
+      "not_higher_than_min_level": "Das Level muss mindestens {min_level} betragen.",
+      "level_must_be_below_max_level": "Das Level darf nicht höher als das maximale Server-Level sein.",
+      "max_level_must_be_positive": "Das maximale Level darf nicht negativ sein.",
+      "max_level_must_be_below_100k": "Das maximale Level darf 100.000 nicht überschreiten."
+    },
+    "ranks_validator": {
+      "rank_for_role_already_exists": "Ein Rang mit dieser Rolle existiert schon.",
+      "rank_for_level_already_exists": "Ein Rang für dieses Level existiert schon."
+    }
+  },
+  "embed_builder": {
+    "pages_count": "Seite {current_page} von {total_pages}"
+  },
+  "level_up_congratulator": {
+    "reached_next_rank": "{member_mention}, du hast Level **{level_numeric}** erreicht!",
+    "reached_next_rank_with_role": "{member_mention}, du hast Level **{level_numeric}** erreicht! Du steigst somit zum Rang {role_mention} auf."
+  }
+}

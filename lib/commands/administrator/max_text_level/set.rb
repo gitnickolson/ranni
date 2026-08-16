@@ -5,13 +5,9 @@ module Commands
     module MaxTextLevel
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Setze das maximale Text-level'
-
-        def self.register(discordrb_parent_command:)
-          discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.integer('level', 'Das neue Level-Maximum.', required: true)
-          end
-        end
+        DESCRIPTION = 'Set the maximum text level'
+        PARAMETERS = [{ type: :integer, name: :level, required: true,
+                        description: 'Choose the new maximum level' }].freeze
 
         private
 
@@ -22,7 +18,9 @@ module Commands
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           preferences_repository.update_max_text_level(level:)
-          transmitter.response(event:, text: "Maximales Text-Level erfolgreich auf #{level} gesetzt.")
+          transmitter.response(event:,
+                               text: t('commands.administrator.max_text_level.set.max_level_successfully_set',
+                                       { level: }))
         end
 
         def level_validator

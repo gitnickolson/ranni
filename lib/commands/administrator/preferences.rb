@@ -4,7 +4,7 @@ module Commands
   module Administrator
     class Preferences < Command
       NAME = :preferences
-      DESCRIPTION = 'Rufe die Boteinstellungen für diesen Server ab'
+      DESCRIPTION = 'Retrieve the set preferences for the bot on this server'
 
       private
 
@@ -17,14 +17,18 @@ module Commands
         embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: 20)
 
         embed_builder.update_fields(fields:)
-        embed_builder.add_title(text: "Eingestellte Präferenzen für #{bot.name} auf #{server.name}")
+        embed_builder.add_title(text: t('commands.administrator.preferences.embed_title',
+                                        { bot_name: bot.name, server_name: server.name }))
       end
 
       def fields # rubocop:disable Metrics/MethodLength
         [
-          field.new(name: 'Standardfarbcode:', value: preferences_repository.server_color, inlined: true),
-          field.new(name: 'Zeitzone:', value: preferences_repository.timezone, inlined: true),
-          field.new(name: 'Sprache:', value: preferences_repository.locale, inlined: true),
+          field.new(name: t('commands.administrator.preferences.default_color'),
+                    value: preferences_repository.server_color, inlined: true),
+          field.new(name: t('commands.administrator.preferences.timezone'),
+                    value: preferences_repository.timezone, inlined: true),
+          field.new(name: t('commands.administrator.preferences.language'),
+                    value: preferences_repository.locale, inlined: true),
           birthday_field,
           field.new,
           max_text_level_field,
@@ -38,28 +42,37 @@ module Commands
       def birthday_field
         return if birthday_role.nil?
 
-        field.new(name: 'Geburtstagsrolle:', value: birthday_role.mention, inlined: true)
+        field.new(name: t('commands.administrator.preferences.birthday_role'),
+                  value: birthday_role.mention, inlined: true)
       end
 
       def max_text_level_field
-        field.new(name: 'Maximales Text-Level:', value: preferences_repository.max_text_level, inlined: true)
+        field.new(name: t('commands.administrator.preferences.max_text_level'),
+                  value: preferences_repository.max_text_level, inlined: true)
       end
 
       def max_voice_level_field
-        field.new(name: 'Maximales Voice-Level:', value: preferences_repository.max_voice_level, inlined: true)
+        field.new(name: t('commands.administrator.preferences.max_voice_level'),
+                  value: preferences_repository.max_voice_level, inlined: true)
       end
 
       def text_leveling_status_field
-        field.new(name: 'Text-Leveling Status:',
-                  value: preferences_repository.text_leveling_enabled? ? 'Eingeschalten' : 'Ausgeschalten')
+        field.new(name: t('commands.administrator.preferences.text_leveling_status'),
+                  value: if preferences_repository.text_leveling_enabled?
+                           t('commands.administrator.preferences.on')
+                         else
+                           t('commands.administrator.preferences.off')
+                         end)
       end
 
       def level_up_message_channel_field
-        field.new(name: 'Level-Up-Nachrichten Kanal:', value: level_up_congratulation_channel&.mention || '//')
+        field.new(name: t('commands.administrator.preferences.level_up_messages_channel'),
+                  value: level_up_congratulation_channel&.mention || '//')
       end
 
       def welcome_message_channel_field
-        field.new(name: 'Willkommensnachrichten Kanal:', value: welcome_message_channel&.mention || '//')
+        field.new(name: t('commands.administrator.preferences.welcome_messages_channel'),
+                  value: welcome_message_channel&.mention || '//')
       end
 
       def level_up_congratulation_channel

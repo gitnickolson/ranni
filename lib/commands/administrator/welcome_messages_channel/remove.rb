@@ -5,13 +5,16 @@ module Commands
     module WelcomeMessagesChannel
       class Remove < Subcommand
         NAME = :remove
-        DESCRIPTION = 'Entferne den Kanal für Willkommensnachrichten'
+        DESCRIPTION = 'Remove the welcome messages channel'
 
         private
 
         def command_action
           preferences_repository.remove_welcome_message_channel
-          transmitter.response(event:, text: 'Es erscheinen nun keine Willkommensnachrichten mehr.')
+          transmitter.response(event:,
+                               text: t(
+                                 'commands.administrator.welcome_messages_channel.remove.channel_successfully_removed'
+                               ))
         end
 
         def preferences_repository

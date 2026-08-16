@@ -4,17 +4,10 @@ module Commands
   class Command
     NAME = :command
     DESCRIPTION = 'Command description'
+    PARAMETERS = [].freeze
 
-    def self.register(bot:)
-      bot.register_application_command(self::NAME, self::DESCRIPTION)
-    end
-
-    def self.listen(bot:)
-      bot.application_command(self::NAME) do |event|
-        command = new(bot:)
-        command.handle_event(event)
-      end
-    end
+    extend Registerable
+    include Translations::Translatable
 
     def initialize(bot:)
       @bot = bot
@@ -24,9 +17,7 @@ module Commands
       @event = event
       @server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
 
-      unless user_permitted?
-        return transmitter.error_response(event:, text: 'Du hast nicht die benötigten Berechtigungen.')
-      end
+      return transmitter.error_response(event:, text: t('commands.command.not_permitted')) unless user_permitted?
 
       command_action
     rescue StandardError => e
@@ -48,7 +39,7 @@ module Commands
 
       transmitter.error_response(
         event:,
-        text: "Keine Funktionalität für #{self.class::NAME} implementiert."
+        text: t('commands.command.no_functionality_implemented', { command_name: self.class::NAME })
       )
     end
 
@@ -86,16 +77,16 @@ module Commands
       server_service.server
     end
 
+    def permission_checker
+      @permission_checker ||= Utility::PermissionChecker.new(bot:, server_service:)
+    end
+
     def logger
-      Utility::Logger.instance
+      @logger ||= Utility::Logger.instance
     end
 
     def transmitter
       Utility::Messages::MessageTransmitter
-    end
-
-    def permission_checker
-      Utility::PermissionChecker.new(bot:, server_service:)
     end
   end
 end

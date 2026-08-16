@@ -6,7 +6,10 @@ module Commands
     DESCRIPTION = 'Subcommand description.'
 
     def self.register(discordrb_parent_command:)
-      discordrb_parent_command.subcommand(self::NAME, self::DESCRIPTION)
+      discordrb_parent_command.subcommand(self::NAME, self::DESCRIPTION,
+                                          description_localizations: command_localizations) do |command|
+        register_parameters(command)
+      end
     end
 
     def self.listen(bot:, parent_command:)

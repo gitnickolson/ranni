@@ -5,22 +5,20 @@ module Commands
     module LevelUpMessagesChannel
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Setze den Kanal für Level-Up-Nachrichten'
-
-        def self.register(discordrb_parent_command:)
-          discordrb_parent_command.subcommand(NAME, DESCRIPTION) do |subcommand|
-            subcommand.channel('kanal', 'Der neue Kanal für Level-Up-Nachrichten.', required: true)
-          end
-        end
+        DESCRIPTION = 'Set a channel for level-up messages'
+        PARAMETERS = [{ type: :channel, name: :channel, required: true,
+                        description: 'Choose the channel for level-up messages' }].freeze
 
         private
 
         def command_action
-          channel_id = event.options['kanal'].to_i
+          channel_id = event.options['channel'].to_i
           channel = server_service.channel_from_id(channel_id:)
 
           preferences_repository.add_level_up_congratulation_channel(channel_id:)
-          transmitter.response(event:, text: "Level-Up-Nachrichten erscheinen nun in #{channel.mention}.")
+          transmitter.response(event:,
+                               text: t('commands.administrator.level_up_messages_channel.set.channel_successfully_set',
+                                       { channel: channel.mention }))
         end
 
         def preferences_repository

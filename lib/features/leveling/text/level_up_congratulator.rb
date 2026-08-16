@@ -4,6 +4,8 @@ module Features
   module Leveling
     module Text
       class LevelUpCongratulator
+        include Translations::Translatable
+
         def initialize(server_service:)
           @server_service = server_service
         end
@@ -26,12 +28,13 @@ module Features
           member = server_service.member_from(identifier: updated_level.user_id)
 
           if next_rank.nil?
-            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht!"
+            t('level_up_congratulator.reached_next_rank',
+              { member_mention: member.mention, level_numeric: updated_level.numeric })
           else
             new_role = roles_repository.role_from_id(role_id: next_rank.role_id)
 
-            "#{member.mention}, du hast Level **#{updated_level.numeric}** erreicht. Du steigst " \
-              "somit zum Rang #{new_role.mention} auf."
+            t('level_up_congratulator.reached_next_rank_with_role',
+              { member_mention: member.mention, level_numeric: updated_level.numeric, role_mention: new_role.mention })
           end
         end
 
