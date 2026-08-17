@@ -49,23 +49,11 @@
           "channel_successfully_removed": "Level-up messages will no longer appear."
         }
       },
-      "max_text_level": {
-        "description": "Edit the maximum text level",
+      "max_level": {
+        "description": "Edit the maximum level",
         "set": {
-          "description": "Set the maximum text level",
-          "max_level_successfully_set": "Maximum text level successfully set to {level}.",
-          "parameters": {
-            "level": {
-              "description": "Choose the new maximum level"
-            }
-          }
-        }
-      },
-      "max_voice_level": {
-        "description": "Edit the maximum voice level",
-        "set": {
-          "description": "Set the maximum voice level",
-          "max_level_successfully_set": "Maximum voice level successfully set to {level}.",
+          "description": "Set the maximum level",
+          "max_level_successfully_set": "Maximum level successfully set to {level}.",
           "parameters": {
             "level": {
               "description": "Choose the new maximum level"
@@ -139,8 +127,7 @@
         "timezone": "Timezone",
         "language": "Language",
         "birthday_role": "Birthday role",
-        "max_text_level": "Maximum text level",
-        "max_voice_level": "Maximum voice level",
+        "max_level": "Maximum text level",
         "text_leveling_status": "Text leveling status",
         "on": "Enabled",
         "off": "Disabled",
@@ -158,7 +145,7 @@
         "account_created": "Account created",
         "joined": "Joined",
         "boosting_since": "Boosting since",
-        "text_level": "Text level",
+        "leveling": "Leveling",
         "level": "Level",
         "xp": "XP",
         "parameters": {

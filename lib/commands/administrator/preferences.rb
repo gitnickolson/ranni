@@ -31,8 +31,7 @@ module Commands
                     value: preferences_repository.locale, inlined: true),
           birthday_field,
           field.new,
-          max_text_level_field,
-          max_voice_level_field,
+          max_level_field,
           text_leveling_status_field,
           level_up_message_channel_field,
           welcome_message_channel_field
@@ -46,14 +45,9 @@ module Commands
                   value: birthday_role.mention, inlined: true)
       end
 
-      def max_text_level_field
-        field.new(name: t('commands.administrator.preferences.max_text_level'),
+      def max_level_field
+        field.new(name: t('commands.administrator.preferences.max_level'),
                   value: preferences_repository.max_text_level, inlined: true)
-      end
-
-      def max_voice_level_field
-        field.new(name: t('commands.administrator.preferences.max_voice_level'),
-                  value: preferences_repository.max_voice_level, inlined: true)
       end
 
       def text_leveling_status_field

@@ -49,23 +49,11 @@
           "channel_successfully_removed": "Es erscheinen nun keine Level-Up-Nachrichten mehr."
         }
       },
-      "max_text_level": {
-        "description": "Bearbeite das maximale Text-Level",
+      "max_level": {
+        "description": "Bearbeite das maximale Level",
         "set": {
-          "description": "Setze das maximale Text-Level",
-          "max_level_successfully_set": "Maximales Text-Level erfolgreich auf {level} gesetzt.",
-          "parameters": {
-            "level": {
-              "description": "Wähle das neue maximale Level aus"
-            }
-          }
-        }
-      },
-      "max_voice_level": {
-        "description": "Bearbeite das maximale Voice-Level",
-        "set": {
-          "description": "Setze das maximale Voice-Level",
-          "max_level_successfully_set": "Maximales Voice-Level erfolgreich auf {level} gesetzt.",
+          "description": "Setze das maximale Level",
+          "max_level_successfully_set": "Maximales Level erfolgreich auf {level} gesetzt.",
           "parameters": {
             "level": {
               "description": "Wähle das neue maximale Level aus"
@@ -139,8 +127,7 @@
         "timezone": "Zeitzone",
         "language": "Sprache",
         "birthday_role": "Geburtstagsrolle",
-        "max_text_level": "Maximales Text-Level",
-        "max_voice_level": "Maximales Voice-Level",
+        "max_level": "Maximales Level",
         "text_leveling_status": "Text-Leveling Status",
         "on": "Eingeschaltet",
         "off": "Ausgeschaltet",
@@ -158,7 +145,7 @@
         "account_created": "Account erstellt",
         "joined": "Beigetreten",
         "boosting_since": "Boostet seit",
-        "text_level": "Text-Level",
+        "leveling": "Leveling",
         "level": "Level",
         "xp": "XP",
         "parameters": {

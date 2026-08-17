@@ -62,7 +62,7 @@ module Commands
       end
 
       def text_level_field_content(member)
-        level = text_levels_repository.find_by_user_id(user_id: member.id)
+        level = levels_repository.find_by_user_id(user_id: member.id)
         return if level.nil?
 
         numeric = level.numeric
@@ -70,7 +70,7 @@ module Commands
 
         "#{t('commands.public.userinfo.level')}: #{numeric}\n" \
           "#{t('commands.public.userinfo.xp')}: `#{humanize(xp)}`/" \
-          "`#{humanize(text_levels_repository.required_xp_for(level_numeric: numeric + 1))}`"
+          "`#{humanize(levels_repository.required_xp_for(level_numeric: numeric + 1))}`"
       end
 
       def username_with_nickname(member)
@@ -91,8 +91,8 @@ module Commands
         Utility::TimeParser.parse_to_readable_date(date:)
       end
 
-      def text_levels_repository
-        @text_levels_repository ||= Repositories::TextLevelsRepository.new(server_service:)
+      def levels_repository
+        @levels_repository ||= Repositories::LevelsRepository.new(server_service:)
       end
 
       def preferences_repository

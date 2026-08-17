@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module Repositories
-  class TextLevelsRepository
+  class LevelsRepository
     def initialize(server_service:)
       @server_service = server_service
     end
 
     def all(active: true)
-      levels = Models::TextLevel.where(server_id:).order(:numeric).all
+      levels = Models::Level.where(server_id:).order(:numeric).all
 
       return levels unless active
 
@@ -15,17 +15,17 @@ module Repositories
     end
 
     def find_by_user_id(user_id:)
-      level = Models::TextLevel.where(server_id:, user_id: user_id.to_s).first
+      level = Models::Level.where(server_id:, user_id: user_id.to_s).first
 
       return level unless level.nil?
 
-      Models::TextLevel.create(user_id:, server_id:)
+      Models::Level.create(user_id:, server_id:)
     end
 
     def update_numeric(user_id:, numeric:)
-      numeric = preferences_repository.max_text_level if numeric > preferences_repository.max_text_level
+      numeric = preferences_repository.max_level if numeric > preferences_repository.max_level
 
-      Models::TextLevel.update_or_create(
+      Models::Level.update_or_create(
         { server_id:, user_id: user_id.to_s },
         numeric:,
         experience_points: xp_from_numeric(numeric)
@@ -33,11 +33,11 @@ module Repositories
     end
 
     def update_xp(user_id:, experience_points:)
-      Models::TextLevel.update_or_create(server_id:, user_id: user_id.to_s) do |text_level|
-        total_xp = (text_level.experience_points || 0) + experience_points
+      Models::Level.update_or_create(server_id:, user_id: user_id.to_s) do |level|
+        total_xp = (level.experience_points || 0) + experience_points
         total_xp = max_xp if total_xp > max_xp
 
-        text_level.set(numeric: numeric_from_xp(total_xp), experience_points: total_xp)
+        level.set(numeric: numeric_from_xp(total_xp), experience_points: total_xp)
       end
     end
 
@@ -64,7 +64,7 @@ module Repositories
     end
 
     def max_xp
-      (xp_from_numeric(preferences_repository.max_text_level + 1) - 1)
+      (xp_from_numeric(preferences_repository.max_level + 1) - 1)
     end
 
     def preferences_repository

@@ -2,10 +2,10 @@
 
 module Commands
   module Administrator
-    module MaxTextLevel
+    module MaxLevel
       class Set < Subcommand
         NAME = :set
-        DESCRIPTION = 'Set the maximum text level'
+        DESCRIPTION = 'Set the maximum level'
         PARAMETERS = [{ type: :integer, name: :level, required: true,
                         description: 'Choose the new maximum level' }].freeze
 
@@ -19,7 +19,7 @@ module Commands
 
           preferences_repository.update_max_text_level(level:)
           transmitter.response(event:,
-                               text: t('commands.administrator.max_text_level.set.max_level_successfully_set',
+                               text: t('commands.administrator.max_level.set.max_level_successfully_set',
                                        { level: }))
         end
 
