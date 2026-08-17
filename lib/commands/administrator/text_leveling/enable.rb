@@ -2,18 +2,18 @@
 
 module Commands
   module Administrator
-    module VoiceLeveling
-      class Disable < Subcommand
-        NAME = :disable
-        DESCRIPTION = 'Disable voice leveling'
+    module TextLeveling
+      class Enable < Subcommand
+        NAME = :enable
+        DESCRIPTION = 'Enable text leveling'
 
         private
 
         def command_action
-          preferences_repository.update_voice_leveling_status(turned_on: false)
+          preferences_repository.update_text_leveling_status(turned_on: true)
           transmitter.response(event:,
                                text:
-                               t('commands.administrator.voice_leveling.disable.voice_leveling_successfully_disabled'))
+                               t('commands.administrator.text_leveling.enable.text_leveling_successfully_enabled'))
         end
 
         def preferences_repository

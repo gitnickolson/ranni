@@ -17,7 +17,7 @@ module Validation
                                                 { min_level: MIN_LEVEL }))
       end
 
-      if level > server_servie.max_level
+      if level > server_service.max_level
         return Utility::Result.failure(error: t('validation.level_validator.level_must_be_below_max_level'))
       end
 

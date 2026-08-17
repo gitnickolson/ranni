@@ -33,6 +33,21 @@
           }
         }
       },
+      "level": {
+        "description": "Bearbeite das Level eines Nutzers",
+        "set": {
+          "description": "Setze das Level eines Nutzers",
+          "level_successfully_set": "Das Level von **{display_name}** erfolgreich auf **{level}** gesetzt.",
+          "parameters": {
+            "user": {
+              "description": "Wähle einen Nutzer"
+            },
+            "level": {
+              "description": "Gib das neue Level an"
+            }
+          }
+        }
+      },
       "level_up_messages_channel": {
         "description": "Optionen zum Level-Up-Nachrichten Kanal",
         "set": {
@@ -161,7 +176,7 @@
         "xp": "XP",
         "parameters": {
           "user": {
-            "description": "Spezifiziere einen Nutzer"
+            "description": "Wähle einen Nutzer"
           }
         }
       }

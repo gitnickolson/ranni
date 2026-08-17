@@ -33,6 +33,21 @@
           }
         }
       },
+      "level": {
+        "description": "Edit the level of a user",
+        "set": {
+          "description": "Set the level of a user",
+          "level_successfully_set": "The Level of **{display_name}** was successfully set to **{level}**.",
+          "parameters": {
+            "user": {
+              "description": "Choose a user"
+            },
+            "level": {
+              "description": "Enter the new level"
+            }
+          }
+        }
+      },
       "level_up_messages_channel": {
         "description": "Options for the level-up messages channel",
         "set": {
@@ -161,7 +176,7 @@
         "xp": "XP",
         "parameters": {
           "user": {
-            "description": "Specify a user"
+            "description": "Choose a user"
           }
         }
       }

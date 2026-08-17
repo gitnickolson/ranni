@@ -32,7 +32,7 @@ module Commands
           rank_result = ranks_validator.validate_creation(role_id:, required_level:)
           return rank_result if rank_result.failure?
 
-          level_validator.validate_text_level(level: required_level)
+          level_validator.validate_level(level: required_level)
         end
 
         def ranks_validator

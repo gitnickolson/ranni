@@ -5,7 +5,6 @@ Sequel.migration do
     alter_table(:server_preferences) do
       rename_column :max_text_level, :max_level
       drop_column :max_voice_level
-      add_column :voice_leveling_enabled, :boolean, default: true, null: false
     end
   end
 end

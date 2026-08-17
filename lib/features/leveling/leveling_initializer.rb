@@ -14,16 +14,19 @@ module Features
         voice_leveling_manager = VoiceLevelingManager.new(bot:)
         VoiceStatusListener.call(bot:, voice_leveling_manager:)
 
-        register_current_voice_users
+        register_current_voice_users(voice_leveling_manager)
 
         voice_leveling_manager.start_xp_loop
       end
 
       private
 
-      def register_current_voice_users
-        bot.servers.each do |server|
+      def register_current_voice_users(voice_leveling_manager)
+        bot.servers.each_value do |server|
           voice_users = server.voice_channels.flat_map(&:users)
+
+          next if voice_users.empty?
+
           voice_leveling_manager.add_voice_users(user_ids: voice_users.map(&:id), server_id: server.id)
         end
       end

@@ -27,6 +27,7 @@ module Features
         Thread.new do
           loop do
             sleep FIFTEEN_MINUTES
+            pp voice_states
             next unless voice_states.any? { |_, user_ids| user_ids.any? }
 
             voice_states_mutex.synchronize { add_xp_to_users }
