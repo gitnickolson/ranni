@@ -27,7 +27,6 @@ module Features
         Thread.new do
           loop do
             sleep FIFTEEN_MINUTES
-            pp voice_states
             next unless voice_states.any? { |_, user_ids| user_ids.any? }
 
             voice_states_mutex.synchronize { add_xp_to_users }
@@ -47,12 +46,22 @@ module Features
 
           next unless server_service.voice_leveling_enabled?
 
-          levels_repository = Repositories::LevelsRepository.new(server_service:)
-
           user_ids.each do |user_id|
-            levels_repository.update_xp(user_id:, experience_points: random_xp_amount)
+            update_user_level(user_id, server_service)
           end
         end
+      end
+
+      def update_user_level(user_id, server_service)
+        levels_repository = Repositories::LevelsRepository.new(server_service:)
+        previous_level = levels_repository.find_by_user_id(user_id:)
+        updated_level = levels_repository.update_xp(user_id:,
+                                                    experience_points: random_xp_amount)
+
+        return unless updated_level.numeric > previous_level.numeric
+
+        level_up_manager = LevelUpManager.new(server_service:)
+        level_up_manager.call(updated_level:)
       end
 
       def handle_action(user_id, server_id, action)
