@@ -42,6 +42,14 @@ module Repositories
       preference.update(level_up_congratulation_channel_id: nil)
     end
 
+    def voice_leveling_enabled?
+      preference.voice_leveling_enabled
+    end
+
+    def update_voice_leveling_status(turned_on:)
+      preference.update(voice_leveling_enabled: turned_on)
+    end
+
     def text_leveling_enabled?
       preference.text_leveling_enabled
     end
@@ -50,20 +58,12 @@ module Repositories
       preference.update(text_leveling_enabled: turned_on)
     end
 
-    def max_text_level
-      preference.max_text_level
+    def max_level
+      preference.max_level
     end
 
-    def update_max_text_level(level:)
-      preference.update(max_text_level: level)
-    end
-
-    def max_voice_level
-      preference.max_voice_level
-    end
-
-    def update_max_voice_level(level:)
-      preference.update(max_voice_level: level)
+    def update_max_level(level:)
+      preference.update(max_level: level)
     end
 
     def timezone

@@ -43,6 +43,9 @@ module Features
       def add_xp_to_users
         voice_states.each do |server_id, user_ids|
           server_service = Utility::ServerService.new(bot:, server_id:)
+
+          next unless server_service.voice_leveling_enabled?
+
           levels_repository = Repositories::LevelsRepository.new(server_service:)
 
           user_ids.each do |user_id|

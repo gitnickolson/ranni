@@ -51,6 +51,14 @@ module Utility
       preferences_repository.server_color
     end
 
+    def text_leveling_enabled?
+      preferences_repository.text_leveling_enabled?
+    end
+
+    def voice_leveling_enabled?
+      preferences_repository.voice_leveling_enabled?
+    end
+
     private
 
     attr_reader :bot
