@@ -155,6 +155,7 @@
         "birthday_role": "Birthday role",
         "max_level": "Maximum text level",
         "text_leveling_status": "Text leveling status",
+        "voice_leveling_status": "Voice leveling status",
         "on": "Enabled",
         "off": "Disabled",
         "level_up_messages_channel": "Level-up messages channel",

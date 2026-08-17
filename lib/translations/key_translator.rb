@@ -26,8 +26,7 @@ module Translations
       value = translations.dig(*fields)
       interpolate(value, parameters)
     rescue StandardError
-      logger.error(message: "Translation key not found: #{key}")
-      key
+      logger.error(message: "Translation error occured for key: #{key}")
     end
 
     private
