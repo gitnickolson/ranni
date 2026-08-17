@@ -18,12 +18,12 @@ module Features
 
       attr_reader :server_service
 
-      def level_up_congratulator
-        @level_up_congratulator ||= LevelUpCongratulator.new(server_service:)
+      def rank_synchronizer
+        @rank_synchronizer ||= RankSynchronizer.new(server_service:)
       end
 
-      def role_manager
-        @role_manager ||= RoleManager.new(server_service:)
+      def level_up_congratulator
+        @level_up_congratulator ||= LevelUpCongratulator.new(server_service:)
       end
 
       def ranks_repository
