@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module Models
-  class TextLevel < Sequel::Model(:text_levels)
+  class Level < Sequel::Model(:levels)
   end
 end

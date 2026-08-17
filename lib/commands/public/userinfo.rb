@@ -38,7 +38,7 @@ module Commands
           field.new(name: t('commands.public.userinfo.joined'),
                     value: "`#{parse_date(member.joined_at)}`", inlined: true),
           boosting_field(member),
-          text_level_field(member)
+          leveling_field(member)
         ].compact
       end
 
@@ -55,14 +55,14 @@ module Commands
           "#{t('commands.public.userinfo.boosting') if member.boosting?}"
       end
 
-      def text_level_field(member)
-        return unless preferences_repository.text_leveling_enabled?
+      def leveling_field(member)
+        return unless server_service.text_leveling_enabled? || server_service.voice_leveling_enabled?
 
-        field.new(name: "**#{t('commands.public.userinfo.text_level')}**", value: text_level_field_content(member))
+        field.new(name: "**#{t('commands.public.userinfo.leveling')}**", value: leveling_field_content(member))
       end
 
-      def text_level_field_content(member)
-        level = text_levels_repository.find_by_user_id(user_id: member.id)
+      def leveling_field_content(member)
+        level = levels_repository.find_by_user_id(user_id: member.id)
         return if level.nil?
 
         numeric = level.numeric
@@ -70,7 +70,7 @@ module Commands
 
         "#{t('commands.public.userinfo.level')}: #{numeric}\n" \
           "#{t('commands.public.userinfo.xp')}: `#{humanize(xp)}`/" \
-          "`#{humanize(text_levels_repository.required_xp_for(level_numeric: numeric + 1))}`"
+          "`#{humanize(levels_repository.required_xp_for(level_numeric: numeric + 1))}`"
       end
 
       def username_with_nickname(member)
@@ -78,7 +78,7 @@ module Commands
       end
 
       def calculate_max_page_items(fields)
-        return fields.length unless preferences_repository.text_leveling_enabled?
+        return fields.length unless server_service.text_leveling_enabled? || server_service.voice_leveling_enabled?
 
         fields.length - 1
       end
@@ -91,12 +91,8 @@ module Commands
         Utility::TimeParser.parse_to_readable_date(date:)
       end
 
-      def text_levels_repository
-        @text_levels_repository ||= Repositories::TextLevelsRepository.new(server_service:)
-      end
-
-      def preferences_repository
-        @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
+      def levels_repository
+        @levels_repository ||= Repositories::LevelsRepository.new(server_service:)
       end
     end
   end

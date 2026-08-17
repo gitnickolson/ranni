@@ -36,10 +36,10 @@ module Utility
     end
 
     def now
-      current_timezone.now
+      timezone.now
     end
 
-    def current_timezone
+    def timezone
       TZInfo::Timezone.get(preferences_repository.timezone)
     end
 
@@ -47,8 +47,32 @@ module Utility
       preferences_repository.locale.downcase
     end
 
-    def default_color_code
+    def server_color
       preferences_repository.server_color
+    end
+
+    def max_level
+      preferences_repository.max_level
+    end
+
+    def text_leveling_enabled?
+      preferences_repository.text_leveling_enabled?
+    end
+
+    def voice_leveling_enabled?
+      preferences_repository.voice_leveling_enabled?
+    end
+
+    def level_up_congratulation_channel
+      channel_from_id(channel_id: preferences_repository.level_up_congratulation_channel_id)
+    end
+
+    def welcome_message_channel
+      channel_from_id(channel_id: preferences_repository.welcome_message_channel_id)
+    end
+
+    def birthday_role
+      roles_repository.role_from_id(role_id: preferences_repository.birthday_role_id)
     end
 
     private
@@ -69,6 +93,10 @@ module Utility
 
     def preferences_repository
       @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
+    end
+
+    def roles_repository
+      @roles_repository ||= Repositories::RolesRepository.new(server_service: self)
     end
   end
 end

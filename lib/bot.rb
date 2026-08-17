@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'discordrb'
+require 'tzinfo'
 
 class Bot
   def initialize
@@ -13,10 +14,11 @@ class Bot
       next if @running
 
       initialize_commands
+      initialize_leveling
+
       @running = true
     end
 
-    initialize_leveling
     register_events
 
     bot.run

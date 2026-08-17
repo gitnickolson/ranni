@@ -11,13 +11,13 @@ module Validation
       @server_service = server_service
     end
 
-    def validate_text_level(level:)
+    def validate_level(level:)
       if level < MIN_LEVEL
         return Utility::Result.failure(error: t('validation.level_validator.not_higher_than_min_level',
                                                 { min_level: MIN_LEVEL }))
       end
 
-      if level > preferences_repository.max_text_level
+      if level > server_service.max_level
         return Utility::Result.failure(error: t('validation.level_validator.level_must_be_below_max_level'))
       end
 
@@ -39,9 +39,5 @@ module Validation
     private
 
     attr_reader :server_service
-
-    def preferences_repository
-      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
-    end
   end
 end

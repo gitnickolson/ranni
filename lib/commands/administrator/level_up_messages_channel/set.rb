@@ -12,7 +12,7 @@ module Commands
         private
 
         def command_action
-          channel_id = event.options['channel'].to_i
+          channel_id = event.options['channel']
           channel = server_service.channel_from_id(channel_id:)
 
           preferences_repository.add_level_up_congratulation_channel(channel_id:)

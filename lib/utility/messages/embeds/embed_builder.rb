@@ -126,7 +126,7 @@ module Utility
           embed.description = description || ''
           embed.thumbnail = thumbnail
           embed.image = image
-          embed.color = server_service.default_color_code
+          embed.color = server_service.server_color
           embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: footer_text, icon_url:)
         end
 
