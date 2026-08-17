@@ -2,25 +2,20 @@
 
 module Features
   module Leveling
-    class LevelUpManager
+    class RankSynchronizer
       def initialize(server_service:)
         @server_service = server_service
       end
 
       def call(updated_level:)
-        next_rank = ranks_repository.find_by_level(required_level: updated_level.numeric)
+        target_rank = ranks_repository.find_current_for_level(level: updated_level.numeric)
 
-        rank_synchronizer.call(updated_level:)
-        level_up_congratulator.call(updated_level:, next_rank:)
+        role_manager.sync_rank(updated_level:, target_rank:)
       end
 
       private
 
       attr_reader :server_service
-
-      def level_up_congratulator
-        @level_up_congratulator ||= LevelUpCongratulator.new(server_service:)
-      end
 
       def role_manager
         @role_manager ||= RoleManager.new(server_service:)
