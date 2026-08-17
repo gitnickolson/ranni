@@ -97,11 +97,22 @@
         "description": "Enable or disable text leveling",
         "enable": {
           "description": "Enable text leveling",
-          "text_leveling_successfully_enabled": "Text leveling has been successfully enabled."
+          "voice_leveling_successfully_enabled": "Text leveling has been successfully enabled."
         },
         "disable": {
           "description": "Disable text leveling",
-          "text_leveling_successfully_disabled": "Text leveling has been successfully disabled."
+          "voice_leveling_successfully_disabled": "Text leveling has been successfully disabled."
+        }
+      },
+      "voice_leveling": {
+        "description": "Enable or disable voice leveling",
+        "enable": {
+          "description": "Enable voice leveling",
+          "voice_leveling_successfully_enabled": "Voice leveling has been successfully enabled."
+        },
+        "disable": {
+          "description": "Disable voice leveling",
+          "voice_leveling_successfully_disabled": "Voice leveling has been successfully disabled."
         }
       },
       "welcome_messages_channel": {
