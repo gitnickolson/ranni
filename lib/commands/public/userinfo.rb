@@ -38,7 +38,7 @@ module Commands
           field.new(name: t('commands.public.userinfo.joined'),
                     value: "`#{parse_date(member.joined_at)}`", inlined: true),
           boosting_field(member),
-          text_level_field(member)
+          leveling_field(member)
         ].compact
       end
 
@@ -55,13 +55,13 @@ module Commands
           "#{t('commands.public.userinfo.boosting') if member.boosting?}"
       end
 
-      def text_level_field(member)
-        return unless preferences_repository.text_leveling_enabled?
+      def leveling_field(member)
+        return unless server_service.text_leveling_enabled? || server_service.voice_leveling_enabled?
 
-        field.new(name: "**#{t('commands.public.userinfo.text_level')}**", value: text_level_field_content(member))
+        field.new(name: "**#{t('commands.public.userinfo.leveling')}**", value: leveling_field_content(member))
       end
 
-      def text_level_field_content(member)
+      def leveling_field_content(member)
         level = levels_repository.find_by_user_id(user_id: member.id)
         return if level.nil?
 
@@ -78,7 +78,7 @@ module Commands
       end
 
       def calculate_max_page_items(fields)
-        return fields.length unless preferences_repository.text_leveling_enabled?
+        return fields.length unless server_service.text_leveling_enabled? || server_service.voice_leveling_enabled?
 
         fields.length - 1
       end
@@ -93,10 +93,6 @@ module Commands
 
       def levels_repository
         @levels_repository ||= Repositories::LevelsRepository.new(server_service:)
-      end
-
-      def preferences_repository
-        @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
       end
     end
   end

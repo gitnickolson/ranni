@@ -21,10 +21,8 @@ module Events
     end
 
     def call(event)
-      channel_id = preferences_repository.welcome_message_channel_id
-      return unless channel_id
-
-      channel = server_service.channel_from_id(channel_id:)
+      channel = server_service.welcome_message_channel
+      return unless channel
 
       embed_builder = create_embed_builder(event)
       Utility::Messages::MessageTransmitter.send_embed_message(channel:, embed_builder:)
@@ -46,10 +44,6 @@ module Events
 
     def pagination_key(event)
       "welcome-#{event.user.id}-#{Time.now.to_i}"
-    end
-
-    def preferences_repository
-      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
     end
   end
 end

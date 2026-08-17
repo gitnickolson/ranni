@@ -10,8 +10,7 @@ module Features
       end
 
       def call(updated_level:, next_rank: nil)
-        congratulation_channel_id = preferences_repository.level_up_congratulation_channel_id
-        congratulation_channel = server_service.channel_from_id(channel_id: congratulation_channel_id)
+        congratulation_channel = server_service.level_up_congratulation_channel
         return if congratulation_channel.nil?
 
         message = build_congratulation_message(updated_level, next_rank)
@@ -39,10 +38,6 @@ module Features
 
       def roles_repository
         @roles_repository ||= Repositories::RolesRepository.new(server_service:)
-      end
-
-      def preferences_repository
-        @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
       end
     end
   end

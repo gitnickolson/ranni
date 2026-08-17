@@ -23,7 +23,7 @@ module Repositories
     end
 
     def update_numeric(user_id:, numeric:)
-      numeric = preferences_repository.max_level if numeric > preferences_repository.max_level
+      numeric = server_service.max_level if numeric > server_service.max_level
 
       Models::Level.update_or_create(
         { server_id:, user_id: user_id.to_s },
@@ -64,11 +64,7 @@ module Repositories
     end
 
     def max_xp
-      (xp_from_numeric(preferences_repository.max_level + 1) - 1)
-    end
-
-    def preferences_repository
-      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server_service.server.id)
+      (xp_from_numeric(server_service.max_level + 1) - 1)
     end
   end
 end

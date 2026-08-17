@@ -24,35 +24,45 @@ module Commands
       def fields # rubocop:disable Metrics/MethodLength
         [
           field.new(name: t('commands.administrator.preferences.default_color'),
-                    value: preferences_repository.server_color, inlined: true),
+                    value: server_service.server_color, inlined: true),
           field.new(name: t('commands.administrator.preferences.timezone'),
-                    value: preferences_repository.timezone, inlined: true),
+                    value: server_service.timezone, inlined: true),
           field.new(name: t('commands.administrator.preferences.language'),
-                    value: preferences_repository.locale, inlined: true),
+                    value: server_service.locale, inlined: true),
           birthday_field,
           field.new,
           max_level_field,
           text_leveling_status_field,
+          voice_leveling_status_field,
           level_up_message_channel_field,
           welcome_message_channel_field
         ].compact
       end
 
       def birthday_field
-        return if birthday_role.nil?
+        return if server_service.birthday_role.nil?
 
         field.new(name: t('commands.administrator.preferences.birthday_role'),
-                  value: birthday_role.mention, inlined: true)
+                  value: server_service.birthday_role.mention, inlined: true)
       end
 
       def max_level_field
         field.new(name: t('commands.administrator.preferences.max_level'),
-                  value: preferences_repository.max_text_level, inlined: true)
+                  value: server_service.max_level, inlined: true)
       end
 
       def text_leveling_status_field
         field.new(name: t('commands.administrator.preferences.text_leveling_status'),
-                  value: if preferences_repository.text_leveling_enabled?
+                  value: if server_service.text_leveling_enabled?
+                           t('commands.administrator.preferences.on')
+                         else
+                           t('commands.administrator.preferences.off')
+                         end)
+      end
+
+      def voice_leveling_status_field
+        field.new(name: t('commands.administrator.preferences.voice_leveling_status'),
+                  value: if server_service.voice_leveling_enabled?
                            t('commands.administrator.preferences.on')
                          else
                            t('commands.administrator.preferences.off')
@@ -61,32 +71,12 @@ module Commands
 
       def level_up_message_channel_field
         field.new(name: t('commands.administrator.preferences.level_up_messages_channel'),
-                  value: level_up_congratulation_channel&.mention || '//')
+                  value: server_service.level_up_congratulation_channel&.mention || '//')
       end
 
       def welcome_message_channel_field
         field.new(name: t('commands.administrator.preferences.welcome_messages_channel'),
-                  value: welcome_message_channel&.mention || '//')
-      end
-
-      def level_up_congratulation_channel
-        server_service.channel_from_id(channel_id: preferences_repository.level_up_congratulation_channel_id)
-      end
-
-      def welcome_message_channel
-        server_service.channel_from_id(channel_id: preferences_repository.welcome_message_channel_id)
-      end
-
-      def birthday_role
-        roles_repository.role_from_id(role_id: preferences_repository.birthday_role_id)
-      end
-
-      def preferences_repository
-        @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
-      end
-
-      def roles_repository
-        @roles_repository ||= Repositories::RolesRepository.new(server_service:)
+                  value: server_service.welcome_message_channel&.mention || '//')
       end
     end
   end

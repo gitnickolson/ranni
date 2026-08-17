@@ -14,7 +14,7 @@ module Features
       def handle_message(user_id:, message_length:, server_id:)
         @server_service = Utility::ServerService.new(bot:, server_id:)
 
-        return unless text_leveling_enabled?(server_id)
+        return unless server_service.text_leveling_enabled?
         return if user_on_cooldown?(user_id)
 
         update_user_level(user_id, message_length)
@@ -61,11 +61,6 @@ module Features
         return rand(20...60) if message_length < 300
 
         rand(40...80)
-      end
-
-      def text_leveling_enabled?(server_id)
-        preferences_repository = Repositories::PreferencesRepository.new(server_id:)
-        preferences_repository.text_leveling_enabled?
       end
     end
   end
