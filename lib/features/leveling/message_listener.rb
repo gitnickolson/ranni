@@ -4,11 +4,11 @@ module Features
   module Leveling
     class MessageListener
       class << self
-        def call(bot:, leveling_manager:)
+        def call(bot:, text_leveling_manager:)
           bot.message do |event|
             next if event.user.bot_account?
 
-            leveling_manager.handle_message(
+            text_leveling_manager.handle_message(
               user_id: event.user.id,
               message_length: event.message.content.length,
               server_id: event.server.id

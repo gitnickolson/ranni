@@ -2,7 +2,7 @@
 
 module Features
   module Leveling
-    class LevelingManager
+    class TextLevelingManager
       COOLDOWN_LENGTH = 17
 
       def initialize(bot:)

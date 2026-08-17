@@ -8,8 +8,8 @@ module Features
       end
 
       def call
-        leveling_manager = LevelingManager.new(bot:)
-        MessageListener.call(bot:, leveling_manager:)
+        text_leveling_manager = TextLevelingManager.new(bot:)
+        MessageListener.call(bot:, text_leveling_manager:)
       end
 
       private
