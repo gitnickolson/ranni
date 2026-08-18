@@ -112,11 +112,11 @@
         "description": "Enable or disable text leveling",
         "enable": {
           "description": "Enable text leveling",
-          "voice_leveling_successfully_enabled": "Text leveling has been successfully enabled."
+          "text_leveling_successfully_enabled": "Text leveling has been successfully enabled."
         },
         "disable": {
           "description": "Disable text leveling",
-          "voice_leveling_successfully_disabled": "Text leveling has been successfully disabled."
+          "text_leveling_successfully_disabled": "Text leveling has been successfully disabled."
         }
       },
       "voice_leveling": {

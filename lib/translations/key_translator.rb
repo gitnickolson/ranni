@@ -24,9 +24,10 @@ module Translations
     def translate(key, parameters = {})
       fields = key.split('.').map(&:to_sym)
       value = translations.dig(*fields)
-      interpolate(value, parameters)
+      interpolate(value, parameters) || key
     rescue StandardError
       logger.error(message: "Translation error occured for key: #{key}")
+      key
     end
 
     private
