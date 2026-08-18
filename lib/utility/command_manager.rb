@@ -27,7 +27,6 @@ module Utility
       all_commands.each { it.listen(bot:) }
     end
 
-    # This method exists because I need to unregister registered application commands occasionally
     def unregister_commands(names: [])
       return unregister_all_commands if names.empty?
 

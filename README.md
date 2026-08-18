@@ -9,22 +9,22 @@ It supports administrative commands, text- and voice-leveling, event reactions l
 
 ## Table of contents
 
-* [How to self-host Ranni](#how-to-self-host-ranni)
-  * [Adding Ranni to your Server](#adding-ranni-to-your-server)
-  * [Cloning the Repository](#cloning-the-repository)
-  * [Generating a token](#generating-a-token)
-  * [Setting up Ranni's database](#setting-up-rannis-database)
-  * [Starting Ranni](#starting-ranni)
-* [How to add a new command](#how-to-add-a-new-command)
-  * [Adding a simple command (without subcommands)](#adding-a-simple-command-without-subcommands)
-  * [Adding a command with subcommands](#adding-a-command-with-subcommands)
-  * [Registering your commands on Discord](#registering-your-commands-on-discord)
-* [How to add a new database entity](#how-to-add-a-new-database-entity)
-* [Translations](#translations)
-  * [Key naming convention](#key-naming-convention)
-  * [Using translations in your code](#using-translations-in-your-code)
-  * [Command and parameter descriptions](#command-and-parameter-descriptions)
-  * [Skipping translations](#skipping-translations)
+- [How to self-host Ranni](#how-to-self-host-ranni)
+  - [Adding Ranni to your Server](#adding-ranni-to-your-server)
+  - [Cloning the Repository](#cloning-the-repository)
+  - [Generating a token](#generating-a-token)
+  - [Setting up Ranni's database](#setting-up-rannis-database)
+  - [Starting Ranni](#starting-ranni)
+- [How to add a new command](#how-to-add-a-new-command)
+  - [Adding a simple command (without subcommands)](#adding-a-simple-command-without-subcommands)
+  - [Adding a command with subcommands](#adding-a-command-with-subcommands)
+  - [Registering your commands on Discord](#registering-your-commands-on-discord)
+- [How to add a new database entity](#how-to-add-a-new-database-entity)
+- [Translations](#translations)
+  - [Key naming convention](#key-naming-convention)
+  - [Using translations in your code](#using-translations-in-your-code)
+  - [Command and parameter descriptions](#command-and-parameter-descriptions)
+  - [Skipping translations](#skipping-translations)
 
 ## How to self-host Ranni
 
@@ -164,13 +164,18 @@ As before, custom parameters can be read via `event.options['your_custom_paramet
 
 Once you've added a new command class, Ranni will automatically register it with Discord on startup. However, if you later rename a command or change its description, Discord will still have the old version registered - your changes won't take effect on their own.
 
-To force an update, temporarily change the `command_manager.register_commands` call in `./lib/bot.rb` to `command_manager.unregister_commands`. On the next bot start, this will unregister every command. If you'd rather not remove everything, pass a list of command names to only unregister specific ones:
+To force an update, just start the bot with the unregister flag, which will unregister every currently registered command:
 
-```ruby
-command_manager.unregister_commands(names: ['test_command', 'other_command'])
+```
+bundle exec bin/ranni --unregister
 ```
 
-Once the relevant commands have been unregistered, revert your change back to `command_manager.register_commands` and restart the bot. It will then re-register your commands with the updated names or descriptions.
+Alternatively, you can specify the names of commands to only unregister the listed ones and therefore prevent the process from taking so long:
+```
+bundle exec bin/ranni --unregister userinfo display_color rank language
+```
+
+You can restart it normally after that. It will then proceed to reregister all commands.
 
 ## How to add a new database entity
 

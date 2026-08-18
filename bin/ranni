@@ -7,4 +7,4 @@ Config::Initializer.call
 DB = Sequel.connect(Utility::EnvironmentFetcher.postgres_url)
 
 bot = Bot.new
-bot.start
+bot.start(args: ARGV)
