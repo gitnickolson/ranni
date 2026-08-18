@@ -166,12 +166,12 @@ Once you've added a new command class, Ranni will automatically register it with
 
 To force an update, just start the bot with the unregister flag, which will unregister every currently registered command:
 
-```
+```sh
 bundle exec bin/ranni --unregister
 ```
 
 Alternatively, you can specify the names of commands to only unregister the listed ones and therefore prevent the process from taking so long:
-```
+```sh
 bundle exec bin/ranni --unregister userinfo display_color rank language
 ```
 
