@@ -11,9 +11,7 @@ module Commands
 
       def command_action
         embed_builder = create_embed_builder
-        transmitter.send_embed_message(channel: event.user.pm, embed_builder:)
-
-        transmitter.response(event:, text: t('commands.public.help.message_sent'), delete: true)
+        transmitter.embed_response(event:, embed_builder:, ephemeral: true)
       end
 
       def create_embed_builder
