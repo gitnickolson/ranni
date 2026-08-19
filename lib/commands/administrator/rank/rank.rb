@@ -6,7 +6,7 @@ module Commands
       class Rank < ParentCommand
         NAME = :rank
         DESCRIPTION = 'Change the level based ranks of the server'
-        SUBCOMMANDS = [Add, Remove, List].freeze
+        SUBCOMMANDS = [Add, Remove, Commands::Public::Rank::List].freeze
       end
     end
   end

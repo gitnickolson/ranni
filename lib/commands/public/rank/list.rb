@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Commands
-  module Administrator
+  module Public
     module Rank
       class List < Subcommand
         NAME = :list
