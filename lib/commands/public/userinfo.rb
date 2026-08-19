@@ -29,7 +29,7 @@ module Commands
         embed_builder.change_footer(text: member.id, icon_url: server.icon_url, append_to_default: true)
       end
 
-      def fields(member)
+      def fields(member) # rubocop:disable Metrics/MethodLength
         [
           field.new(name: t('commands.public.userinfo.general_info'), value: general_info_string(member)),
           field.new,
@@ -37,9 +37,18 @@ module Commands
                     value: "`#{parse_date(member.creation_time)}`", inlined: true),
           field.new(name: t('commands.public.userinfo.joined'),
                     value: "`#{parse_date(member.joined_at)}`", inlined: true),
+          birthday_field(member),
           boosting_field(member),
           leveling_field(member)
         ].compact
+      end
+
+      def birthday_field(member)
+        birthday = birthdays_repository.get_for(user_id: member.id)
+
+        return if birthday.nil?
+
+        field.new(name: t('commands.public.userinfo.birthday'), value: "`#{parse_date(birthday.date)}`")
       end
 
       def boosting_field(member)
@@ -89,6 +98,10 @@ module Commands
 
       def parse_date(date)
         Utility::TimeParser.parse_to_readable_date(date:)
+      end
+
+      def birthdays_repository
+        @birthdays_repository ||= Repositories::BirthdaysRepository.new(server_service:)
       end
 
       def levels_repository
