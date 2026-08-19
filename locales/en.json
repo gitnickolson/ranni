@@ -247,7 +247,7 @@
   "events": {
     "birthday_celebration": {
       "single_member_birthday_celebration": "Today is the birthday of {member}!\nHappy Birthday :D",
-      "multiple_members_birthday_celebration": "Today is the birthday of {members}!\n Happy Birthday :D"
+      "multiple_members_birthday_celebration": "Today is the birthday of {members}!\nHappy Birthday :D"
     },
     "welcome": {
       "embed_title": "**Welcome to {server_name}!**",

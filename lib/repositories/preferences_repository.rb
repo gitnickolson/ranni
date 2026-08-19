@@ -100,6 +100,7 @@ module Repositories
 
     def preference
       @preference ||= Models::ServerPreferences.find_or_create(server_id: server_id.to_s)
+      @preference.reload
     end
   end
 end
