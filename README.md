@@ -189,7 +189,7 @@ I'll keep this brief, since I'd expect anyone attempting this to already be fair
 4. Add a repository class that adds an abstraction layer to prevent direct access to the model.
 5. Use your repository to access and modify entities from within your command handlers (at least for any commands that manipulate data).
 
-For reference, check out the corresponding files (migration, model, repository) for the `Ranks` table and its entities. These are also manipulated via administrator commands, found in `./lib/commands/administrator/ranks`.
+For reference, check out the corresponding files (migration, model, repository) for the `Ranks` table and its entities. These are also manipulated via administrator commands, found in `./lib/commands/administrator/rank`.
 
 ## Translations
 
@@ -199,11 +199,11 @@ Ranni currently supports German and English, represented by `./locales/de.json` 
 
 ### Key naming convention
 
-Translation keys follow the folder structure of the component that uses them. For example, a string `"Hey there!"` in the public command `/hello_world` would get a key like: `commands.public.hello_world.greeting`
+Translation keys follow the folder structure of the component that uses them. For example, a string `"Hey there!"` in the public command `/hello_world` would get a key like: `commands.public.hello_world.greeting`.
 
 ### Using translations in your code
 
-Translations are read via the `Translations::KeyTranslator` class, exposed through the `Translations::Translatable` module. All commands classes already include this module, so you can call `t(key)` from any instance method inside your command:
+Translations are read via the `Translations::KeyTranslator` class, exposed through the `Translations::Translatable` module. All commands classes already include this module, so you can call `#t(key)` from any instance method inside your command:
 
 ```ruby
 def command_action
@@ -211,7 +211,7 @@ def command_action
 end
 ```
 
-`t` also accepts a hash of parameters for interpolation:
+`#t` also accepts a hash of parameters for interpolation:
 
 ```ruby
 t('commands.public.hello_world.greeting', { name: event.user.username })
