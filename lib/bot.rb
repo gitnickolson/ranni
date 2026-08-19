@@ -15,11 +15,11 @@ class Bot
 
       unregister_flag_set?(args) ? unregister_commands(args) : initialize_commands
       initialize_leveling
+      register_events
 
       @running = true
     end
 
-    register_events
     Status::StatusUpdater.call(bot:)
 
     bot.run

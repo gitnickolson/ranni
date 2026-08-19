@@ -35,6 +35,10 @@ module Utility
       server.channels.find { it.id == channel_id.to_i }
     end
 
+    def role_from_id(role_id:)
+      server.roles.find { |role| role.id == role_id.to_i }
+    end
+
     def now
       timezone.now
     end
@@ -69,6 +73,10 @@ module Utility
 
     def welcome_message_channel
       channel_from_id(channel_id: preferences_repository.welcome_message_channel_id)
+    end
+
+    def birthday_celebration_channel
+      channel_from_id(channel_id: preferences_repository.birthday_celebration_channel_id)
     end
 
     def birthday_role

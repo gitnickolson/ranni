@@ -5,6 +5,39 @@
       "no_functionality_implemented": "No functionality implemented for {command_name}."
     },
     "administrator": {
+      "birthday_celebration_channel": {
+        "description": "Options for the birthday celebration channel",
+        "set": {
+          "description": "Set the channel for birthday celebrations",
+          "channel_successfully_set": "Birthday celebrations will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for birthday celebrations"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for birthday celebrations",
+          "channel_successfully_removed": "Birthday celebrations will no longer appear."
+        }
+      },
+      "birthday_role": {
+        "description": "Options regarding the birthday role",
+        "set": {
+          "description": "Set the birthday role",
+          "role_does_not_exist": "This role does not exist.",
+          "role_successfully_set": "The role {role} will now be handed out on user birthdays.",
+          "parameters": {
+            "role": {
+              "description": "Choose the role that should be used as birthday role"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current birthday role",
+          "role_successfully_removed": "Users will no longer receive a special role on their birthday."
+        }
+      },
       "display_color": {
         "description": "Change the display color of the bot",
         "reset": {
@@ -159,15 +192,44 @@
         "on": "Enabled",
         "off": "Disabled",
         "level_up_messages_channel": "Level-up messages channel",
-        "welcome_messages_channel": "Welcome messages channel"
+        "welcome_messages_channel": "Welcome messages channel",
+        "birthday_celebration_channel": "Birthday celebration channel"
       }
     },
     "public": {
+      "birthday": {
+        "description": "Options regarding your birthday",
+        "set": {
+          "description": "Set your birthday date",
+          "birthday_successfully_set": "Your birthday was successfully set.",
+          "enter_a_valid_date": "Enter a valid date.",
+          "parameters": {
+            "day": {
+              "description": "Enter the day of the month"
+            },
+            "month": {
+              "description": "Enter the month of your birthday"
+            },
+            "year": {
+              "description": "Enter the year of your birthday"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove your birthday",
+          "birthday_successfully_removed": "Your birthday was successfully removed."
+        },
+        "list": {
+          "description": "Retrieve a list of all birthdays for this server",
+          "heading": "Birthdays on **{server_name}**"
+        }
+      },
       "userinfo": {
         "description": "Get information about yourself or another user",
         "general_info": "General",
         "rank": "Rank:",
         "status": "Status:",
+        "birthday": "Birthday",
         "boosting": "Boosting this server \n",
         "account_created": "Account created",
         "joined": "Joined",
@@ -184,6 +246,10 @@
     }
   },
   "events": {
+    "birthday_celebration": {
+      "single_member_birthday_celebration": "Today is the birthday of {member}!\nHappy Birthday :D",
+      "multiple_members_birthday_celebration": "Today is the birthday of {members}!\nHappy Birthday :D"
+    },
     "welcome": {
       "embed_title": "**Welcome to {server_name}!**",
       "embed_description": "**{user_mention} ({username}) has joined the server.**\nMake yourself at home!"
@@ -209,6 +275,6 @@
   },
   "level_up_congratulator": {
     "reached_next_rank": "{member_mention}, you have reached level **{level_numeric}**!",
-    "reached_next_rank_with_role": "{member_mention}, you have reached level **{level_numeric}**! You have been promoted to the rank {role_mention}."
+    "reached_next_rank_with_role": "{member_mention}, you have reached level **{level_numeric}**! You have been promoted to the rank **{role}**."
   }
 }
