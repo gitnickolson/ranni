@@ -9,6 +9,11 @@ module Commands
     extend Registerable
     include Translations::Translatable
 
+    def self.permission_level
+      namespace = name.split('::')[1]
+      namespace.downcase.to_sym
+    end
+
     def initialize(bot:)
       @bot = bot
     end
