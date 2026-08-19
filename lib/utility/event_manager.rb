@@ -8,6 +8,9 @@ module Utility
 
     def register_events
       Events::Welcome.listen(bot:)
+
+      birthday_celebration = Events::BirthdayCelebration.new(server_service:)
+      birthday_celebration.call
     end
 
     private
