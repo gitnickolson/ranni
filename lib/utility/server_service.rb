@@ -71,6 +71,10 @@ module Utility
       channel_from_id(channel_id: preferences_repository.welcome_message_channel_id)
     end
 
+    def birthday_celebration_channel
+      channel_from_id(channel_id: preferences_repository.birthday_celebration_channel_id)
+    end
+
     def birthday_role
       roles_repository.role_from_id(role_id: preferences_repository.birthday_role_id)
     end

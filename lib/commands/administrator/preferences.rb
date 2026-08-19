@@ -35,7 +35,8 @@ module Commands
           text_leveling_status_field,
           voice_leveling_status_field,
           level_up_message_channel_field,
-          welcome_message_channel_field
+          welcome_message_channel_field,
+          birthday_celebration_channel_field
         ].compact
       end
 
@@ -77,6 +78,11 @@ module Commands
       def welcome_message_channel_field
         field.new(name: t('commands.administrator.preferences.welcome_messages_channel'),
                   value: server_service.welcome_message_channel&.mention || '//')
+      end
+
+      def birthday_celebration_channel_field
+        field.new(name: t('commands.administrator.preferences.birthday_celebration_channel'),
+                  value: server_service.birthday_celebration_channel&.mention || '//')
       end
     end
   end

@@ -5,6 +5,22 @@
       "no_functionality_implemented": "No functionality implemented for {command_name}."
     },
     "administrator": {
+      "birthday_celebration_channel": {
+        "description": "Options for the birthday celebration channel",
+        "set": {
+          "description": "Set the channel for birthday celebrations",
+          "channel_successfully_set": "Birthday celebrations will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for birthday celebrations"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for birthday celebrations",
+          "channel_successfully_removed": "Birthday celebrations will no longer appear."
+        }
+      },
       "display_color": {
         "description": "Change the display color of the bot",
         "reset": {
@@ -159,7 +175,8 @@
         "on": "Enabled",
         "off": "Disabled",
         "level_up_messages_channel": "Level-up messages channel",
-        "welcome_messages_channel": "Welcome messages channel"
+        "welcome_messages_channel": "Welcome messages channel",
+        "birthday_celebration_channel": "Birthday celebration channel"
       }
     },
     "public": {

@@ -10,12 +10,16 @@ module Repositories
       preference.birthday_role_id
     end
 
-    def add_birthday_role(role_id:)
+    def set_birthday_role(role_id:)
       preference.update(birthday_role_id: role_id)
     end
 
-    def remove_birthday_role
-      preference.update(birthday_role_id: nil)
+    def birthday_celebration_channel_id
+      preference.birthday_celebration_channel_id
+    end
+
+    def set_birthday_celebration_channel_id(channel_id:)
+      preference.update(birthday_celebration_channel_id: channel_id)
     end
 
     def welcome_message_channel_id

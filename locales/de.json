@@ -5,6 +5,22 @@
       "no_functionality_implemented": "Keine Funktionalität für {command_name} implementiert."
     },
     "administrator": {
+      "birthday_celebration_channel": {
+        "description": "Optionen zum Geburtstagsglückwünsche Kanal",
+        "set": {
+          "description": "Setze den Kanal für Geburtstagsglückwünsche",
+          "channel_successfully_set": "Geburtstagsglückwünsche erscheinen nun in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Geburtstagsglückwünsche"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Geburtstagsglückwünsche",
+          "channel_successfully_removed": "Es erscheinen nun keine Geburtstagsglückwünsche mehr."
+        }
+      },
       "display_color": {
         "description": "Passe die Anzeigefarbe des Bots an",
         "reset": {
@@ -159,7 +175,8 @@
         "on": "Eingeschaltet",
         "off": "Ausgeschaltet",
         "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
-        "welcome_messages_channel": "Willkommensnachrichten Kanal"
+        "welcome_messages_channel": "Willkommensnachrichten Kanal",
+        "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal"
       }
     },
     "public": {
