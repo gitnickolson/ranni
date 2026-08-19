@@ -21,6 +21,23 @@
           "channel_successfully_removed": "Es erscheinen nun keine Geburtstagsglückwünsche mehr."
         }
       },
+      "birthday_role": {
+        "description": "Optionen zur Geburtstagsrolle",
+        "set": {
+          "description": "Setze die Geburtstagsrolle",
+          "role_does_not_exist": "Diese Rolle existiert nicht.",
+          "role_successfully_set": "Nutzer erhalten nun die Rolle {role} an ihrem Geburtstag.",
+          "parameters": {
+            "role": {
+              "description": "Wähle die Rolle die als Geburtstagsrolle genutzt werden soll"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne die aktuelle Geburtstagsrolle",
+          "role_successfully_removed": "Nutzer erhalten an ihrem Geburtstag keine besondere Rolle mehr"
+        }
+      },
       "display_color": {
         "description": "Passe die Anzeigefarbe des Bots an",
         "reset": {

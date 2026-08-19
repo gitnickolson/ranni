@@ -21,6 +21,23 @@
           "channel_successfully_removed": "Birthday celebrations will no longer appear."
         }
       },
+      "birthday_role": { 
+        "description": "Options regarding the birthday role",
+        "set": { 
+          "description": "Set the birthday role",
+          "role_does_not_exist":"This role does not exist.",
+          "role_successfully_set": "The role {role} will now be handed out on user birthdays.",
+          "parameters": {
+            "role": {
+              "description":"Choose the role that should be used as birthday role"
+            }
+          },
+          "remove": { 
+            "description": "Remove the current birthday role",
+            "role_successfully_removed": "Users will no longer receive a special role on their birthday."
+          }
+        }
+      },
       "display_color": {
         "description": "Change the display color of the bot",
         "reset": {

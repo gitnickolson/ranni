@@ -29,22 +29,15 @@ module Commands
                     value: server_service.timezone, inlined: true),
           field.new(name: t('commands.administrator.preferences.language'),
                     value: server_service.locale, inlined: true),
-          birthday_field,
           field.new,
           max_level_field,
           text_leveling_status_field,
           voice_leveling_status_field,
           level_up_message_channel_field,
           welcome_message_channel_field,
-          birthday_celebration_channel_field
+          birthday_celebration_channel_field,
+          birthday_role_field
         ].compact
-      end
-
-      def birthday_field
-        return if server_service.birthday_role.nil?
-
-        field.new(name: t('commands.administrator.preferences.birthday_role'),
-                  value: server_service.birthday_role.mention, inlined: true)
       end
 
       def max_level_field
@@ -83,6 +76,11 @@ module Commands
       def birthday_celebration_channel_field
         field.new(name: t('commands.administrator.preferences.birthday_celebration_channel'),
                   value: server_service.birthday_celebration_channel&.mention || '//')
+      end
+
+      def birthday_role_field
+        field.new(name: t('commands.administrator.preferences.birthday_role'),
+                  value: server_service.birthday_role&.mention || '//')
       end
     end
   end
