@@ -21,16 +21,27 @@ module Events
     end
 
     def call(event)
+      sync_level_roles(event)
+      send_welcome_message(event)
+    end
+
+    private
+
+    attr_reader :bot, :server_service
+
+    def sync_level_roles(event)
+      level = levels_repository.find_by_user_id(user_id: event.user.id)
+
+      rank_synchronizer.call(level:)
+    end
+
+    def send_welcome_message(event)
       channel = server_service.welcome_message_channel
       return unless channel
 
       embed_builder = create_embed_builder(event)
       Utility::Messages::MessageTransmitter.send_embed_message(channel:, embed_builder:)
     end
-
-    private
-
-    attr_reader :bot, :server_service
 
     def create_embed_builder(event)
       embed_builder = Utility::Messages::Embeds::EmbedBuilder.new(bot:, server_service:,
@@ -44,6 +55,14 @@ module Events
 
     def pagination_key(event)
       "welcome-#{event.user.id}-#{Time.now.to_i}"
+    end
+
+    def rank_synchronizer
+      @rank_synchronizer ||= Utility::RankSynchronizer.new(server_service:)
+    end
+
+    def levels_repository
+      @levels_repository ||= Repositories::LevelsRepository.new(server_service:)
     end
   end
 end
