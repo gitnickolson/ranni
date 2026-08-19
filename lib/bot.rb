@@ -20,6 +20,7 @@ class Bot
     end
 
     register_events
+    Status::StatusUpdater.call(bot:)
 
     bot.run
   end
