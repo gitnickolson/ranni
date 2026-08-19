@@ -21,18 +21,18 @@
           "channel_successfully_removed": "Birthday celebrations will no longer appear."
         }
       },
-      "birthday_role": { 
+      "birthday_role": {
         "description": "Options regarding the birthday role",
-        "set": { 
+        "set": {
           "description": "Set the birthday role",
-          "role_does_not_exist":"This role does not exist.",
+          "role_does_not_exist": "This role does not exist.",
           "role_successfully_set": "The role {role} will now be handed out on user birthdays.",
           "parameters": {
             "role": {
-              "description":"Choose the role that should be used as birthday role"
+              "description": "Choose the role that should be used as birthday role"
             }
           },
-          "remove": { 
+          "remove": {
             "description": "Remove the current birthday role",
             "role_successfully_removed": "Users will no longer receive a special role on their birthday."
           }
@@ -197,6 +197,33 @@
       }
     },
     "public": {
+      "birthday": {
+        "description": "Options regarding your birthday",
+        "set": {
+          "description": "Set your birthday date",
+          "birthday_successfully_set": "Your birthday was successfully set.",
+          "enter_a_valid_date": "Enter a valid date.",
+          "parameters": {
+            "day": {
+              "description": "Enter the day of the month"
+            },
+            "month": {
+              "description": "Enter the month of your birthday"
+            },
+            "year": {
+              "description": "Enter the year of your birthday"
+            }
+          }
+        },
+        "remove": { 
+          "description": "Remove your birthday",
+          "birthday_successfully_removed": "Your birthday was successfully removed."
+        },
+        "list": { 
+          "description": "Retrieve a list of all birthdays for this server",
+          "heading": "Birthdays on **{server_name}**"
+        }
+      },
       "userinfo": {
         "description": "Get information about yourself or another user",
         "general_info": "General",
