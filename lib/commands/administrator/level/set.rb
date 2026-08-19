@@ -20,7 +20,7 @@ module Commands
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
           updated_level = levels_repository.update_numeric(user_id:, numeric: level_numeric)
-          rank_synchronizer.call(updated_level:)
+          rank_synchronizer.call(level: updated_level)
 
           display_name = server_service.display_name(user_id:, full: true)
           transmitter.response(event:, text: t('commands.administrator.level.set.level_successfully_set',
@@ -28,7 +28,7 @@ module Commands
         end
 
         def rank_synchronizer
-          @rank_synchronizer ||= Features::Leveling::RankSynchronizer.new(server_service:)
+          @rank_synchronizer ||= Utility::RankSynchronizer.new(server_service:)
         end
 
         def level_validator
