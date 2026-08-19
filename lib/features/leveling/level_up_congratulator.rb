@@ -32,7 +32,7 @@ module Features
           new_role = roles_repository.role_from_id(role_id: next_rank.role_id)
 
           t('level_up_congratulator.reached_next_rank_with_role',
-            { member_mention: member.mention, level_numeric: updated_level.numeric, role_mention: new_role.mention })
+            { member_mention: member.mention, level_numeric: updated_level.numeric, role: new_role.name })
         end
       end
 

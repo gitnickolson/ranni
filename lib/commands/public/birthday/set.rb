@@ -3,7 +3,7 @@
 module Commands
   module Public
     module Birthday
-      class Set
+      class Set < Subcommand
         NAME = :set
         DESCRIPTION = 'Set your birthday date'
         PARAMETERS = [{ type: :integer, name: :day, required: true, description: 'Enter the day of the month' },
@@ -20,7 +20,7 @@ module Commands
           birthdays_repository.update_or_create(user_id: event.user.id, date:)
           transmitter.response(event:, text: t('commands.public.birthday.set.birthday_successfully_set'))
         rescue ArgumentError
-          transmitter.error_response(event:, text: 'commands.public.birthday.set.enter_a_valid_date')
+          transmitter.error_response(event:, text: t('commands.public.birthday.set.enter_a_valid_date'))
         end
 
         def birthdays_repository

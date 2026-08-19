@@ -2,8 +2,8 @@
 
 module Commands
   module Public
-    module Birthdays
-      class Remove < Commands::Subcommand
+    module Birthday
+      class Remove < Subcommand
         NAME = :remove
         DESCRIPTION = 'Remove your birthday'
 
@@ -11,7 +11,7 @@ module Commands
 
         def command_action
           birthdays_repository.delete(user_id: event.user.id)
-          transmitter.response(event:, text: t('commands.public.birthdays.remove.birthday_successfully_removed'))
+          transmitter.response(event:, text: t('commands.public.birthday.remove.birthday_successfully_removed'))
         end
 
         def birthdays_repository

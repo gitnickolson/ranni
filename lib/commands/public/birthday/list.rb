@@ -2,8 +2,8 @@
 
 module Commands
   module Public
-    module Birthdays
-      class List < Commands::Subcommand
+    module Birthday
+      class List < Subcommand
         NAME = :list
         DESCRIPTION = 'Retrieve a list of birthdays for this server'
         MAX_PAGE_ITEMS = 18
@@ -11,9 +11,9 @@ module Commands
         private
 
         def command_action
-          embed_builder = builder.new(server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
+          embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
           embed_builder.update_fields(fields:)
-          embed_builder.add_title(text: t('commands.public.birthdays.list.heading', { server_name: server.name }))
+          embed_builder.add_title(text: t('commands.public.birthday.list.heading', { server_name: server.name }))
 
           transmitter.embed_response(event:, embed_builder:)
         end

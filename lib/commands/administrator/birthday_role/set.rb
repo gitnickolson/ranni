@@ -13,17 +13,19 @@ module Commands
 
         def command_action
           role_id = event.options['role'].to_i
+          role = server_service.role_from_id(role_id:)
 
-          if server_service.role_from_id(role_id:).nil?
-            return transmitter.error_response(event:,
-                                              text: t('commands.administrator.birthday_role.set.role_does_not_exist'))
-          end
+          return role_does_not_exist_response if role.nil?
 
           preferences_repository.set_birthday_role(role_id:)
-          transmitter.response(
-            event:,
-            text: t('commands.administrator.birthday_role.set.role_successfully_set', { role: role.mention })
-          )
+          transmitter.response(event:,
+                               text: t('commands.administrator.birthday_role.set.role_successfully_set',
+                                       { role: role.mention }))
+        end
+
+        def role_does_not_exist_response
+          transmitter.error_response(event:,
+                                     text: t('commands.administrator.birthday_role.set.role_does_not_exist'))
         end
 
         def preferences_repository

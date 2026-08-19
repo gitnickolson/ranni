@@ -9,8 +9,12 @@ module Utility
     def register_events
       Events::Welcome.listen(bot:)
 
-      birthday_celebration = Events::BirthdayCelebration.new(server_service:)
-      birthday_celebration.call
+      bot.servers.each_key do |server_id|
+        server_service = Utility::ServerService.new(bot:, server_id:)
+
+        birthday_celebration = Events::BirthdayCelebration.new(server_service:)
+        birthday_celebration.call
+      end
     end
 
     private

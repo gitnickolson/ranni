@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'csv'
-require 'time'
-require 'date'
-
 module Events
   class BirthdayCelebration
+    ONE_DAY = (60 * 60 * 24)
+
+    include Translations::Translatable
+
     def initialize(server_service:)
       @server_service = server_service
       @previous_affected_members = []
@@ -43,7 +43,10 @@ module Events
     end
 
     def find_affected_members
-      birthdays = birthdays_repository.all(date: server_service.now.to_date + 1)
+      now = server_service.now
+      target_date = Date.new(now.year, now.month, now.day) + 1
+
+      birthdays = birthdays_repository.all(date: target_date, on_server: true)
       birthdays.map { server_service.member_from(identifier: it.user_id) }.compact
     end
 
@@ -66,8 +69,9 @@ module Events
     end
 
     def next_midnight_date_time
-      tomorrow = server_service.now + (60 * 60 * 24)
-      server_service.current_timezone.local_time(tomorrow.year, tomorrow.month, tomorrow.day, 0, 5)
+      now = server_service.now
+      tomorrow = now + ONE_DAY
+      server_service.timezone.local_time(tomorrow.year, tomorrow.month, tomorrow.day, 0, 5)
     end
 
     def single_member_message(birthday_members)

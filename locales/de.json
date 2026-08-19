@@ -197,12 +197,39 @@
       }
     },
     "public": {
+      "birthday": {
+        "description": "Optionen zu deinem Geburtstag",
+        "set": {
+          "description": "Setze dein Geburtstagsdatum",
+          "birthday_successfully_set": "Dein Geburtstag wurde erfolgreich gesetzt.",
+          "enter_a_valid_date": "Gib ein valides Datum ein.",
+          "parameters": {
+            "day": {
+              "description": "Gib den Tag des Monats ein"
+            },
+            "month": {
+              "description": "Gib den Monat deines Geburtstags ein"
+            },
+            "year": {
+              "description": "Gib das Jahr deines Geburtstags ein"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne deinen Geburtstag",
+          "birthday_successfully_removed": "Dein Geburtstag wurde erfolgreich entfernt."
+        },
+        "list": {
+          "description": "Rufe eine Liste aller Geburtstage auf diesem Server ab",
+          "heading": "Geburtstage auf **{server_name}**"
+        }
+      },
       "userinfo": {
         "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
         "general_info": "Generelles",
         "rank": "Rang:",
         "status": "Status:",
-        "boosting": "Boostet diesen Server \n",
+        "boosting": "Boostet diesen Server\n",
         "account_created": "Account erstellt",
         "joined": "Beigetreten",
         "boosting_since": "Boostet seit",
@@ -218,6 +245,10 @@
     }
   },
   "events": {
+    "birthday_celebration": {
+      "single_member_birthday_celebration": "{member} hat heute Geburtstag!\nHappy Birthday :D",
+      "multiple_members_birthday_celebration": "{members} haben heute Geburtstag!\nHappy Birthday :D"
+    },
     "welcome": {
       "embed_title": "**Willkommen auf {server_name}!**",
       "embed_description": "**{user_mention} ({username}) ist dem Server beigetreten.**\nMachs dir hier gemütlich!"
@@ -243,6 +274,6 @@
   },
   "level_up_congratulator": {
     "reached_next_rank": "{member_mention}, du hast Level **{level_numeric}** erreicht!",
-    "reached_next_rank_with_role": "{member_mention}, du hast Level **{level_numeric}** erreicht! Du steigst somit zum Rang {role_mention} auf."
+    "reached_next_rank_with_role": "{member_mention}, du hast Level **{level_numeric}** erreicht! Du steigst somit zum Rang **{role}** auf."
   }
 }

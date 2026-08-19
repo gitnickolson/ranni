@@ -31,11 +31,11 @@
             "role": {
               "description": "Choose the role that should be used as birthday role"
             }
-          },
-          "remove": {
-            "description": "Remove the current birthday role",
-            "role_successfully_removed": "Users will no longer receive a special role on their birthday."
           }
+        },
+        "remove": {
+          "description": "Remove the current birthday role",
+          "role_successfully_removed": "Users will no longer receive a special role on their birthday."
         }
       },
       "display_color": {
@@ -215,11 +215,11 @@
             }
           }
         },
-        "remove": { 
+        "remove": {
           "description": "Remove your birthday",
           "birthday_successfully_removed": "Your birthday was successfully removed."
         },
-        "list": { 
+        "list": {
           "description": "Retrieve a list of all birthdays for this server",
           "heading": "Birthdays on **{server_name}**"
         }
@@ -245,6 +245,10 @@
     }
   },
   "events": {
+    "birthday_celebration": {
+      "single_member_birthday_celebration": "Today is the birthday of {member}!\nHappy Birthday :D",
+      "multiple_members_birthday_celebration": "Today is the birthday of {members}!\n Happy Birthday :D"
+    },
     "welcome": {
       "embed_title": "**Welcome to {server_name}!**",
       "embed_description": "**{user_mention} ({username}) has joined the server.**\nMake yourself at home!"
@@ -270,6 +274,6 @@
   },
   "level_up_congratulator": {
     "reached_next_rank": "{member_mention}, you have reached level **{level_numeric}**!",
-    "reached_next_rank_with_role": "{member_mention}, you have reached level **{level_numeric}**! You have been promoted to the rank {role_mention}."
+    "reached_next_rank_with_role": "{member_mention}, you have reached level **{level_numeric}**! You have been promoted to the rank **{role}**."
   }
 }
