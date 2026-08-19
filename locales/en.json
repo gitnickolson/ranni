@@ -124,12 +124,6 @@
             }
           }
         },
-        "list": {
-          "description": "Retrieve a list of all ranks",
-          "list_title": "Ranks on {server_name}",
-          "list_length": "{ranks_count} ranks",
-          "list_entry_title": "Level {level}"
-        },
         "remove": {
           "description": "Remove a rank",
           "rank_successfully_removed": "Rank successfully removed.",
@@ -223,6 +217,19 @@
           "description": "Retrieve a list of all birthdays for this server",
           "heading": "Birthdays on **{server_name}**"
         }
+      },
+      "rank": {
+        "list": {
+          "description": "Retrieve a list of all ranks",
+          "list_title": "Ranks on {server_name}",
+          "list_length": "{ranks_count} ranks",
+          "list_entry_title": "Level {level}"
+        }
+      },
+      "help": {
+        "description": "Retrive a list of commands",
+        "message_sent": "Message sent via DM.",
+        "heading": "Commands on **{server_name}**"
       },
       "userinfo": {
         "description": "Get information about yourself or another user",

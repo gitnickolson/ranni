@@ -124,12 +124,6 @@
             }
           }
         },
-        "list": {
-          "description": "Rufe eine Liste aller Ränge ab",
-          "list_title": "Ränge auf {server_name}",
-          "list_length": "{ranks_count} Ränge",
-          "list_entry_title": "Level {level}"
-        },
         "remove": {
           "description": "Entferne einen Rang",
           "rank_successfully_removed": "Rang erfolgreich entfernt.",
@@ -223,6 +217,19 @@
           "description": "Rufe eine Liste aller Geburtstage auf diesem Server ab",
           "heading": "Geburtstage auf **{server_name}**"
         }
+      },
+      "rank": {
+        "list": {
+          "description": "Rufe eine Liste aller Ränge ab",
+          "list_title": "Ränge auf {server_name}",
+          "list_length": "{ranks_count} Ränge",
+          "list_entry_title": "Level {level}"
+        }
+      },
+      "help": {
+        "description": "Rufe eine Liste aller Commands ab",
+        "message_sent": "Nachricht via DM gesendet.",
+        "heading": "Commands auf **{server_name}**"
       },
       "userinfo": {
         "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
