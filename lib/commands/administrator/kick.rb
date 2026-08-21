@@ -21,11 +21,11 @@ module Commands
         send_dm_with_reason(member, reason) if reason
 
         display_name = server_service.display_name(user_id: member.id, full: true)
-        member.kick(reason)
 
         transmitter.response(event:,
                              text: t('commands.administrator.kick.success_response',
                                      { display_name: }))
+        member.kick(reason)
       end
 
       def admin?(member)
