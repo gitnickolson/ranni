@@ -226,6 +226,13 @@
           "list_entry_title": "Level {level}"
         }
       },
+      "botinfo": {
+        "description": "Retrieve information regarding the bot", 
+        "contributors": "Contributors",
+        "bot_created": "Bot created",
+        "uptime": "Uptime",
+        "programming_language": "Programming language"
+      },
       "help": {
         "description": "Retrive a list of commands",
         "message_sent": "Message sent via DM.",

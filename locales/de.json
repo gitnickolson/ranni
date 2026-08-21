@@ -218,6 +218,13 @@
           "heading": "Geburtstage auf **{server_name}**"
         }
       },
+      "botinfo": {
+        "description": "Rufe Informationen zum Bot ab",
+        "contributors": "Mitwirkende",
+        "bot_created": "Bot erstellt",
+        "uptime": "Laufzeit",
+        "programming_language": "Programmiersprache"
+      },
       "rank": {
         "list": {
           "description": "Rufe eine Liste aller Ränge ab",
