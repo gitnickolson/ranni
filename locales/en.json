@@ -216,6 +216,19 @@
         "level_up_messages_channel": "Level-up messages channel",
         "welcome_messages_channel": "Welcome messages channel",
         "birthday_celebration_channel": "Birthday celebration channel"
+      },
+      "timeout": {
+        "description": "Timeout a user",
+        "admin_timeout": "This user is an administrator.",
+        "success_response": "**{display_name}** was successfully timeouted for {minutes} minutes.",
+        "parameters": {
+          "user": {
+            "description": "Specify a user"
+          },
+          "duration": {
+            "description": "Specify the duration in minutes"
+          }
+        }
       }
     },
     "public": {
