@@ -187,6 +187,20 @@
           }
         }
       },
+      "kick": {
+        "description": "Kick a user",
+        "admin_kick": "This user is an administrator.",
+        "kick_dm": "You were kicked from **{server_name}**.\n**Reason**: {reason}",
+        "success_response": "**{display_name}** was successfully kicked.",
+        "parameters": {
+          "user": {
+            "description": "Choose a user"
+          },
+          "reason": {
+            "description": "Specify a reason"
+          }
+        }
+      },
       "preferences": {
         "description": "Retrieve the configured bot preferences for this server",
         "embed_title": "Configured preferences for {bot_name} on {server_name}",

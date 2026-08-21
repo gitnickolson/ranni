@@ -187,6 +187,20 @@
           }
         }
       },
+      "kick": {
+        "description": "Kicke einen Nutzer",
+        "admin_kick": "Dieser Nutzer ist ein Administrator.",
+        "kick_dm": "Du wurdest von **{server_name}** gekickt.\n**Grund**: {reason}",
+        "success_response": "**{display_name}** wurde erfolgreich gekickt.",
+        "parameters": {
+          "user": {
+            "description": "Wähle einen Nutzer"
+          },
+          "reason": {
+            "description": "Gib einen Grund an"
+          }
+        }
+      },
       "preferences": {
         "description": "Rufe die konfigurierten Boteinstellungen für diesen Server ab",
         "embed_title": "Eingestellte Präferenzen für {bot_name} auf {server_name}",
