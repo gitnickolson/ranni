@@ -176,11 +176,11 @@
       "preferences": {
         "description": "Retrieve the configured bot preferences for this server",
         "embed_title": "Configured preferences for {bot_name} on {server_name}",
-        "default_color": "Default color",
+        "display_color": "Display color",
         "timezone": "Timezone",
         "language": "Language",
         "birthday_role": "Birthday role",
-        "max_level": "Maximum text level",
+        "max_level": "Maximum level",
         "text_leveling_status": "Text leveling status",
         "voice_leveling_status": "Voice leveling status",
         "on": "Enabled",

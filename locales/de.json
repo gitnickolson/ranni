@@ -176,7 +176,7 @@
       "preferences": {
         "description": "Rufe die konfigurierten Boteinstellungen für diesen Server ab",
         "embed_title": "Eingestellte Präferenzen für {bot_name} auf {server_name}",
-        "default_color": "Standardfarbe",
+        "display_color": "Anzeigefarbe",
         "timezone": "Zeitzone",
         "language": "Sprache",
         "birthday_role": "Geburtstagsrolle",

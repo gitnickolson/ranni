@@ -23,20 +23,25 @@ module Commands
 
       def fields # rubocop:disable Metrics/MethodLength
         [
-          field.new(name: t('commands.administrator.preferences.default_color'),
-                    value: server_service.server_color, inlined: true),
-          field.new(name: t('commands.administrator.preferences.timezone'),
-                    value: server_service.timezone, inlined: true),
           field.new(name: t('commands.administrator.preferences.language'),
                     value: server_service.locale, inlined: true),
+          field.new(name: t('commands.administrator.preferences.timezone'),
+                    value: server_service.timezone, inlined: true),
+          field.new(name: t('commands.administrator.preferences.display_color'),
+                    value: "`#{server_service.server_color}`", inlined: true),
           field.new,
-          max_level_field,
+          field.new,
           text_leveling_status_field,
           voice_leveling_status_field,
+          max_level_field,
           level_up_message_channel_field,
-          welcome_message_channel_field,
+          field.new,
+          field.new,
+          birthday_role_field,
           birthday_celebration_channel_field,
-          birthday_role_field
+          field.new,
+          field.new,
+          welcome_message_channel_field
         ].compact
       end
 
@@ -51,7 +56,7 @@ module Commands
                            t('commands.administrator.preferences.on')
                          else
                            t('commands.administrator.preferences.off')
-                         end)
+                         end, inlined: true)
       end
 
       def voice_leveling_status_field
@@ -60,17 +65,17 @@ module Commands
                            t('commands.administrator.preferences.on')
                          else
                            t('commands.administrator.preferences.off')
-                         end)
+                         end, inlined: true)
       end
 
       def level_up_message_channel_field
         field.new(name: t('commands.administrator.preferences.level_up_messages_channel'),
-                  value: server_service.level_up_congratulation_channel&.mention || '//')
+                  value: server_service.level_up_congratulation_channel&.mention || '//', inlined: true)
       end
 
       def welcome_message_channel_field
         field.new(name: t('commands.administrator.preferences.welcome_messages_channel'),
-                  value: server_service.welcome_message_channel&.mention || '//')
+                  value: server_service.welcome_message_channel&.mention || '//', inlined: true)
       end
 
       def birthday_celebration_channel_field
@@ -80,7 +85,7 @@ module Commands
 
       def birthday_role_field
         field.new(name: t('commands.administrator.preferences.birthday_role'),
-                  value: server_service.birthday_role&.mention || '//')
+                  value: server_service.birthday_role&.mention || '//', inlined: true)
       end
     end
   end
