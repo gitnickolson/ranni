@@ -227,7 +227,7 @@
         }
       },
       "botinfo": {
-        "description": "Retrieve information regarding the bot", 
+        "description": "Retrieve information regarding the bot",
         "contributors": "Contributors",
         "bot_created": "Bot created",
         "uptime": "Uptime",
@@ -237,6 +237,21 @@
         "description": "Retrive a list of commands",
         "message_sent": "Message sent via DM.",
         "heading": "Commands on **{server_name}**"
+      },
+      "serverinfo": {
+        "description": "Retrieve information regarding the server",
+        "server_id": "Server ID",
+        "general_info": "General info",
+        "owner": "Owner",
+        "server_created": "Created at",
+        "boost_status": "Boost status",
+        "members": "Members",
+        "bots": "Bots",
+        "channels": "Channels",
+        "roles": "Roles",
+        "level": "Level",
+        "active_boost": "active boost",
+        "active_boosts": "active boosts"
       },
       "userinfo": {
         "description": "Get information about yourself or another user",
