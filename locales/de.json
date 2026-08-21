@@ -216,6 +216,19 @@
         "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
         "welcome_messages_channel": "Willkommensnachrichten Kanal",
         "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal"
+      },
+      "timeout": {
+        "description": "Versetze einen Nutzer in den Timeout",
+        "admin_timeout": "Dieser Nutzer ist ein Administrator.",
+        "success_response": "**{display_name}** wurde für {minutes} Minuten in den Timeout versetzt.",
+        "parameters": {
+          "user": {
+            "description": "Wähle einen Nutzer"
+          },
+          "duration": {
+            "description": "Gib die Dauer in Minuten an"
+          }
+        }
       }
     },
     "public": {
