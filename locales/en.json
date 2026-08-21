@@ -173,6 +173,20 @@
           "channel_successfully_removed": "Welcome messages will no longer appear."
         }
       },
+      "ban": {
+        "description": "Ban a user",
+        "admin_ban": "This user is an administrator.",
+        "ban_dm": "You were banned from **{server_name}**.\n**Reason**: {reason}",
+        "success_response": "**{display_name}** was successfully banned.",
+        "parameters": {
+          "user": {
+            "description": "Choose a user"
+          },
+          "reason": {
+            "description": "Specify a reason"
+          }
+        }
+      },
       "preferences": {
         "description": "Retrieve the configured bot preferences for this server",
         "embed_title": "Configured preferences for {bot_name} on {server_name}",
