@@ -4,7 +4,7 @@ require 'time'
 
 module Commands
   module Public
-    class Botinfo < Commands::Command
+    class Botinfo < Command
       NAME = :botinfo
       DESCRIPTION = 'Retrieve information regarding the bot'
       @start_time = Time.now

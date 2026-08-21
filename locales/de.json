@@ -238,6 +238,21 @@
         "message_sent": "Nachricht via DM gesendet.",
         "heading": "Commands auf **{server_name}**"
       },
+      "serverinfo": {
+        "description": "Rufe Informationen zum Server ab",
+        "server_id": "Server ID",
+        "general_info": "Generelles",
+        "owner": "Besitzer",
+        "server_created": "Server erstellt",
+        "boost_status": "Boost Status",
+        "members": "Mitglieder",
+        "bots": "Bots",
+        "channels": "Kanäle",
+        "roles": "Rollen",
+        "level": "Level",
+        "active_boost": "aktiver Boost",
+        "active_boosts": "aktive Boosts"
+      },
       "userinfo": {
         "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
         "general_info": "Generelles",
