@@ -157,6 +157,18 @@
           "voice_leveling_successfully_disabled": "Voice leveling has been successfully disabled."
         }
       },
+      "voice_requirement": {
+        "description": "Edit the minimum level needed to join voice chats",
+        "set": {
+          "description": "Set the minimum level needed to join voice chats",
+          "voice_requirement_successfully_set": "The new required level to join voice chats was successfully set to **{level}**.",
+          "parameters": {
+            "level": {
+              "description": "Gib das neue benötigte Level an"
+            }
+          }
+        }
+      },
       "welcome_messages_channel": {
         "description": "Options for the welcome messages channel",
         "set": {

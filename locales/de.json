@@ -157,6 +157,18 @@
           "voice_leveling_successfully_disabled": "Voice-Leveling wurde erfolgreich ausgeschaltet."
         }
       },
+      "voice_requirement": {
+        "description": "Bearbeite das minimale benötigte Level um Voice Chats beizutreten",
+        "set": {
+          "description": "Setze das minimale benötigte Level um Voice Chats beizutreten",
+          "voice_requirement_successfully_set": "Das benötigte Level um Voice Chats beizutreten wurde erfolgreich auf **{level}** gesetzt.",
+          "parameters": {
+            "level": {
+              "description": "Gib das neue benötigte Level an" 
+            }
+          }
+        }
+      },
       "welcome_messages_channel": {
         "description": "Optionen zum Willkommensnachrichten Kanal",
         "set": {
