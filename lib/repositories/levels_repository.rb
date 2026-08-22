@@ -7,7 +7,7 @@ module Repositories
     end
 
     def all(active: true)
-      levels = Models::Level.where(server_id:).order(:numeric).all
+      levels = Models::Level.where(server_id:).order(Sequel.desc(:experience_points)).all
 
       return levels unless active
 
