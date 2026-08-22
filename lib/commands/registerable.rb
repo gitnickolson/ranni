@@ -43,8 +43,8 @@ module Commands
 
     def listen(bot:)
       bot.application_command(self::NAME) do |event|
-        command = new(bot:)
-        command.handle_event(event)
+        command = new(bot:, event:)
+        command.handle_event
       end
     end
 
