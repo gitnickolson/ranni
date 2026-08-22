@@ -279,6 +279,13 @@
         "message_sent": "Nachricht via DM gesendet.",
         "heading": "Commands auf **{server_name}**"
       },
+      "leaderboard": {
+        "description": "Rufe das Leveling-Leaderboard ab",
+        "heading": "{server_name} Leaderboard",
+        "personal_rank": "Eigene Platzierung: {personal_rank}",
+        "level": "Level",
+        "xp": "XP"
+      },
       "serverinfo": {
         "description": "Rufe Informationen zum Server ab",
         "server_id": "Server ID",

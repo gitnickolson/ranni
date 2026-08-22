@@ -279,6 +279,13 @@
         "message_sent": "Message sent via DM.",
         "heading": "Commands on **{server_name}**"
       },
+      "leaderboard": {
+        "description": "Retreve the leveling leaderboard for this server",
+        "heading": "{server_name} leaderboard",
+        "personal_rank": "Personal rank: {personal_rank}",
+        "level": "Level",
+        "xp": "XP"
+      },
       "serverinfo": {
         "description": "Retrieve information regarding the server",
         "server_id": "Server ID",
