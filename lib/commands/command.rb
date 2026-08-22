@@ -14,14 +14,13 @@ module Commands
       namespace.downcase.to_sym
     end
 
-    def initialize(bot:)
+    def initialize(bot:, event:)
       @bot = bot
-    end
-
-    def handle_event(event)
       @event = event
       @server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
+    end
 
+    def handle_event
       return transmitter.error_response(event:, text: t('commands.command.not_permitted')) unless user_permitted?
 
       command_action

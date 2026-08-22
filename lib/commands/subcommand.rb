@@ -14,8 +14,8 @@ module Commands
 
     def self.listen(bot:, parent_command:)
       bot.application_command(parent_command::NAME).subcommand(self::NAME) do |event|
-        command = new(bot:)
-        command.handle_event(event)
+        command = new(bot:, event:)
+        command.handle_event
       end
     end
   end
