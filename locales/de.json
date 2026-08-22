@@ -286,6 +286,13 @@
         "level": "Level",
         "xp": "XP"
       },
+      "roulette": {
+        "description": "Versetze dich mit einer 1:6 Chance in einen timeout",
+        "roulette_start": "**{display_name}** dreht die Trommel und zieht den Abzug...",
+        "bad_luck": "**{display_name}** hat den kürzeren gezogen.",
+        "good_luck": "**{display_name}** hat Glück gehabt, es ware eine Niete.",
+        "admin_abuse": "**{display_name}** ist der Kugel mit Admin Abuse ausgewichen."
+      },
       "serverinfo": {
         "description": "Rufe Informationen zum Server ab",
         "server_id": "Server ID",

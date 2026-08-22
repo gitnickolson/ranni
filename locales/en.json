@@ -286,6 +286,13 @@
         "level": "Level",
         "xp": "XP"
       },
+      "roulette": {
+        "description": "Put yourself in timeout with a chance of 1/6",
+        "roulette_start": "**{display_name}** spins the drum and pulls the trigger...",
+        "bad_luck": "**{display_name}** drew the short straw.",
+        "good_luck": "**{display_name}** was lucky, it was a blank.",
+        "admin_abuse": "**{display_name}** dodged the bullet with admin abuse."
+      },
       "serverinfo": {
         "description": "Retrieve information regarding the server",
         "server_id": "Server ID",

@@ -27,7 +27,7 @@ module Commands
       def fields
         sorted_levels.map.with_index do |level, index|
           member = server_service.member_from(identifier: level.user_id)
-          field.new(name: "#{index + 1}. #{server_service.display_name(user_id: member.id)}",
+          field.new(name: "#{index + 1}. #{server_service.display_name(user_id: member.id, full: true)}",
                     value: "#{t('commands.public.leaderboard.level')}: `#{level.numeric}`\n" \
                            "#{t('commands.public.leaderboard.xp')}: `#{humanize(level.experience_points)}`")
         end
