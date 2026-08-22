@@ -11,7 +11,7 @@ class Bot
 
   def start(args: nil)
     bot.ready do
-      next if @running
+      next if running
 
       unregister_flag_set?(args) ? unregister_commands(args) : initialize_commands
       initialize_leveling
@@ -27,7 +27,8 @@ class Bot
 
   private
 
-  attr_reader :bot, :running
+  attr_accessor :running
+  attr_reader :bot
 
   def initialize_commands
     command_manager.register_commands
