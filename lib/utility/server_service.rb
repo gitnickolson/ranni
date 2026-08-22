@@ -59,6 +59,10 @@ module Utility
       preferences_repository.max_level
     end
 
+    def voice_chat_level_requirement
+      preferences_repository.voice_chat_level_requirement
+    end
+
     def text_leveling_enabled?
       preferences_repository.text_leveling_enabled?
     end
