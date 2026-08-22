@@ -34,6 +34,7 @@ module Commands
           text_leveling_status_field,
           voice_leveling_status_field,
           max_level_field,
+          voice_requirement_field,
           level_up_message_channel_field,
           field.new,
           field.new,
@@ -68,9 +69,14 @@ module Commands
                          end, inlined: true)
       end
 
+      def voice_requirement_field
+        field.new(name: t('commands.administrator.preferences.voice_requirement'),
+                  value: server_service.voice_chat_level_requirement)
+      end
+
       def level_up_message_channel_field
         field.new(name: t('commands.administrator.preferences.level_up_messages_channel'),
-                  value: server_service.level_up_congratulation_channel&.mention || '//', inlined: true)
+                  value: server_service.level_up_congratulation_channel&.mention || '//')
       end
 
       def welcome_message_channel_field

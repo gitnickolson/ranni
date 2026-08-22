@@ -221,6 +221,7 @@
         "language": "Sprache",
         "birthday_role": "Geburtstagsrolle",
         "max_level": "Maximales Level",
+        "voice_requirement": "Benötigtes Level um Voice Chats beizutreten",
         "text_leveling_status": "Text-Leveling Status",
         "voice_leveling_status": "Voice-Leveling Status",
         "on": "Eingeschaltet",
