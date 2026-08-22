@@ -20,7 +20,7 @@ class Bot
       @running = true
     end
 
-    Status::StatusUpdater.call(bot:)
+    initialize_misc
 
     bot.run
   end
@@ -38,6 +38,12 @@ class Bot
   def initialize_leveling
     leveling_initializer = Features::Leveling::LevelingInitializer.new(bot:)
     leveling_initializer.call
+  end
+
+  def initialize_misc
+    Status::StatusUpdater.call(bot:)
+    voice_join_preventer = Utility::VoiceJoinPreventer.new(bot:)
+    voice_join_preventer.call
   end
 
   def register_events

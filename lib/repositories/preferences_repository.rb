@@ -70,6 +70,14 @@ module Repositories
       preference.update(max_level: level)
     end
 
+    def voice_chat_level_requirement
+      preference.voice_chat_level_requirement
+    end
+
+    def set_voice_chat_level_requirement(level:)
+      preference.update(voice_chat_level_requirement: level)
+    end
+
     def timezone
       preference.timezone
     end

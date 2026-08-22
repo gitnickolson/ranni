@@ -157,6 +157,18 @@
           "voice_leveling_successfully_disabled": "Voice-Leveling wurde erfolgreich ausgeschaltet."
         }
       },
+      "voice_requirement": {
+        "description": "Bearbeite das minimale benötigte Level um Voice Chats beizutreten",
+        "set": {
+          "description": "Setze das minimale benötigte Level um Voice Chats beizutreten",
+          "voice_requirement_successfully_set": "Das benötigte Level um Voice Chats beizutreten wurde erfolgreich auf **{level}** gesetzt.",
+          "parameters": {
+            "level": {
+              "description": "Gib das neue benötigte Level an" 
+            }
+          }
+        }
+      },
       "welcome_messages_channel": {
         "description": "Optionen zum Willkommensnachrichten Kanal",
         "set": {
@@ -209,6 +221,7 @@
         "language": "Sprache",
         "birthday_role": "Geburtstagsrolle",
         "max_level": "Maximales Level",
+        "voice_requirement": "Benötigtes Level um Voice Chats beizutreten",
         "text_leveling_status": "Text-Leveling Status",
         "voice_leveling_status": "Voice-Leveling Status",
         "on": "Eingeschaltet",
@@ -352,6 +365,12 @@
     "ranks_validator": {
       "rank_for_role_already_exists": "Ein Rang mit dieser Rolle existiert schon.",
       "rank_for_level_already_exists": "Ein Rang für dieses Level existiert schon."
+    }
+  },
+  "utility": {
+    "voice_join_preventer": { 
+      "pm": "Du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten.",
+      "channel_message": "{user_mention}, du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten."
     }
   },
   "embed_builder": {

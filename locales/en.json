@@ -157,6 +157,18 @@
           "voice_leveling_successfully_disabled": "Voice leveling has been successfully disabled."
         }
       },
+      "voice_requirement": {
+        "description": "Edit the minimum level needed to join voice chats",
+        "set": {
+          "description": "Set the minimum level needed to join voice chats",
+          "voice_requirement_successfully_set": "The new required level to join voice chats was successfully set to **{level}**.",
+          "parameters": {
+            "level": {
+              "description": "Gib das neue benötigte Level an"
+            }
+          }
+        }
+      },
       "welcome_messages_channel": {
         "description": "Options for the welcome messages channel",
         "set": {
@@ -209,6 +221,7 @@
         "language": "Language",
         "birthday_role": "Birthday role",
         "max_level": "Maximum level",
+        "voice_requirement": "Required level to join voice chats",
         "text_leveling_status": "Text leveling status",
         "voice_leveling_status": "Voice leveling status",
         "on": "Enabled",
@@ -352,6 +365,12 @@
     "ranks_validator": {
       "rank_for_role_already_exists": "A rank with this role already exists.",
       "rank_for_level_already_exists": "A rank for this level already exists."
+    }
+  },
+  "utility": {
+    "voice_join_preventer": {
+      "pm": "You need to reach **Level {voice_requirement}** by writing messages to join voice channels.",
+      "channel_message": "{user_mention}, you need to reach **Level {voice_requirement}** to join voice channels."
     }
   },
   "embed_builder": {
