@@ -367,6 +367,12 @@
       "rank_for_level_already_exists": "A rank for this level already exists."
     }
   },
+  "utility": {
+    "voice_join_preventer": {
+      "pm": "You need to reach **Level {voice_requirement}** by writing messages to join voice channels.",
+      "channel_message": "{user_mention}, you need to reach **Level {voice_requirement}** to join voice channels."
+    }
+  },
   "embed_builder": {
     "pages_count": "Page {current_page} of {total_pages}"
   },

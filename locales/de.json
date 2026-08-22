@@ -367,6 +367,12 @@
       "rank_for_level_already_exists": "Ein Rang für dieses Level existiert schon."
     }
   },
+  "utility": {
+    "voice_join_preventer": { 
+      "pm": "Du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten.",
+      "channel_message": "{user_mention}, du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten."
+    }
+  },
   "embed_builder": {
     "pages_count": "Seite {current_page} von {total_pages}"
   },
