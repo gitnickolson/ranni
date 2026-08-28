@@ -80,11 +80,11 @@ module Utility
     end
 
     def ticket_category
-      channel_from_id(channel_id: preferences_repository.ticket_category)
+      channel_from_id(channel_id: preferences_repository.ticket_category_id)
     end
 
     def ticket_log_channel
-      channel_from_id(channel_id: preferences_repository.ticket_log_channel)
+      channel_from_id(channel_id: preferences_repository.ticket_log_channel_id)
     end
 
     def birthday_celebration_channel

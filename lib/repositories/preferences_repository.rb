@@ -34,8 +34,8 @@ module Repositories
       preference.update(welcome_message_channel_id: nil)
     end
 
-    def ticket_category
-      preference.ticket_category
+    def ticket_category_id
+      preference.ticket_category_id
     end
 
     def add_ticket_category(category_id:)
@@ -46,8 +46,8 @@ module Repositories
       preference.update(ticket_category_id: nil)
     end
 
-    def ticket_log_channel
-      preference.ticket_log_channel
+    def ticket_log_channel_id
+      preference.ticket_log_channel_id
     end
 
     def add_ticket_log_channel(channel_id:)

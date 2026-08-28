@@ -146,6 +146,23 @@
           "text_leveling_successfully_disabled": "Text leveling has been successfully disabled."
         }
       },
+      "ticket_category": {
+        "description": "Optionen regarding the ticket category",
+        "set": {
+          "description": "Set the category for tickets",
+          "category_successfully_set": "Tickets will now appear in {category}.",
+          "not_a_category": "Please choose a category, not a channel.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new category that ticket channels will appear in"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current category for tickets",
+          "channel_successfully_removed": "Tickets will now appear outside of any categories."
+        }
+      },
       "ticket_log_channel": {
         "description": "Options regarding the ticket log channel",
         "set": {

@@ -146,6 +146,23 @@
           "text_leveling_successfully_disabled": "Text-Leveling wurde erfolgreich ausgeschaltet."
         }
       },
+      "ticket_category": {
+        "description": "Optionen zur Ticket-Kategorie",
+        "set": {
+          "description": "Setze die Kategorie für Ticket-Kanäle",
+          "category_successfully_set": "Tickets erscheinen nun in {category}.",
+          "not_a_category": "Bitte wähle eine Kategorie, keinen Kanal.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle eine neue Kategorie in der Ticket-Kanäle erscheinen sollen"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne die aktuelle Kategorie für Tickets",
+          "channel_successfully_removed": "Tickets erscheinen nun außerhalb aller Kategorien."
+        }
+      },
       "ticket_log_channel": {
         "description": "Optionen zum Ticket-Log Kanal",
         "set": {
@@ -386,7 +403,7 @@
     }
   },
   "utility": {
-    "voice_join_preventer": { 
+    "voice_join_preventer": {
       "pm": "Du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten.",
       "channel_message": "{user_mention}, du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten."
     }
