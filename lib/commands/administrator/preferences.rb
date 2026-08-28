@@ -42,8 +42,20 @@ module Commands
           birthday_celebration_channel_field,
           field.new,
           field.new,
-          welcome_message_channel_field
+          welcome_message_channel_field,
+          ticket_category_field,
+          ticket_log_channel_field
         ].compact
+      end
+
+      def ticket_category_field
+        field.new(name: t('commands.administrator.preferences.ticket_category'),
+                  value: server_service.ticket_category&.mention || '//')
+      end
+
+      def ticket_log_channel_field
+        field.new(name: t('commands.administrator.preferences.ticket_log_channel'),
+                  value: server_service.ticket_log_channel&.mention || '//')
       end
 
       def max_level_field
