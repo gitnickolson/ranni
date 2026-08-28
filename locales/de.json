@@ -261,6 +261,7 @@
         "off": "Ausgeschaltet",
         "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
         "welcome_messages_channel": "Willkommensnachrichten Kanal",
+        "ticket_system_status": "Ticket-System",
         "ticket_category": "Ticket-Kategorie",
         "ticket_log_channel": "Ticket-Log-Kanal",
         "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal"

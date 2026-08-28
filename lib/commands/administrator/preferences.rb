@@ -5,6 +5,7 @@ module Commands
     class Preferences < Command
       NAME = :preferences
       DESCRIPTION = 'Retrieve the set preferences for the bot on this server'
+      MAX_PAGE_ITEMS = 20
 
       private
 
@@ -14,7 +15,7 @@ module Commands
       end
 
       def create_embed_builder
-        embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: 20)
+        embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
 
         embed_builder.update_fields(fields:)
         embed_builder.add_title(text: t('commands.administrator.preferences.embed_title',
@@ -42,20 +43,12 @@ module Commands
           birthday_celebration_channel_field,
           field.new,
           field.new,
-          welcome_message_channel_field,
+          ticket_system_status_field,
           ticket_category_field,
-          ticket_log_channel_field
+          ticket_log_channel_field,
+          field.new,
+          welcome_message_channel_field
         ].compact
-      end
-
-      def ticket_category_field
-        field.new(name: t('commands.administrator.preferences.ticket_category'),
-                  value: server_service.ticket_category&.mention || '//')
-      end
-
-      def ticket_log_channel_field
-        field.new(name: t('commands.administrator.preferences.ticket_log_channel'),
-                  value: server_service.ticket_log_channel&.mention || '//')
       end
 
       def max_level_field
@@ -104,6 +97,25 @@ module Commands
       def birthday_role_field
         field.new(name: t('commands.administrator.preferences.birthday_role'),
                   value: server_service.birthday_role&.mention || '//', inlined: true)
+      end
+
+      def ticket_system_status_field
+        field.new(name: t('commands.administrator.preferences.ticket_system_status'),
+                  value: if server_service.tickets_enabled?
+                           t('commands.administrator.preferences.on')
+                         else
+                           t('commands.administrator.preferences.off')
+                         end, inlined: true)
+      end
+
+      def ticket_category_field
+        field.new(name: t('commands.administrator.preferences.ticket_category'),
+                  value: server_service.ticket_category&.mention || '//')
+      end
+
+      def ticket_log_channel_field
+        field.new(name: t('commands.administrator.preferences.ticket_log_channel'),
+                  value: server_service.ticket_log_channel&.mention || '//')
       end
     end
   end

@@ -261,6 +261,7 @@
         "off": "Disabled",
         "level_up_messages_channel": "Level-up messages channel",
         "welcome_messages_channel": "Welcome messages channel",
+        "ticket_system_status": "Ticket system",
         "ticket_category": "Ticket category",
         "ticket_log_channel": "Ticket log channel",
         "birthday_celebration_channel": "Birthday celebration channel"
