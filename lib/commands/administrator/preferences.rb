@@ -20,6 +20,7 @@ module Commands
         embed_builder.update_fields(fields:)
         embed_builder.add_title(text: t('commands.administrator.preferences.embed_title',
                                         { bot_name: bot.name, server_name: server.name }))
+        embed_builder.add_thumbnail(thumbnail_url: server.icon_url)
       end
 
       def fields # rubocop:disable Metrics/MethodLength
@@ -76,12 +77,12 @@ module Commands
 
       def voice_requirement_field
         field.new(name: t('commands.administrator.preferences.voice_requirement'),
-                  value: server_service.voice_chat_level_requirement)
+                  value: server_service.voice_chat_level_requirement, inlined: true)
       end
 
       def level_up_message_channel_field
         field.new(name: t('commands.administrator.preferences.level_up_messages_channel'),
-                  value: server_service.level_up_congratulation_channel&.mention || '//')
+                  value: server_service.level_up_congratulation_channel&.mention || '//', inlined: true)
       end
 
       def welcome_message_channel_field
@@ -91,7 +92,7 @@ module Commands
 
       def birthday_celebration_channel_field
         field.new(name: t('commands.administrator.preferences.birthday_celebration_channel'),
-                  value: server_service.birthday_celebration_channel&.mention || '//')
+                  value: server_service.birthday_celebration_channel&.mention || '//', inlined: true)
       end
 
       def birthday_role_field
@@ -110,12 +111,12 @@ module Commands
 
       def ticket_category_field
         field.new(name: t('commands.administrator.preferences.ticket_category'),
-                  value: server_service.ticket_category&.mention || '//')
+                  value: server_service.ticket_category&.mention || '//', inlined: true)
       end
 
       def ticket_log_channel_field
         field.new(name: t('commands.administrator.preferences.ticket_log_channel'),
-                  value: server_service.ticket_log_channel&.mention || '//')
+                  value: server_service.ticket_log_channel&.mention || '//', inlined: true)
       end
     end
   end

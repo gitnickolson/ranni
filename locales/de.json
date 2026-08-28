@@ -160,7 +160,7 @@
         },
         "remove": {
           "description": "Entferne die aktuelle Kategorie für Tickets",
-          "channel_successfully_removed": "Tickets erscheinen nun außerhalb aller Kategorien."
+          "category_successfully_removed": "Tickets erscheinen nun außerhalb aller Kategorien."
         }
       },
       "ticket_log_channel": {
@@ -177,6 +177,17 @@
         "remove": {
           "description": "Entferne den aktuellen Kanal für Ticket-Logging",
           "channel_successfully_removed": "Es erscheinen nun keine Ticket-Logs mehr."
+        }
+      },
+      "tickets": {
+        "description": "Schalte das erstellen von Tickets ein oder aus",
+        "enable": {
+          "description": "Schalte Ticket-Erstellung ein",
+          "tickets_successfully_enabled": "Ticket-Erstellung wurde erfolgreich eingeschaltet."
+        },
+        "disable": {
+          "description": "Schalte Ticket-Erstellung aus",
+          "tickets_successfully_disabled": "Ticket-Erstellung wurde erfolgreich ausgeschaltet."
         }
       },
       "voice_leveling": {
