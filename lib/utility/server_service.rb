@@ -79,6 +79,14 @@ module Utility
       channel_from_id(channel_id: preferences_repository.welcome_message_channel_id)
     end
 
+    def ticket_category
+      channel_from_id(channel_id: preferences_repository.ticket_category)
+    end
+
+    def ticket_log_channel
+      channel_from_id(channel_id: preferences_repository.ticket_log_channel)
+    end
+
     def birthday_celebration_channel
       channel_from_id(channel_id: preferences_repository.birthday_celebration_channel_id)
     end
