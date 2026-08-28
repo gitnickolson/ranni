@@ -34,6 +34,30 @@ module Repositories
       preference.update(welcome_message_channel_id: nil)
     end
 
+    def ticket_category
+      preference.ticket_category
+    end
+
+    def add_ticket_category(category_id:)
+      preference.update(ticket_category_id: category_id)
+    end
+
+    def remove_ticket_category
+      preference.update(ticket_category_id: nil)
+    end
+
+    def ticket_log_channel
+      preference.ticket_log_channel
+    end
+
+    def add_ticket_log_channel(channel_id:)
+      preference.update(ticket_log_channel_id: channel_id)
+    end
+
+    def remove_ticket_log_channel
+      preference.update(ticket_log_channel_id: nil)
+    end
+
     def level_up_congratulation_channel_id
       preference.level_up_congratulation_channel_id
     end
