@@ -70,6 +70,14 @@ module Repositories
       preference.update(level_up_congratulation_channel_id: nil)
     end
 
+    def tickets_enabled?
+      preference.tickets_enabled
+    end
+
+    def update_ticket_system_status(turned_on:)
+      preference.update(tickets_enabled: turned_on)
+    end
+
     def voice_leveling_enabled?
       preference.voice_leveling_enabled
     end
