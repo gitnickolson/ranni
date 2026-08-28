@@ -368,6 +368,18 @@
         "active_boost": "aktiver Boost",
         "active_boosts": "aktive Boosts"
       },
+      "ticket": {
+        "description": "Erstelle ein Ticket um Hilfe zu erhalten",
+        "tickets_disabled": "Tickets sind für diesen Server deaktiviert.",
+        "ticket_successfully_created": "Dein Ticket wurde erfolgreich erstellt.",
+        "ticket_channel_intro": "## Ticket erstellt von {user} am {date}\nThema: {topic}\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir Unterhalten.*",
+        "embed_heading": "Ticket von {username}",
+        "parameters": {
+          "topic": {
+            "description": "Gib das Thema deines Tickets oder den Grund für die Ticket-Eröffnung an"
+          }
+        }
+      },
       "userinfo": {
         "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
         "general_info": "Generelles",

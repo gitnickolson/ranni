@@ -147,7 +147,7 @@
         }
       },
       "ticket_category": {
-        "description": "Optionen regarding the ticket category",
+        "description": "Options regarding the ticket category",
         "set": {
           "description": "Set the category for tickets",
           "category_successfully_set": "Tickets will now appear in {category}.",
@@ -367,6 +367,18 @@
         "level": "Level",
         "active_boost": "active boost",
         "active_boosts": "active boosts"
+      },
+      "ticket": { 
+        "description": "Create a ticket to receive support", 
+        "tickets_disabled": "Tickets are disabled for this server.",
+        "ticket_successfully_created": "Your ticket was successfully created.",
+        "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
+        "embed_heading": "{username}'s ticket",
+        "parameters": { 
+          "topic": {
+            "description": "Enter the topic of your ticket or the reason for the ticket creation"
+          }
+        }
       },
       "userinfo": {
         "description": "Get information about yourself or another user",
