@@ -146,6 +146,22 @@
           "text_leveling_successfully_disabled": "Text-Leveling wurde erfolgreich ausgeschaltet."
         }
       },
+      "ticket_log_channel": {
+        "description": "Optionen zum Ticket-Log Kanal",
+        "set": {
+          "description": "Setze den Kanal für Ticket-Logging",
+          "channel_successfully_set": "Ticket-Logs erscheinen nun in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Ticket-Logging"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Ticket-Logging",
+          "channel_successfully_removed": "Es erscheinen nun keine Ticket-Logs mehr."
+        }
+      },
       "voice_leveling": {
         "description": "Schalte Voice-Leveling ein oder aus",
         "enable": {
@@ -164,7 +180,7 @@
           "voice_requirement_successfully_set": "Das benötigte Level um Voice Chats beizutreten wurde erfolgreich auf **{level}** gesetzt.",
           "parameters": {
             "level": {
-              "description": "Gib das neue benötigte Level an" 
+              "description": "Gib das neue benötigte Level an"
             }
           }
         }

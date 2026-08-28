@@ -146,6 +146,22 @@
           "text_leveling_successfully_disabled": "Text leveling has been successfully disabled."
         }
       },
+      "ticket_log_channel": {
+        "description": "Options regarding the ticket log channel",
+        "set": {
+          "description": "Set the channel for ticket logging",
+          "channel_successfully_set": "Ticket logs will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for ticket logging"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for ticket logging",
+          "channel_successfully_removed": "Ticket logs will no longer appear."
+        }
+      },
       "voice_leveling": {
         "description": "Enable or disable voice leveling",
         "enable": {
