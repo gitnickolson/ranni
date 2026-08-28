@@ -61,18 +61,27 @@ module Commands
       end
 
       def permission_overwrites
-        everyone_role = server_service.server.everyone_role
+        [Discordrb::Overwrite.new(server_service.server.everyone_role, **everyone_permissions),
+         Discordrb::Overwrite.new(event.user, **user_permissions)]
+      end
 
+      def everyone_permissions
         everyone_permission_denials = Discordrb::Permissions.new
         everyone_permission_denials.can_read_messages = true
         everyone_permission_denials.can_send_messages = true
 
+        everyone_permission_accepts = Discordrb::Permissions.new
+        everyone_permission_accepts.can_read_message_history = true
+
+        { allow: everyone_permission_accepts, deny: everyone_permission_denials }
+      end
+
+      def user_permissions
         user_permission_accepts = Discordrb::Permissions.new
         user_permission_accepts.can_read_messages = true
         user_permission_accepts.can_send_messages = true
 
-        [Discordrb::Overwrite.new(everyone_role, allow: nil, deny: everyone_permission_denials),
-         Discordrb::Overwrite.new(event.user, allow: user_permission_accepts, deny: nil)]
+        { allow: user_permission_accepts, deny: nil }
       end
 
       def parsed_date
