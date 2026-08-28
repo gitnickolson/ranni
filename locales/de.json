@@ -146,6 +146,50 @@
           "text_leveling_successfully_disabled": "Text-Leveling wurde erfolgreich ausgeschaltet."
         }
       },
+      "ticket_category": {
+        "description": "Optionen zur Ticket-Kategorie",
+        "set": {
+          "description": "Setze die Kategorie für Ticket-Kanäle",
+          "category_successfully_set": "Tickets erscheinen nun in {category}.",
+          "not_a_category": "Bitte wähle eine Kategorie, keinen Kanal.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle eine neue Kategorie in der Ticket-Kanäle erscheinen sollen"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne die aktuelle Kategorie für Tickets",
+          "category_successfully_removed": "Tickets erscheinen nun außerhalb aller Kategorien."
+        }
+      },
+      "ticket_log_channel": {
+        "description": "Optionen zum Ticket-Log Kanal",
+        "set": {
+          "description": "Setze den Kanal für Ticket-Logging",
+          "channel_successfully_set": "Ticket-Logs erscheinen nun in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Ticket-Logging"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Ticket-Logging",
+          "channel_successfully_removed": "Es erscheinen nun keine Ticket-Logs mehr."
+        }
+      },
+      "tickets": {
+        "description": "Schalte das erstellen von Tickets ein oder aus",
+        "enable": {
+          "description": "Schalte Ticket-Erstellung ein",
+          "tickets_successfully_enabled": "Ticket-Erstellung wurde erfolgreich eingeschaltet."
+        },
+        "disable": {
+          "description": "Schalte Ticket-Erstellung aus",
+          "tickets_successfully_disabled": "Ticket-Erstellung wurde erfolgreich ausgeschaltet."
+        }
+      },
       "voice_leveling": {
         "description": "Schalte Voice-Leveling ein oder aus",
         "enable": {
@@ -164,7 +208,7 @@
           "voice_requirement_successfully_set": "Das benötigte Level um Voice Chats beizutreten wurde erfolgreich auf **{level}** gesetzt.",
           "parameters": {
             "level": {
-              "description": "Gib das neue benötigte Level an" 
+              "description": "Gib das neue benötigte Level an"
             }
           }
         }
@@ -228,6 +272,9 @@
         "off": "Ausgeschaltet",
         "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
         "welcome_messages_channel": "Willkommensnachrichten Kanal",
+        "ticket_system_status": "Ticket-System",
+        "ticket_category": "Ticket-Kategorie",
+        "ticket_log_channel": "Ticket-Log-Kanal",
         "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal"
       },
       "timeout": {
@@ -321,6 +368,18 @@
         "active_boost": "aktiver Boost",
         "active_boosts": "aktive Boosts"
       },
+      "ticket": {
+        "description": "Erstelle ein Ticket um Hilfe zu erhalten",
+        "tickets_disabled": "Tickets sind für diesen Server deaktiviert.",
+        "ticket_successfully_created": "Dein Ticket wurde erfolgreich erstellt.",
+        "ticket_channel_intro": "## Ticket erstellt von {user} am {date}\nThema: {topic}\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir Unterhalten.*",
+        "embed_heading": "Ticket von {username}",
+        "parameters": {
+          "topic": {
+            "description": "Gib das Thema deines Tickets oder den Grund für die Ticket-Eröffnung an"
+          }
+        }
+      },
       "userinfo": {
         "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
         "general_info": "Generelles",
@@ -368,7 +427,7 @@
     }
   },
   "utility": {
-    "voice_join_preventer": { 
+    "voice_join_preventer": {
       "pm": "Du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten.",
       "channel_message": "{user_mention}, du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten."
     }

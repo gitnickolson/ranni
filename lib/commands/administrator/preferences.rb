@@ -5,6 +5,7 @@ module Commands
     class Preferences < Command
       NAME = :preferences
       DESCRIPTION = 'Retrieve the set preferences for the bot on this server'
+      MAX_PAGE_ITEMS = 20
 
       private
 
@@ -14,11 +15,12 @@ module Commands
       end
 
       def create_embed_builder
-        embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: 20)
+        embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
 
         embed_builder.update_fields(fields:)
         embed_builder.add_title(text: t('commands.administrator.preferences.embed_title',
                                         { bot_name: bot.name, server_name: server.name }))
+        embed_builder.add_thumbnail(thumbnail_url: server.icon_url)
       end
 
       def fields # rubocop:disable Metrics/MethodLength
@@ -41,6 +43,10 @@ module Commands
           birthday_role_field,
           birthday_celebration_channel_field,
           field.new,
+          field.new,
+          ticket_system_status_field,
+          ticket_category_field,
+          ticket_log_channel_field,
           field.new,
           welcome_message_channel_field
         ].compact
@@ -71,12 +77,12 @@ module Commands
 
       def voice_requirement_field
         field.new(name: t('commands.administrator.preferences.voice_requirement'),
-                  value: server_service.voice_chat_level_requirement)
+                  value: server_service.voice_chat_level_requirement, inlined: true)
       end
 
       def level_up_message_channel_field
         field.new(name: t('commands.administrator.preferences.level_up_messages_channel'),
-                  value: server_service.level_up_congratulation_channel&.mention || '//')
+                  value: server_service.level_up_congratulation_channel&.mention || '//', inlined: true)
       end
 
       def welcome_message_channel_field
@@ -86,12 +92,31 @@ module Commands
 
       def birthday_celebration_channel_field
         field.new(name: t('commands.administrator.preferences.birthday_celebration_channel'),
-                  value: server_service.birthday_celebration_channel&.mention || '//')
+                  value: server_service.birthday_celebration_channel&.mention || '//', inlined: true)
       end
 
       def birthday_role_field
         field.new(name: t('commands.administrator.preferences.birthday_role'),
                   value: server_service.birthday_role&.mention || '//', inlined: true)
+      end
+
+      def ticket_system_status_field
+        field.new(name: t('commands.administrator.preferences.ticket_system_status'),
+                  value: if server_service.tickets_enabled?
+                           t('commands.administrator.preferences.on')
+                         else
+                           t('commands.administrator.preferences.off')
+                         end, inlined: true)
+      end
+
+      def ticket_category_field
+        field.new(name: t('commands.administrator.preferences.ticket_category'),
+                  value: server_service.ticket_category&.mention || '//', inlined: true)
+      end
+
+      def ticket_log_channel_field
+        field.new(name: t('commands.administrator.preferences.ticket_log_channel'),
+                  value: server_service.ticket_log_channel&.mention || '//', inlined: true)
       end
     end
   end
