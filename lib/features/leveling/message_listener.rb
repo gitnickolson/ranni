@@ -7,6 +7,7 @@ module Features
         def call(bot:, text_leveling_manager:)
           bot.message do |event|
             next if event.user.bot_account?
+            next if event.server.nil?
 
             text_leveling_manager.handle_message(
               user_id: event.user.id,
