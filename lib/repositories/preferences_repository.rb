@@ -46,6 +46,18 @@ module Repositories
       preference.update(ticket_category_id: nil)
     end
 
+    def suggestion_channel_id
+      preference.suggestion_channel_id
+    end
+
+    def add_suggestion_channel(channel_id:)
+      preference.update(suggestion_channel_id: channel_id)
+    end
+
+    def remove_suggestion_channel
+      preference.update(suggestion_channel_id: nil)
+    end
+
     def ticket_log_channel_id
       preference.ticket_log_channel_id
     end
