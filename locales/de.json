@@ -135,6 +135,22 @@
           }
         }
       },
+      "suggestion_channel": {
+        "description": "Optionen zum Vorschläge Kanal",
+        "set": {
+          "description": "Setze den Kanal für Vorschläge",
+          "channel_successfully_set": "Vorschläge erscheinen nun in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Vorschläge"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Vorschläge",
+          "channel_successfully_removed": "Es erscheinen nun keine Vorschläge mehr."
+        }
+      },
       "text_leveling": {
         "description": "Schalte Text-Leveling ein oder aus",
         "enable": {

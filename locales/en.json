@@ -135,6 +135,22 @@
           }
         }
       },
+      "suggestion_channel": {
+        "description": "Options for the suggestions channel",
+        "set": {
+          "description": "Set the channel for suggestions",
+          "channel_successfully_set": "Suggestions will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for suggestions"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for suggestions",
+          "channel_successfully_removed": "Suggestions will no longer appear."
+        }
+      },
       "text_leveling": {
         "description": "Enable or disable text leveling",
         "enable": {
