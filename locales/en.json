@@ -384,6 +384,18 @@
         "active_boost": "active boost",
         "active_boosts": "active boosts"
       },
+      "suggestion": {
+        "suggestions_disabled": "Suggestions are disabled for this server.",
+        "suggestions_created": "Suggestion successfully created. Check it out in {channel}!",
+        "parameters": {
+          "title": {
+            "description": "Enter a title for your suggestion"
+          },
+          "content": {
+            "description": "Enter the content of your suggestion"
+          }
+        }
+      },
       "ticket": { 
         "description": "Create a ticket to receive support", 
         "tickets_disabled": "Tickets are disabled for this server.",

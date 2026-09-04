@@ -384,6 +384,18 @@
         "active_boost": "aktiver Boost",
         "active_boosts": "aktive Boosts"
       },
+      "suggestion": {
+        "suggestions_disabled": "Vorschläge sind für diesen Server ausgeschaltet.",
+        "suggestions_created": "Vorschlag erfolgreich erstellt. Schau ihn dir in {channel} an!",
+        "parameters": {
+          "title": {
+            "description": "Gib einen Titel für deinen Vorschlag an"
+          },
+          "content": {
+            "description": "Gib den Inhalt deines Vorschlags an"
+          }
+        }
+      },
       "ticket": {
         "description": "Erstelle ein Ticket um Hilfe zu erhalten",
         "tickets_disabled": "Tickets sind für diesen Server deaktiviert.",
