@@ -386,6 +386,7 @@
         "active_boosts": "active boosts"
       },
       "suggestion": {
+        "description": "Send an anonymous suggestion to the suggestion channel",
         "suggestions_disabled": "Suggestions are disabled for this server.",
         "suggestion_created": "Suggestion successfully created. Check it out in {channel}!",
         "parameters": {

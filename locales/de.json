@@ -386,6 +386,7 @@
         "active_boosts": "aktive Boosts"
       },
       "suggestion": {
+        "description": "Sende einen anonymen Vorschlag in den Vorschläge Kanal",
         "suggestions_disabled": "Vorschläge sind für diesen Server ausgeschaltet.",
         "suggestion_created": "Vorschlag erfolgreich erstellt. Schau ihn dir in {channel} an!",
         "parameters": {
