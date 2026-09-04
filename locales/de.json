@@ -288,6 +288,7 @@
         "off": "Ausgeschaltet",
         "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
         "welcome_messages_channel": "Willkommensnachrichten Kanal",
+        "suggestion_channel": "Vorschläge Kanal",
         "ticket_system_status": "Ticket-System",
         "ticket_category": "Ticket-Kategorie",
         "ticket_log_channel": "Ticket-Log-Kanal",
@@ -386,7 +387,7 @@
       },
       "suggestion": {
         "suggestions_disabled": "Vorschläge sind für diesen Server ausgeschaltet.",
-        "suggestions_created": "Vorschlag erfolgreich erstellt. Schau ihn dir in {channel} an!",
+        "suggestion_created": "Vorschlag erfolgreich erstellt. Schau ihn dir in {channel} an!",
         "parameters": {
           "title": {
             "description": "Gib einen Titel für deinen Vorschlag an"

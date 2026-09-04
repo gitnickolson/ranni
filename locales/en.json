@@ -288,6 +288,7 @@
         "off": "Disabled",
         "level_up_messages_channel": "Level-up messages channel",
         "welcome_messages_channel": "Welcome messages channel",
+        "suggestion_channel": "Suggestions channel",
         "ticket_system_status": "Ticket system",
         "ticket_category": "Ticket category",
         "ticket_log_channel": "Ticket log channel",
@@ -386,7 +387,7 @@
       },
       "suggestion": {
         "suggestions_disabled": "Suggestions are disabled for this server.",
-        "suggestions_created": "Suggestion successfully created. Check it out in {channel}!",
+        "suggestion_created": "Suggestion successfully created. Check it out in {channel}!",
         "parameters": {
           "title": {
             "description": "Enter a title for your suggestion"
