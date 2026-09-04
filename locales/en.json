@@ -135,6 +135,22 @@
           }
         }
       },
+      "suggestion_channel": {
+        "description": "Options for the suggestions channel",
+        "set": {
+          "description": "Set the channel for suggestions",
+          "channel_successfully_set": "Suggestions will now appear in {channel}.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new channel for suggestions"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current channel for suggestions",
+          "channel_successfully_removed": "Suggestions will no longer appear."
+        }
+      },
       "text_leveling": {
         "description": "Enable or disable text leveling",
         "enable": {
@@ -272,6 +288,7 @@
         "off": "Disabled",
         "level_up_messages_channel": "Level-up messages channel",
         "welcome_messages_channel": "Welcome messages channel",
+        "suggestion_channel": "Suggestions channel",
         "ticket_system_status": "Ticket system",
         "ticket_category": "Ticket category",
         "ticket_log_channel": "Ticket log channel",
@@ -367,6 +384,18 @@
         "level": "Level",
         "active_boost": "active boost",
         "active_boosts": "active boosts"
+      },
+      "suggestion": {
+        "suggestions_disabled": "Suggestions are disabled for this server.",
+        "suggestion_created": "Suggestion successfully created. Check it out in {channel}!",
+        "parameters": {
+          "title": {
+            "description": "Enter a title for your suggestion"
+          },
+          "content": {
+            "description": "Enter the content of your suggestion"
+          }
+        }
       },
       "ticket": { 
         "description": "Create a ticket to receive support", 

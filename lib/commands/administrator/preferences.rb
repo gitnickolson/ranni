@@ -48,7 +48,8 @@ module Commands
           ticket_category_field,
           ticket_log_channel_field,
           field.new,
-          welcome_message_channel_field
+          welcome_message_channel_field,
+          suggestion_channel_field
         ].compact
       end
 
@@ -88,6 +89,11 @@ module Commands
       def welcome_message_channel_field
         field.new(name: t('commands.administrator.preferences.welcome_messages_channel'),
                   value: server_service.welcome_message_channel&.mention || '//', inlined: true)
+      end
+
+      def suggestion_channel_field
+        field.new(name: t('commands.administrator.preferences.suggestion_channel'),
+                  value: server_service.suggestion_channel&.mention || '//', inlined: true)
       end
 
       def birthday_celebration_channel_field

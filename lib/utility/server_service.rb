@@ -75,6 +75,10 @@ module Utility
       preferences_repository.tickets_enabled?
     end
 
+    def suggestion_channel
+      channel_from_id(channel_id: preferences_repository.suggestion_channel_id)
+    end
+
     def level_up_congratulation_channel
       channel_from_id(channel_id: preferences_repository.level_up_congratulation_channel_id)
     end
