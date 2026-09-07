@@ -12,6 +12,8 @@ module Utility
 
             break channel.delete if channel.users.empty?
           end
+        rescue Discordrb::Errors::UnknownChannel => e
+          Utility::Logger.instance.info(message: "Channel deleted prematurely: #{e}")
         end
       end
     end
