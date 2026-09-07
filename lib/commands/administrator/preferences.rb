@@ -48,6 +48,9 @@ module Commands
           ticket_category_field,
           ticket_log_channel_field,
           field.new,
+          custom_voice_channels_status_field,
+          custom_voice_channels_category_field,
+          field.new,
           welcome_message_channel_field,
           suggestion_channel_field
         ].compact
@@ -123,6 +126,20 @@ module Commands
       def ticket_log_channel_field
         field.new(name: t('commands.administrator.preferences.ticket_log_channel'),
                   value: server_service.ticket_log_channel&.mention || '//', inlined: true)
+      end
+
+      def custom_voice_channels_status_field
+        field.new(name: t('commands.administrator.preferences.custom_voice_channels_status'),
+                  value: if server_service.custom_voice_channels_enabled?
+                           t('commands.administrator.preferences.on')
+                         else
+                           t('commands.administrator.preferences.off')
+                         end, inlined: true)
+      end
+
+      def custom_voice_channels_category_field
+        field.new(name: t('commands.administrator.preferences.custom_voice_channel_category'),
+                  value: server_service.custom_voice_channel_category&.mention || '//', inlined: true)
       end
     end
   end

@@ -8,9 +8,9 @@ module Utility
       def call(channel:)
         Thread.new do
           loop do
-            break channel.delete if channel.users.empty?
-
             sleep ONE_MINUTE
+
+            break channel.delete if channel.users.empty?
           end
         end
       end

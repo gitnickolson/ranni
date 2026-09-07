@@ -320,7 +320,9 @@
         "ticket_system_status": "Ticket-System",
         "ticket_category": "Ticket-Kategorie",
         "ticket_log_channel": "Ticket-Log-Kanal",
-        "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal"
+        "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal",
+        "custom_voice_channels_status": "Individuelle Sprachkanäle",
+        "custom_voice_channel_category": "Kategorie für Individuelle Sprachkanäle"
       },
       "timeout": {
         "description": "Versetze einen Nutzer in den Timeout",
@@ -456,6 +458,11 @@
             "description": "Wähle einen Nutzer"
           }
         }
+      },
+      "vc": {
+        "description": "Erstelle einen konfigurierbaren, individuellen Sprachkanal",
+        "custom_voice_channels_disabled": "Individuelle Sprachkanäle sind auf diesem Server ausgeschaltet.",
+        "channel_successfully_created": "Dein individueller Sprachkanal wurde erfolgreich erstellt ({channel})."
       }
     }
   },

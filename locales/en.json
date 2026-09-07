@@ -59,11 +59,11 @@
         "description": "Enable or disable custom voice channel creation",
         "enable": {
           "description": "Enable custom voice channel creation",
-          "tickets_successfully_enabled": "Custom voice channel creation has been successfully enabled."
+          "custom_voice_channels_successfully_enabled": "Custom voice channel creation has been successfully enabled."
         },
         "disable": {
           "description": "Disable custom voice channel creation",
-          "tickets_successfully_disabled": "Custom voice channel creation has been successfully disabled."
+          "custom_voice_channels_successfully_disabled": "Custom voice channel creation has been successfully disabled."
         }
       },
       "display_color": {
@@ -320,7 +320,9 @@
         "ticket_system_status": "Ticket system",
         "ticket_category": "Ticket category",
         "ticket_log_channel": "Ticket log channel",
-        "birthday_celebration_channel": "Birthday celebration channel"
+        "birthday_celebration_channel": "Birthday celebration channel",
+        "custom_voice_channels_status": "Custom voice channels",
+        "custom_voice_channel_category": "Custom voice channel category"
       },
       "timeout": {
         "description": "Timeout a user",
@@ -456,6 +458,11 @@
             "description": "Choose a user"
           }
         }
+      },
+      "vc": {
+        "description": "Create a configurable custom voice channel",
+        "custom_voice_channels_disabled": "Custom voice channels are disabled for this server.",
+        "channel_successfully_created": "Your custom voice channel was successfully created ({channel})."
       }
     }
   },
