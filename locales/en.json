@@ -38,6 +38,34 @@
           "role_successfully_removed": "Users will no longer receive a special role on their birthday."
         }
       },
+      "custom_voice_channel_category": {
+        "description": "Options regarding the custom voice channel category",
+        "set": {
+          "description": "Set the category for custom voice channels",
+          "category_successfully_set": "Custom voice channels will now appear in {category}.",
+          "not_a_category": "Please choose a category, not a channel.",
+          "parameters": {
+            "channel": {
+              "description": "Choose a new category that custom voice channels will appear in"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove the current category for custom voice channels",
+          "category_successfully_removed": "Custom voice channels will now appear outside of any categories."
+        }
+      },
+      "custom_voice_channels": {
+        "description": "Enable or disable custom voice channel creation",
+        "enable": {
+          "description": "Enable custom voice channel creation",
+          "custom_voice_channels_successfully_enabled": "Custom voice channel creation has been successfully enabled."
+        },
+        "disable": {
+          "description": "Disable custom voice channel creation",
+          "custom_voice_channels_successfully_disabled": "Custom voice channel creation has been successfully disabled."
+        }
+      },
       "display_color": {
         "description": "Change the display color of the bot",
         "reset": {
@@ -292,7 +320,9 @@
         "ticket_system_status": "Ticket system",
         "ticket_category": "Ticket category",
         "ticket_log_channel": "Ticket log channel",
-        "birthday_celebration_channel": "Birthday celebration channel"
+        "birthday_celebration_channel": "Birthday celebration channel",
+        "custom_voice_channels_status": "Custom voice channels",
+        "custom_voice_channel_category": "Custom voice channel category"
       },
       "timeout": {
         "description": "Timeout a user",
@@ -398,13 +428,13 @@
           }
         }
       },
-      "ticket": { 
-        "description": "Create a ticket to receive support", 
+      "ticket": {
+        "description": "Create a ticket to receive support",
         "tickets_disabled": "Tickets are disabled for this server.",
         "ticket_successfully_created": "Your ticket was successfully created.",
         "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
         "embed_heading": "{username}'s ticket",
-        "parameters": { 
+        "parameters": {
           "topic": {
             "description": "Enter the topic of your ticket or the reason for the ticket creation"
           }
@@ -428,6 +458,11 @@
             "description": "Choose a user"
           }
         }
+      },
+      "vc": {
+        "description": "Create a configurable custom voice channel",
+        "custom_voice_channels_disabled": "Custom voice channels are disabled for this server.",
+        "channel_successfully_created": "Your custom voice channel was successfully created ({channel})."
       }
     }
   },

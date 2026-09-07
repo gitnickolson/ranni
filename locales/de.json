@@ -38,6 +38,34 @@
           "role_successfully_removed": "Nutzer erhalten an ihrem Geburtstag keine besondere Rolle mehr"
         }
       },
+      "custom_voice_channel_category": {
+        "description": "Optionen zur Kategorie für individuelle Sprachkanäle",
+        "set": {
+          "description": "Setze die Kategorie für individuelle Sprachkanäle",
+          "category_successfully_set": "Individuelle Sprachkanäle erscheinen nun in {category}.",
+          "not_a_category": "Bitte wähle eine Kategorie, keinen Kanal.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle eine neue Kategorie in der individuelle Sprachkanäle erscheinen sollen"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne die aktuelle Kategorie für individuelle Sprachkanäle",
+          "category_successfully_removed": "Individuelle Sprachkanäle erscheinen nun außerhalb aller Kategorien."
+        }
+      },
+      "custom_voice_channels": {
+        "description": "Schalte das Erstellen von individuellen Sprachkanälen ein oder aus",
+        "enable": {
+          "description": "Schalte das Erstellen von individuellen Sprachkanälen ein",
+          "custom_voice_channels_successfully_enabled": "Erstellung individueller Sprachkanäle wurde erfolgreich eingeschaltet."
+        },
+        "disable": {
+          "description": "Schalte das Erstellen von individuellen Sprachkanälen aus",
+          "custom_voice_channels_successfully_disabled": "Erstellung individueller Sprachkanäle wurde erfolgreich ausgeschaltet."
+        }
+      },
       "display_color": {
         "description": "Passe die Anzeigefarbe des Bots an",
         "reset": {
@@ -196,7 +224,7 @@
         }
       },
       "tickets": {
-        "description": "Schalte das erstellen von Tickets ein oder aus",
+        "description": "Schalte das Erstellen von Tickets ein oder aus",
         "enable": {
           "description": "Schalte Ticket-Erstellung ein",
           "tickets_successfully_enabled": "Ticket-Erstellung wurde erfolgreich eingeschaltet."
@@ -292,7 +320,9 @@
         "ticket_system_status": "Ticket-System",
         "ticket_category": "Ticket-Kategorie",
         "ticket_log_channel": "Ticket-Log-Kanal",
-        "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal"
+        "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal",
+        "custom_voice_channels_status": "Individuelle Sprachkanäle",
+        "custom_voice_channel_category": "Kategorie für Individuelle Sprachkanäle"
       },
       "timeout": {
         "description": "Versetze einen Nutzer in den Timeout",
@@ -428,6 +458,11 @@
             "description": "Wähle einen Nutzer"
           }
         }
+      },
+      "vc": {
+        "description": "Erstelle einen konfigurierbaren, individuellen Sprachkanal",
+        "custom_voice_channels_disabled": "Individuelle Sprachkanäle sind auf diesem Server ausgeschaltet.",
+        "channel_successfully_created": "Dein individueller Sprachkanal wurde erfolgreich erstellt ({channel})."
       }
     }
   },
