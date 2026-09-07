@@ -55,6 +55,17 @@
           "category_successfully_removed": "Custom voice channels will now appear outside of any categories."
         }
       },
+      "custom_voice_channels": {
+        "description": "Enable or disable custom voice channel creation",
+        "enable": {
+          "description": "Enable custom voice channel creation",
+          "tickets_successfully_enabled": "Custom voice channel creation has been successfully enabled."
+        },
+        "disable": {
+          "description": "Disable custom voice channel creation",
+          "tickets_successfully_disabled": "Custom voice channel creation has been successfully disabled."
+        }
+      },
       "display_color": {
         "description": "Change the display color of the bot",
         "reset": {

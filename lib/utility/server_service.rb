@@ -75,6 +75,10 @@ module Utility
       preferences_repository.tickets_enabled?
     end
 
+    def custom_voice_channels_enabled?
+      preferences_repository.custom_voice_channels_enabled?
+    end
+
     def suggestion_channel
       channel_from_id(channel_id: preferences_repository.suggestion_channel_id)
     end

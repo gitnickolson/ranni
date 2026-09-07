@@ -55,6 +55,17 @@
           "category_successfully_removed": "Individuelle Sprachkanäle erscheinen nun außerhalb aller Kategorien."
         }
       },
+      "custom_voice_channels": {
+        "description": "Schalte das Erstellen von individuellen Sprachkanälen ein oder aus",
+        "enable": {
+          "description": "Schalte das Erstellen von individuellen Sprachkanälen ein",
+          "custom_voice_channels_successfully_enabled": "Erstellung individueller Sprachkanäle wurde erfolgreich eingeschaltet."
+        },
+        "disable": {
+          "description": "Schalte das Erstellen von individuellen Sprachkanälen aus",
+          "custom_voice_channels_successfully_disabled": "Erstellung individueller Sprachkanäle wurde erfolgreich ausgeschaltet."
+        }
+      },
       "display_color": {
         "description": "Passe die Anzeigefarbe des Bots an",
         "reset": {
@@ -213,7 +224,7 @@
         }
       },
       "tickets": {
-        "description": "Schalte das erstellen von Tickets ein oder aus",
+        "description": "Schalte das Erstellen von Tickets ein oder aus",
         "enable": {
           "description": "Schalte Ticket-Erstellung ein",
           "tickets_successfully_enabled": "Ticket-Erstellung wurde erfolgreich eingeschaltet."

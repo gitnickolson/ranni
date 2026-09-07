@@ -50,7 +50,7 @@ module Repositories
       preference.custom_voice_channels_enabled
     end
 
-    def update_custom_voice_channels_creation_status(turned_on:)
+    def update_custom_voice_channel_creation_status(turned_on:)
       preference.update(custom_voice_channels_enabled: turned_on)
     end
 
