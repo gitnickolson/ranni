@@ -38,6 +38,23 @@
           "role_successfully_removed": "Nutzer erhalten an ihrem Geburtstag keine besondere Rolle mehr"
         }
       },
+      "custom_voice_channel_category": {
+        "description": "Optionen zur Kategorie für individuelle Sprachkanäle",
+        "set": {
+          "description": "Setze die Kategorie für individuelle Sprachkanäle",
+          "category_successfully_set": "Individuelle Sprachkanäle erscheinen nun in {category}.",
+          "not_a_category": "Bitte wähle eine Kategorie, keinen Kanal.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle eine neue Kategorie in der individuelle Sprachkanäle erscheinen sollen"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne die aktuelle Kategorie für individuelle Sprachkanäle",
+          "category_successfully_removed": "Individuelle Sprachkanäle erscheinen nun außerhalb aller Kategorien."
+        }
+      },
       "display_color": {
         "description": "Passe die Anzeigefarbe des Bots an",
         "reset": {

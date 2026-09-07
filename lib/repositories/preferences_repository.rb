@@ -54,7 +54,7 @@ module Repositories
       preference.update(custom_voice_channel_category_id: category_id)
     end
 
-    def remove_custom_voice_channel
+    def remove_custom_voice_channel_category
       preference.update(custom_voice_channel_category_id: nil)
     end
 
