@@ -82,10 +82,14 @@ module Commands
         when :booster
           event.user.boosting? || administrator?(event.user)
         when :administrator
-          administrator?(event.user)
+          administrator?(event.user) || visible_subcommands?(command)
         else
           true
         end
+      end
+
+      def visible_subcommands?(command)
+        command < ParentCommand && visible_subcommands(command).any?
       end
 
       def administrator?(user)
