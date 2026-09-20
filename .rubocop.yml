@@ -1,7 +1,7 @@
 AllCops:
   NewCops: enable
   SuggestExtensions: false
-  TargetRubyVersion: 4.0.3
+  TargetRubyVersion: 4.0.7
 Metrics/ClassLength:
   Enabled: false
 Metrics/AbcSize:
