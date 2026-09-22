@@ -82,8 +82,8 @@ module Repositories
       preference.tickets_enabled
     end
 
-    def update_ticket_creation_status(turned_on:)
-      preference.update(tickets_enabled: turned_on)
+    def set_ticket_creation(enabled:)
+      preference.update(tickets_enabled: enabled)
     end
 
     def voice_leveling_enabled?

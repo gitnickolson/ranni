@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_ticket_creation_status(turned_on: false)
+          preferences_repository.set_ticket_creation(enabled: false)
           transmitter.response(event:,
                                text:
                                t('commands.administrator.tickets.disable.tickets_successfully_disabled'))
