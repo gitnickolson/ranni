@@ -90,8 +90,8 @@ module Repositories
       preference.voice_leveling_enabled
     end
 
-    def update_voice_leveling_status(turned_on:)
-      preference.update(voice_leveling_enabled: turned_on)
+    def set_voice_leveling(enabled:)
+      preference.update(voice_leveling_enabled: enabled)
     end
 
     def text_leveling_enabled?

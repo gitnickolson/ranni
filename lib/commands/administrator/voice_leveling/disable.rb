@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_voice_leveling_status(turned_on: false)
+          preferences_repository.set_voice_leveling(enabled: false)
           transmitter.response(event:,
                                text:
                                t('commands.administrator.voice_leveling.disable.voice_leveling_successfully_disabled'))
