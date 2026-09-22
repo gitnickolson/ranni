@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.remove_level_up_congratulation_channel
+          preferences_repository.set_level_up_congratulation_channel(channel_id: nil)
           transmitter.response(event:,
                                text: t(
                                  'commands.administrator.level_up_messages_channel.remove.channel_successfully_removed'

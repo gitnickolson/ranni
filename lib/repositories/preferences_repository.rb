@@ -74,12 +74,8 @@ module Repositories
       preference.level_up_congratulation_channel_id
     end
 
-    def add_level_up_congratulation_channel(channel_id:)
+    def set_level_up_congratulation_channel(channel_id:)
       preference.update(level_up_congratulation_channel_id: channel_id)
-    end
-
-    def remove_level_up_congratulation_channel
-      preference.update(level_up_congratulation_channel_id: nil)
     end
 
     def tickets_enabled?
