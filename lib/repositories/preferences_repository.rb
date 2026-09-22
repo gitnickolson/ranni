@@ -130,7 +130,7 @@ module Repositories
       preference.locale
     end
 
-    def update_locale(locale:)
+    def set_locale(locale:)
       preference.update(locale:)
     end
 
