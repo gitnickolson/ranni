@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_custom_voice_channel_creation_status(turned_on: true)
+          preferences_repository.set_custom_voice_channels_creation(enabled: true)
 
           transmitter.response(
             event:,

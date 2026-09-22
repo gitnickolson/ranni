@@ -42,8 +42,8 @@ module Repositories
       preference.custom_voice_channels_enabled
     end
 
-    def update_custom_voice_channel_creation_status(turned_on:)
-      preference.update(custom_voice_channels_enabled: turned_on)
+    def set_custom_voice_channels_creation(enabled:)
+      preference.update(custom_voice_channels_enabled: enabled)
     end
 
     def custom_voice_channel_category_id
