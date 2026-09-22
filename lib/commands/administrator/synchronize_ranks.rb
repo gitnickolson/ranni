@@ -26,8 +26,11 @@ module Commands
         levels_repository = Repositories::LevelsRepository.new(server_service:)
 
         server_service.server.members.each do |member|
+          next if member.bot_account?
+
           level = levels_repository.find_by_user_id(user_id: member.id)
           rank_synchronizer.call(level:)
+
           sleep RATE_LIMIT_AVOIDANCE_TIME
         end
       end
