@@ -58,12 +58,8 @@ module Repositories
       preference.suggestion_channel_id
     end
 
-    def add_suggestion_channel(channel_id:)
+    def set_suggestion_channel(channel_id:)
       preference.update(suggestion_channel_id: channel_id)
-    end
-
-    def remove_suggestion_channel
-      preference.update(suggestion_channel_id: nil)
     end
 
     def ticket_log_channel_id

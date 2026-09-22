@@ -15,7 +15,7 @@ module Commands
           channel_id = event.options['channel']
           channel = server_service.channel_from_id(channel_id:)
 
-          preferences_repository.add_suggestion_channel(channel_id:)
+          preferences_repository.set_suggestion_channel(channel_id:)
           transmitter.response(event:,
                                text: t('commands.administrator.suggestion_channel.set.channel_successfully_set',
                                        { channel: channel.mention }))
