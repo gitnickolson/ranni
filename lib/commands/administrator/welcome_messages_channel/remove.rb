@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.remove_welcome_message_channel
+          preferences_repository.set_welcome_message_channel(channel_id: nil)
           transmitter.response(event:,
                                text: t(
                                  'commands.administrator.welcome_messages_channel.remove.channel_successfully_removed'
