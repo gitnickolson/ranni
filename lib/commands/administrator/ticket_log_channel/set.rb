@@ -15,7 +15,7 @@ module Commands
           channel_id = event.options['channel']
           channel = server_service.channel_from_id(channel_id:)
 
-          preferences_repository.add_ticket_log_channel(channel_id:)
+          preferences_repository.set_ticket_log_channel(channel_id:)
           transmitter.response(event:,
                                text: t('commands.administrator.ticket_log_channel.set.channel_successfully_set',
                                        { channel: channel.mention }))

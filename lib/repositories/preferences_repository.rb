@@ -66,12 +66,8 @@ module Repositories
       preference.ticket_log_channel_id
     end
 
-    def add_ticket_log_channel(channel_id:)
+    def set_ticket_log_channel(channel_id:)
       preference.update(ticket_log_channel_id: channel_id)
-    end
-
-    def remove_ticket_log_channel
-      preference.update(ticket_log_channel_id: nil)
     end
 
     def level_up_congratulation_channel_id
