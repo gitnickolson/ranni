@@ -122,7 +122,7 @@ module Repositories
       preference.timezone
     end
 
-    def update_timezone(timezone:)
+    def set_timezone(timezone:)
       preference.update(timezone:)
     end
 
