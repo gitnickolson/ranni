@@ -111,6 +111,10 @@ module Utility
       roles_repository.role_from_id(role_id: preferences_repository.birthday_role_id)
     end
 
+    def preferences_repository
+      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
+    end
+
     private
 
     attr_reader :bot
@@ -125,10 +129,6 @@ module Utility
         identifier.to_s.downcase == member.username.downcase,
         nickname_check && identifier == member.display_name
       ].any?
-    end
-
-    def preferences_repository
-      @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
     end
 
     def roles_repository
