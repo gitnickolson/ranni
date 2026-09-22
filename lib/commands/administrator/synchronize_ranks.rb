@@ -5,6 +5,7 @@ module Commands
     class SynchronizeRanks < Command
       NAME = :synchronize_ranks
       DESCRIPTION = 'Synchronize all ranks on the server with the member levels'
+      RATE_LIMIT_AVOIDANCE_TIME = 1
 
       private
 
@@ -27,6 +28,7 @@ module Commands
         server_service.server.members.each do |member|
           level = levels_repository.find_by_user_id(user_id: member.id)
           rank_synchronizer.call(level:)
+          sleep RATE_LIMIT_AVOIDANCE_TIME
         end
       end
     end
