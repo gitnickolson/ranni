@@ -106,7 +106,7 @@ module Repositories
       preference.max_level
     end
 
-    def update_max_level(level:)
+    def set_max_level(level:)
       preference.update(max_level: level)
     end
 
