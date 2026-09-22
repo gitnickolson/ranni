@@ -26,111 +26,87 @@ module Repositories
       preference.welcome_message_channel_id
     end
 
-    def add_welcome_message_channel(channel_id:)
+    def set_welcome_message_channel(channel_id:)
       preference.update(welcome_message_channel_id: channel_id)
-    end
-
-    def remove_welcome_message_channel
-      preference.update(welcome_message_channel_id: nil)
     end
 
     def ticket_category_id
       preference.ticket_category_id
     end
 
-    def add_ticket_category(category_id:)
+    def set_ticket_category(category_id:)
       preference.update(ticket_category_id: category_id)
-    end
-
-    def remove_ticket_category
-      preference.update(ticket_category_id: nil)
     end
 
     def custom_voice_channels_enabled?
       preference.custom_voice_channels_enabled
     end
 
-    def update_custom_voice_channel_creation_status(turned_on:)
-      preference.update(custom_voice_channels_enabled: turned_on)
+    def set_custom_voice_channels_creation(enabled:)
+      preference.update(custom_voice_channels_enabled: enabled)
     end
 
     def custom_voice_channel_category_id
       preference.custom_voice_channel_category_id
     end
 
-    def add_custom_voice_channel_category(category_id:)
+    def set_custom_voice_channel_category(category_id:)
       preference.update(custom_voice_channel_category_id: category_id)
-    end
-
-    def remove_custom_voice_channel_category
-      preference.update(custom_voice_channel_category_id: nil)
     end
 
     def suggestion_channel_id
       preference.suggestion_channel_id
     end
 
-    def add_suggestion_channel(channel_id:)
+    def set_suggestion_channel(channel_id:)
       preference.update(suggestion_channel_id: channel_id)
-    end
-
-    def remove_suggestion_channel
-      preference.update(suggestion_channel_id: nil)
     end
 
     def ticket_log_channel_id
       preference.ticket_log_channel_id
     end
 
-    def add_ticket_log_channel(channel_id:)
+    def set_ticket_log_channel(channel_id:)
       preference.update(ticket_log_channel_id: channel_id)
-    end
-
-    def remove_ticket_log_channel
-      preference.update(ticket_log_channel_id: nil)
     end
 
     def level_up_congratulation_channel_id
       preference.level_up_congratulation_channel_id
     end
 
-    def add_level_up_congratulation_channel(channel_id:)
+    def set_level_up_congratulation_channel(channel_id:)
       preference.update(level_up_congratulation_channel_id: channel_id)
-    end
-
-    def remove_level_up_congratulation_channel
-      preference.update(level_up_congratulation_channel_id: nil)
     end
 
     def tickets_enabled?
       preference.tickets_enabled
     end
 
-    def update_ticket_creation_status(turned_on:)
-      preference.update(tickets_enabled: turned_on)
+    def set_ticket_creation(enabled:)
+      preference.update(tickets_enabled: enabled)
     end
 
     def voice_leveling_enabled?
       preference.voice_leveling_enabled
     end
 
-    def update_voice_leveling_status(turned_on:)
-      preference.update(voice_leveling_enabled: turned_on)
+    def set_voice_leveling(enabled:)
+      preference.update(voice_leveling_enabled: enabled)
     end
 
     def text_leveling_enabled?
       preference.text_leveling_enabled
     end
 
-    def update_text_leveling_status(turned_on:)
-      preference.update(text_leveling_enabled: turned_on)
+    def set_text_leveling(enabled:)
+      preference.update(text_leveling_enabled: enabled)
     end
 
     def max_level
       preference.max_level
     end
 
-    def update_max_level(level:)
+    def set_max_level(level:)
       preference.update(max_level: level)
     end
 
@@ -146,7 +122,7 @@ module Repositories
       preference.timezone
     end
 
-    def update_timezone(timezone:)
+    def set_timezone(timezone:)
       preference.update(timezone:)
     end
 
@@ -154,7 +130,7 @@ module Repositories
       preference.locale
     end
 
-    def update_locale(locale:)
+    def set_locale(locale:)
       preference.update(locale:)
     end
 
@@ -162,7 +138,7 @@ module Repositories
       preference.server_color
     end
 
-    def update_server_color(color_code:)
+    def set_server_color(color_code:)
       preference.update(server_color: color_code)
     end
 

@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.remove_suggestion_channel
+          preferences_repository.set_suggestion_channel(channel_id: nil)
           transmitter.response(event:,
                                text: t(
                                  'commands.administrator.suggestion_channel.remove.channel_successfully_removed'

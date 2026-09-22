@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_custom_voice_channel_creation_status(turned_on: false)
+          preferences_repository.set_custom_voice_channels_creation(enabled: false)
           transmitter.response(
             event:,
             text: t('commands.administrator.custom_voice_channels.disable.custom_voice_channels_successfully_disabled')

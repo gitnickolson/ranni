@@ -14,7 +14,7 @@ module Commands
         def command_action
           locale = event.options['language']
 
-          preferences_repository.update_locale(locale:)
+          preferences_repository.set_locale(locale:)
           transmitter.response(event:,
                                text: t('commands.administrator.language.set.language_successfully_set',
                                        { locale: }))

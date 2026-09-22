@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.remove_ticket_log_channel
+          preferences_repository.set_ticket_log_channel(channel_id: nil)
           transmitter.response(event:,
                                text: t('commands.administrator.ticket_log_channel.remove.channel_successfully_removed'))
         end

@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_text_leveling_status(turned_on: false)
+          preferences_repository.set_text_leveling(enabled: false)
           transmitter.response(event:,
                                text:
                                t('commands.administrator.text_leveling.disable.text_leveling_successfully_disabled'))

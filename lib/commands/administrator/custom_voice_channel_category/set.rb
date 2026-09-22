@@ -26,7 +26,7 @@ module Commands
         end
 
         def set_category(category_id, channel)
-          preferences_repository.add_custom_voice_channel_category(category_id:)
+          preferences_repository.set_custom_voice_channel_category(category_id:)
           transmitter.response(
             event:,
             text: t('commands.administrator.custom_voice_channel_category.set.category_successfully_set',

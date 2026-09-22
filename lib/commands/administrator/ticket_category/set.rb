@@ -20,7 +20,7 @@ module Commands
                                               text: t('commands.administrator.ticket_category.set.not_a_category'))
           end
 
-          preferences_repository.add_ticket_category(category_id:)
+          preferences_repository.set_ticket_category(category_id:)
           transmitter.response(event:,
                                text: t('commands.administrator.ticket_category.set.category_successfully_set',
                                        { category: channel.mention }))

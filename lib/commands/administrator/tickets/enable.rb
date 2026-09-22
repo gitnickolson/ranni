@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_ticket_creation_status(turned_on: true)
+          preferences_repository.set_ticket_creation(enabled: true)
 
           transmitter.response(event:,
                                text:

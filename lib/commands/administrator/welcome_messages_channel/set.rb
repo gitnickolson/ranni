@@ -15,7 +15,7 @@ module Commands
           channel_id = event.options['channel'].to_i
           channel = server_service.channel_from_id(channel_id:)
 
-          preferences_repository.add_welcome_message_channel(channel_id:)
+          preferences_repository.set_welcome_message_channel(channel_id:)
           transmitter.response(event:,
                                text: t(
                                  'commands.administrator.welcome_messages_channel.set.channel_successfully_set',

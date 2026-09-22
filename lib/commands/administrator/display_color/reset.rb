@@ -11,7 +11,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_server_color(color_code: DEFAULT_COLOR_CODE)
+          preferences_repository.set_server_color(color_code: DEFAULT_COLOR_CODE)
           transmitter.response(event:,
                                text: t(
                                  'commands.administrator.display_color.reset.color_successfully_reset',

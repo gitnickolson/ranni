@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.remove_custom_voice_channel_category
+          preferences_repository.set_custom_voice_channel_category(category_id: nil)
           transmitter.response(
             event:,
             text: t('commands.administrator.custom_voice_channel_category.remove.category_successfully_removed')
