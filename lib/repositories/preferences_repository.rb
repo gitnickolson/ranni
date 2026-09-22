@@ -98,8 +98,8 @@ module Repositories
       preference.text_leveling_enabled
     end
 
-    def update_text_leveling_status(turned_on:)
-      preference.update(text_leveling_enabled: turned_on)
+    def set_text_leveling(enabled:)
+      preference.update(text_leveling_enabled: enabled)
     end
 
     def max_level

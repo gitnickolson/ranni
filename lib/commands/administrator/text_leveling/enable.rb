@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.update_text_leveling_status(turned_on: true)
+          preferences_repository.set_text_leveling(enabled: true)
 
           transmitter.response(event:,
                                text:
