@@ -17,7 +17,7 @@ module Commands
           result = validate_color_code(color_code)
           return transmitter.error_response(event:, text: result.value) if result.failure?
 
-          preferences_repository.update_server_color(color_code:)
+          preferences_repository.set_server_color(color_code:)
           transmitter.response(event:,
                                text: t('commands.administrator.display_color.set.color_successfully_set',
                                        { color_code: }))

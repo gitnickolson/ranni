@@ -138,7 +138,7 @@ module Repositories
       preference.server_color
     end
 
-    def update_server_color(color_code:)
+    def set_server_color(color_code:)
       preference.update(server_color: color_code)
     end
 
