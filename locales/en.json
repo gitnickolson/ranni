@@ -324,6 +324,12 @@
         "custom_voice_channels_status": "Custom voice channels",
         "custom_voice_channel_category": "Custom voice channel category"
       },
+      "synchronize_ranks": {
+        "description": "Synchronize the ranks of all users on the server with their current level",
+        "synchronizing": "Synchronizing ranks...",
+        "successfully_synchronized": "Successfully synchronized ranks!",
+        "error": "An error occured while synchronizing ranks."
+      },
       "timeout": {
         "description": "Timeout a user",
         "admin_timeout": "This user is an administrator.",

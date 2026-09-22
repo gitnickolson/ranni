@@ -324,6 +324,12 @@
         "custom_voice_channels_status": "Individuelle Sprachkanäle",
         "custom_voice_channel_category": "Kategorie für Individuelle Sprachkanäle"
       },
+      "synchronize_ranks": {
+        "description": "Synchronisiere die Ränge aller Nutzer auf dem Server mit ihrem Level",
+        "synchronizing": "Ränge werden synchronisiert...",
+        "successfully_synchronized": "Ränge wurden erfolgreich synchronisiert!",
+        "error": "Ein Fehler ist beim Synchronisieren der Ränge aufgetreten."
+      },
       "timeout": {
         "description": "Versetze einen Nutzer in den Timeout",
         "admin_timeout": "Dieser Nutzer ist ein Administrator.",
