@@ -34,12 +34,8 @@ module Repositories
       preference.ticket_category_id
     end
 
-    def add_ticket_category(category_id:)
+    def set_ticket_category(category_id:)
       preference.update(ticket_category_id: category_id)
-    end
-
-    def remove_ticket_category
-      preference.update(ticket_category_id: nil)
     end
 
     def custom_voice_channels_enabled?

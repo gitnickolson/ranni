@@ -10,7 +10,7 @@ module Commands
         private
 
         def command_action
-          preferences_repository.remove_ticket_category
+          preferences_repository.set_ticket_category(category_id: nil)
           transmitter.response(event:,
                                text: t('commands.administrator.ticket_category.remove.category_successfully_removed'))
         end
