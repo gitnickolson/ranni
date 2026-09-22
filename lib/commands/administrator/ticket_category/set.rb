@@ -27,7 +27,7 @@ module Commands
         end
 
         def preferences_repository
-          @preferences_repository ||= Repositories::PreferencesRepository.new(server_id: server.id)
+          server_service.preferences_repository
         end
       end
     end
