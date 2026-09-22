@@ -50,12 +50,8 @@ module Repositories
       preference.custom_voice_channel_category_id
     end
 
-    def add_custom_voice_channel_category(category_id:)
+    def set_custom_voice_channel_category(category_id:)
       preference.update(custom_voice_channel_category_id: category_id)
-    end
-
-    def remove_custom_voice_channel_category
-      preference.update(custom_voice_channel_category_id: nil)
     end
 
     def suggestion_channel_id
