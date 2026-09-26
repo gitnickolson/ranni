@@ -4,10 +4,6 @@ module Features
   module Leveling
     class VoiceLevelingManager
       FIFTEEN_MINUTES = 900
-      DEFAULT_MULTIPLIER = 1
-      LEVEL_121_MULTIPLIER = 1.5
-      LEVEL_151_MULTIPLIER = 2
-      LEVEL_201_MULTIPLIER = 2.5
 
       def initialize(bot:)
         @bot = bot
@@ -80,15 +76,7 @@ module Features
       end
 
       def calculate_experience_points(level)
-        random_xp_amount * multiplier(level)
-      end
-
-      def multiplier(level)
-        return DEFAULT_MULTIPLIER if level.numeric < 125
-        return LEVEL_121_MULTIPLIER if level.numeric < 150
-        return LEVEL_151_MULTIPLIER if level.numeric < 200
-
-        LEVEL_201_MULTIPLIER
+        random_xp_amount * level.multiplier
       end
 
       def random_xp_amount

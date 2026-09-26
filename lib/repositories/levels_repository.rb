@@ -19,7 +19,7 @@ module Repositories
 
       return level unless level.nil?
 
-      Models::Level.create(user_id:, server_id:)
+      Models::Level.create(user_id: user_id.to_s, server_id:)
     end
 
     def update_numeric(user_id:, numeric:)
