@@ -388,12 +388,12 @@
         "programming_language": "Programming language"
       },
       "help": {
-        "description": "Retrive a list of commands",
+        "description": "Retrieve a list of commands",
         "message_sent": "Message sent via DM.",
         "heading": "Commands on **{server_name}**"
       },
       "leaderboard": {
-        "description": "Retreve the leveling leaderboard for this server",
+        "description": "Retrieve the leveling leaderboard for this server",
         "heading": "{server_name} leaderboard",
         "personal_rank": "Personal rank: {personal_rank}",
         "level": "Level",
