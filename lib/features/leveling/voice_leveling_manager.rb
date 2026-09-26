@@ -56,7 +56,7 @@ module Features
         levels_repository = Repositories::LevelsRepository.new(server_service:)
         previous_level = levels_repository.find_by_user_id(user_id:)
         updated_level = levels_repository.update_xp(user_id:,
-                                                    experience_points: random_xp_amount)
+                                                    experience_points: calculate_experience_points(previous_level))
 
         return unless updated_level.numeric > previous_level.numeric
 
@@ -73,6 +73,10 @@ module Features
           voice_states[server_id]&.delete(user_id)
           voice_states.delete(server_id) if voice_states[server_id] && voice_states[server_id].empty?
         end
+      end
+
+      def calculate_experience_points(level)
+        random_xp_amount * level.multiplier
       end
 
       def random_xp_amount

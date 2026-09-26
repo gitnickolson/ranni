@@ -12,24 +12,25 @@ module Features
       end
 
       def handle_message(user_id:, message_length:, server_id:)
-        @server_service = Utility::ServerService.new(bot:, server_id:)
+        server_service = Utility::ServerService.new(bot:, server_id:)
 
         return unless server_service.text_leveling_enabled?
-        return if user_on_cooldown?(user_id)
+        return if user_on_cooldown?(user_id, server_service)
 
-        update_user_level(user_id, message_length)
-        start_cooldown_for_user(user_id)
+        update_user_level(user_id, message_length, server_service)
+        start_cooldown_for_user(user_id, server_service)
       end
 
       private
 
-      attr_reader :bot, :server_service, :cooldown_list, :cooldown_mutex
+      attr_reader :bot, :cooldown_list, :cooldown_mutex
 
-      def update_user_level(user_id, message_length)
+      def update_user_level(user_id, message_length, server_service)
         levels_repository = Repositories::LevelsRepository.new(server_service:)
         previous_level = levels_repository.find_by_user_id(user_id:)
         updated_level = levels_repository.update_xp(user_id:,
-                                                    experience_points: random_xp_amount(message_length))
+                                                    experience_points: calculate_experience_points(previous_level,
+                                                                                                   message_length))
 
         return unless updated_level.numeric > previous_level.numeric
 
@@ -37,11 +38,11 @@ module Features
         level_up_manager.call(updated_level:)
       end
 
-      def user_on_cooldown?(user_id)
+      def user_on_cooldown?(user_id, server_service)
         cooldown_mutex.synchronize { cooldown_list.include?("#{server_service.server_id}:#{user_id}") }
       end
 
-      def start_cooldown_for_user(user_id)
+      def start_cooldown_for_user(user_id, server_service)
         server_id = server_service.server_id
 
         cooldown_mutex.synchronize do
@@ -54,6 +55,10 @@ module Features
             cooldown_list.delete("#{server_id}:#{user_id}")
           end
         end
+      end
+
+      def calculate_experience_points(level, message_length)
+        random_xp_amount(message_length) * level.multiplier
       end
 
       def random_xp_amount(message_length)
