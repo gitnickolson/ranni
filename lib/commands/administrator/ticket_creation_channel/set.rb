@@ -8,6 +8,7 @@ module Commands
         DESCRIPTION = 'Set a channel for ticket creation'
         PARAMETERS = [{ type: :channel, name: :channel, required: true,
                         description: 'Choose the channel for ticket creation' }].freeze
+        INFINITE_BUTTON_TTL = 0
 
         private
 
@@ -33,8 +34,12 @@ module Commands
         end
 
         def create_ticket_creation_button
-          Utility::Messages::Buttons::Button.new(custom_id: "ticket_creation_button_#{Time.now.to_i}", label:
-            t('commands.administrator.ticket_creation_channel.set.button_label'), style: 1) do |event|
+          Utility::Messages::Buttons::Button.new(
+            custom_id: "ticket_creation_button_#{Time.now.to_i}",
+            label: t('commands.administrator.ticket_creation_channel.set.button_label'),
+            style: 1,
+            ttl: Utility::Messages::Buttons::Button::INFINITE_TTL
+          ) do |event|
             ticket_creator = Utility::Tickets::TicketCreator.new(server_service:, event:)
             ticket_creator.call
           end

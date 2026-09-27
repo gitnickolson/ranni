@@ -91,7 +91,7 @@ module Utility
 
               next if button.handler.nil?
 
-              Buttons::ButtonRegistry.instance.register(custom_id: button.custom_id, &button.handler)
+              Buttons::ButtonRegistry.instance.register(custom_id: button.custom_id, ttl: button.ttl, &button.handler)
             end
           end
         end
@@ -101,8 +101,7 @@ module Utility
         end
 
         def create_previous_page_button(embed_builder)
-          Buttons::Button.new(custom_id: "#{embed_builder.pagination_key}-previous", label: '⬅️',
-                              style: 2) do |event|
+          Buttons::Button.new(custom_id: "#{embed_builder.pagination_key}-previous", label: '⬅️', style: 2) do |event|
             page = embed_builder.current_page == 1 ? embed_builder.total_pages : embed_builder.current_page - 1
             embed_builder.update_page(page:)
             MessageTransmitter.update_embed_message(event:, embed_builder:)
@@ -110,8 +109,7 @@ module Utility
         end
 
         def create_next_page_button(embed_builder)
-          Buttons::Button.new(custom_id: "#{embed_builder.pagination_key}-next", label: '➡️',
-                              style: 2) do |event|
+          Buttons::Button.new(custom_id: "#{embed_builder.pagination_key}-next", label: '➡️', style: 2) do |event|
             page = embed_builder.current_page == embed_builder.total_pages ? 1 : embed_builder.current_page + 1
             embed_builder.update_page(page:)
             MessageTransmitter.update_embed_message(event:, embed_builder:)

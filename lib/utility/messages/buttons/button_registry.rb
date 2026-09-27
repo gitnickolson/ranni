@@ -7,7 +7,6 @@ module Utility
     module Buttons
       class ButtonRegistry
         REAPING_INTERVAL = 60
-        DEFAULT_TTL = 600
 
         include Singleton
 
@@ -27,10 +26,10 @@ module Utility
           start_reaper
         end
 
-        def register(custom_id:, ttl: DEFAULT_TTL, &handler)
+        def register(custom_id:, ttl:, &handler)
           @mutex.synchronize do
             @button_handlers[custom_id] = handler
-            @button_expiries[custom_id] = Time.now + ttl
+            @button_expiries[custom_id] = Time.now + ttl unless ttl == Utility::Messages::Buttons::Button::INFINITE_TTL
           end
         end
 
