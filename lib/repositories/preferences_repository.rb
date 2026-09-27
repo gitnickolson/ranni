@@ -70,6 +70,14 @@ module Repositories
       preference.update(ticket_creation_channel_id: channel_id)
     end
 
+    def ticket_creation_message_id
+      preference.ticket_creation_message_id
+    end
+
+    def set_ticket_creation_message(message_id:)
+      preference.update(ticket_creation_channel_id: message_id)
+    end
+
     def ticket_log_channel_id
       preference.ticket_log_channel_id
     end
