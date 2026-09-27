@@ -21,6 +21,7 @@ class Bot
       @running = true
     end
 
+    Utility::Messages::Buttons::ButtonRegistry.instance.setup(bot:)
     bot.run
   end
 

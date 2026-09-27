@@ -15,7 +15,7 @@ module Commands
       end
 
       def create_embed_builder
-        embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
+        embed_builder = builder.new(server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
 
         embed_builder.update_fields(fields:)
         embed_builder.add_title(text: t('commands.administrator.preferences.embed_title',

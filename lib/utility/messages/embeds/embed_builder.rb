@@ -8,13 +8,12 @@ module Utility
 
         include Translations::Translatable
 
-        def initialize(bot:, server_service:, pagination_key:, max_page_items: 20)
+        def initialize(server_service:, pagination_key:, max_page_items: 20)
           @embed = Discordrb::Webhooks::Embed.new
           @fields = []
           @page = 1
           @max_page_items = max_page_items
           @pagination_key = pagination_key
-          @bot = bot
           @server_service = server_service
         end
 
@@ -31,10 +30,6 @@ module Utility
 
         def update_fields(fields:)
           @fields = fields
-
-          return self unless pagination?
-
-          EmbedUpdateListener.new(embed_builder: self, pagination_key:, bot:).call
 
           self
         end
@@ -118,7 +113,7 @@ module Utility
 
         attr_accessor :title, :description, :thumbnail, :image, :color, :custom_footer_text, :footer_appendage_text,
                       :page, :fields
-        attr_reader :embed, :max_page_items, :icon_url, :bot, :server_service
+        attr_reader :embed, :max_page_items, :icon_url, :server_service
 
         def embed_setup
           embed.fields = []

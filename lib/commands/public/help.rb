@@ -15,7 +15,7 @@ module Commands
       end
 
       def create_embed_builder
-        embed_builder = builder.new(bot:, server_service:, pagination_key:)
+        embed_builder = builder.new(server_service:, pagination_key:)
 
         embed_builder.update_fields(fields:)
         embed_builder.add_title(text: t('commands.public.help.heading', { server_name: server.name }).to_s)

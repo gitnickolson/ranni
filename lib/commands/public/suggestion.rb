@@ -28,7 +28,7 @@ module Commands
       end
 
       def create_embed_builder
-        embed_builder = builder.new(bot:, server_service:, pagination_key:)
+        embed_builder = builder.new(server_service:, pagination_key:)
 
         embed_builder.add_title(text: event.options['title'])
         embed_builder.add_description(text: event.options['content'])
