@@ -335,6 +335,7 @@
         "suggestion_channel": "Suggestions channel",
         "ticket_system_status": "Ticket system",
         "ticket_category": "Ticket category",
+        "ticket_creation_channel": "Ticket creation channel",
         "ticket_log_channel": "Ticket log channel",
         "birthday_celebration_channel": "Birthday celebration channel",
         "custom_voice_channels_status": "Custom voice channels",

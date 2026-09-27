@@ -46,6 +46,7 @@ module Commands
           field.new,
           ticket_system_status_field,
           ticket_category_field,
+          ticket_creation_channel_field,
           ticket_log_channel_field,
           field.new,
           custom_voice_channels_status_field,
@@ -121,6 +122,11 @@ module Commands
       def ticket_category_field
         field.new(name: t('commands.administrator.preferences.ticket_category'),
                   value: server_service.ticket_category&.mention || '//', inlined: true)
+      end
+
+      def ticket_creation_channel_field
+        field.new(name: t('commands.administrator.preferences.ticket_creation_channel'),
+                  value: server_service.ticket_creation_channel&.mention || '//', inlined: true)
       end
 
       def ticket_log_channel_field
