@@ -207,6 +207,22 @@
           "category_successfully_removed": "Tickets erscheinen nun außerhalb aller Kategorien."
         }
       },
+      "ticket_creation_channel": {
+        "description": "Optionen zum Kanal für Ticket-Erstellungen",
+        "set": {
+          "description": "Setze den Kanal für Ticket-Erstellungen",
+          "channel_successfully_set": "Ticket-Erstellungen sind nun in {channel} möglich.",
+          "parameters": {
+            "channel": {
+              "description": "Wähle einen neuen Kanal für Ticket-Erstellungen"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne den aktuellen Kanal für Ticket-Erstellungen",
+          "channel_successfully_removed": "Ticket-Erstellungen sind nun nicht mehr in {channel} möglich."
+        }
+      },
       "ticket_log_channel": {
         "description": "Optionen zum Ticket-Log Kanal",
         "set": {
