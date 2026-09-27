@@ -212,6 +212,8 @@
         "set": {
           "description": "Set the channel for ticket creations",
           "channel_successfully_set": "Ticket creations will now be possible in {channel}.",
+          "intro_text": "# Ticket creation\nYou can use the button below to create a ticket. This will give you access to a channel that enables private conversations between you and the administrators of this server. Create a ticket if you would like to report someone, an issue of some server-related kind or if you need help with something specific.\n\n-# You can also use the `/ticket` command.\n",
+          "button_label": "Create a ticket",
           "parameters": {
             "channel": {
               "description": "Choose a new channel for ticket creations"
@@ -453,10 +455,6 @@
       },
       "ticket": {
         "description": "Create a ticket to receive support",
-        "tickets_disabled": "Tickets are disabled for this server.",
-        "ticket_successfully_created": "Your ticket was successfully created.",
-        "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
-        "embed_heading": "{username}'s ticket",
         "parameters": {
           "topic": {
             "description": "Enter the topic of your ticket or the reason for the ticket creation"
@@ -515,6 +513,16 @@
     }
   },
   "utility": {
+    "tickets": {
+      "ticket_creator": {
+        "tickets_disabled": "Tickets are disabled for this server.",
+        "ticket_successfully_created": "Your ticket was successfully created.",
+        "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
+        "ticket_channel_intro_without_topic": "## Ticket created by {user} on {date}\nPlease elaborate on your issue inside of this channel before we take action so that we can handle the problem properly!\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
+        "embed_heading": "{username}'s ticket",
+        "no_topic_specified": "No topic specified (Created via button press)."
+      }
+    },
     "voice_join_preventer": {
       "pm": "You need to reach **Level {voice_requirement}** by writing messages to join voice channels.",
       "channel_message": "{user_mention}, you need to reach **Level {voice_requirement}** to join voice channels."

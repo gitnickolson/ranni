@@ -9,9 +9,10 @@ module Utility
         def send_message(channel:, text:, buttons: [])
           return channel.send_message(text) if buttons.empty?
 
-          channel.send_message(text) do |_, view|
-            build_action_row(view, buttons)
-          end
+          view = Discordrb::Webhooks::View.new
+          build_action_row(view, buttons)
+
+          channel.send_message(text, false, nil, nil, nil, nil, view)
         end
 
         def send_embed_message(channel:, embed_builder:, attachment: nil)
@@ -71,7 +72,8 @@ module Utility
           embed = embed_builder.call
 
           if embed_builder.pagination?
-            return event.update_message(embeds: [embed], attachments: [attachment].compact, ephemeral:) do |_, view|
+            return event.update_message(embeds: [embed], attachments: [attachment].compact,
+                                        ephemeral:) do |_, view|
               build_action_row(view, pagination_buttons(embed_builder))
             end
           end

@@ -13,6 +13,7 @@ module Commands
           previous_channel = server_service.ticket_creation_channel
 
           preferences_repository.set_ticket_creation_channel(channel_id: nil)
+          preferences_repository.set_ticket_creation_message(message_id: nil)
           transmitter.response(event:, text:
             t('commands.administrator.ticket_creation_channel.remove.channel_successfully_removed',
               { channel: previous_channel.mention }))
