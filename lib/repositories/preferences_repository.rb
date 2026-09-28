@@ -11,7 +11,7 @@ module Repositories
     end
 
     def set_birthday_role(role_id:)
-      preference.update(birthday_role_id: role_id)
+      preference.update(birthday_role_id: role_id.to_s)
     end
 
     def birthday_celebration_channel_id
@@ -19,7 +19,7 @@ module Repositories
     end
 
     def set_birthday_celebration_channel_id(channel_id:)
-      preference.update(birthday_celebration_channel_id: channel_id)
+      preference.update(birthday_celebration_channel_id: channel_id.to_s)
     end
 
     def welcome_message_channel_id
@@ -27,7 +27,7 @@ module Repositories
     end
 
     def set_welcome_message_channel(channel_id:)
-      preference.update(welcome_message_channel_id: channel_id)
+      preference.update(welcome_message_channel_id: channel_id.to_s)
     end
 
     def ticket_category_id
@@ -35,7 +35,7 @@ module Repositories
     end
 
     def set_ticket_category(category_id:)
-      preference.update(ticket_category_id: category_id)
+      preference.update(ticket_category_id: category_id.to_s)
     end
 
     def custom_voice_channels_enabled?
@@ -51,7 +51,7 @@ module Repositories
     end
 
     def set_custom_voice_channel_category(category_id:)
-      preference.update(custom_voice_channel_category_id: category_id)
+      preference.update(custom_voice_channel_category_id: category_id.to_s)
     end
 
     def suggestion_channel_id
@@ -59,7 +59,23 @@ module Repositories
     end
 
     def set_suggestion_channel(channel_id:)
-      preference.update(suggestion_channel_id: channel_id)
+      preference.update(suggestion_channel_id: channel_id.to_s)
+    end
+
+    def ticket_creation_channel_id
+      preference.ticket_creation_channel_id
+    end
+
+    def set_ticket_creation_channel(channel_id:)
+      preference.update(ticket_creation_channel_id: channel_id.to_s)
+    end
+
+    def ticket_creation_message_id
+      preference.ticket_creation_message_id
+    end
+
+    def set_ticket_creation_message(message_id:)
+      preference.update(ticket_creation_message_id: message_id.to_s)
     end
 
     def ticket_log_channel_id
@@ -67,7 +83,7 @@ module Repositories
     end
 
     def set_ticket_log_channel(channel_id:)
-      preference.update(ticket_log_channel_id: channel_id)
+      preference.update(ticket_log_channel_id: channel_id.to_s)
     end
 
     def level_up_congratulation_channel_id
@@ -75,7 +91,7 @@ module Repositories
     end
 
     def set_level_up_congratulation_channel(channel_id:)
-      preference.update(level_up_congratulation_channel_id: channel_id)
+      preference.update(level_up_congratulation_channel_id: channel_id.to_s)
     end
 
     def tickets_enabled?

@@ -19,7 +19,7 @@ module Commands
 
       def create_embed_builder(member)
         fields = fields(member)
-        embed_builder = builder.new(bot:, pagination_key:, server_service:,
+        embed_builder = builder.new(pagination_key:, server_service:,
                                     max_page_items: calculate_max_page_items(fields))
 
         embed_builder.update_fields(fields:)

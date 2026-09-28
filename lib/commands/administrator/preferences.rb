@@ -15,7 +15,7 @@ module Commands
       end
 
       def create_embed_builder
-        embed_builder = builder.new(bot:, server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
+        embed_builder = builder.new(server_service:, pagination_key:, max_page_items: MAX_PAGE_ITEMS)
 
         embed_builder.update_fields(fields:)
         embed_builder.add_title(text: t('commands.administrator.preferences.embed_title',
@@ -31,29 +31,31 @@ module Commands
                     value: server_service.timezone, inlined: true),
           field.new(name: t('commands.administrator.preferences.display_color'),
                     value: "`#{server_service.server_color}`", inlined: true),
-          field.new,
-          field.new,
+          separator_field,
           text_leveling_status_field,
           voice_leveling_status_field,
           max_level_field,
           voice_requirement_field,
           level_up_message_channel_field,
-          field.new,
-          field.new,
+          separator_field,
           birthday_role_field,
           birthday_celebration_channel_field,
-          field.new,
-          field.new,
+          separator_field,
           ticket_system_status_field,
           ticket_category_field,
+          ticket_creation_channel_field,
           ticket_log_channel_field,
-          field.new,
+          separator_field,
           custom_voice_channels_status_field,
           custom_voice_channels_category_field,
-          field.new,
+          separator_field,
           welcome_message_channel_field,
           suggestion_channel_field
         ].compact
+      end
+
+      def separator_field
+        field.new(value: '----------------------------------------')
       end
 
       def max_level_field
@@ -121,6 +123,11 @@ module Commands
       def ticket_category_field
         field.new(name: t('commands.administrator.preferences.ticket_category'),
                   value: server_service.ticket_category&.mention || '//', inlined: true)
+      end
+
+      def ticket_creation_channel_field
+        field.new(name: t('commands.administrator.preferences.ticket_creation_channel'),
+                  value: server_service.ticket_creation_channel&.mention || '//', inlined: true)
       end
 
       def ticket_log_channel_field

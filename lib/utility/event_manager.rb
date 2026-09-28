@@ -6,15 +6,13 @@ module Utility
       @bot = bot
     end
 
-    def register_events
+    def register_global_events
       Events::Welcome.listen(bot:)
+    end
 
-      bot.servers.each_key do |server_id|
-        server_service = Utility::ServerService.new(bot:, server_id:)
-
-        birthday_celebration = Events::BirthdayCelebration.new(server_service:)
-        birthday_celebration.call
-      end
+    def register_server_specific_events(server_service:)
+      birthday_celebration = Events::BirthdayCelebration.new(server_service:)
+      birthday_celebration.call
     end
 
     private

@@ -44,7 +44,7 @@ module Events
     end
 
     def create_embed_builder(event)
-      embed_builder = Utility::Messages::Embeds::EmbedBuilder.new(bot:, server_service:,
+      embed_builder = Utility::Messages::Embeds::EmbedBuilder.new(server_service:,
                                                                   pagination_key: pagination_key(event))
       embed_builder.add_title(text: t('events.welcome.embed_title', { server_name: server_service.server.name }))
       embed_builder.add_description(text: t('events.welcome.embed_description',

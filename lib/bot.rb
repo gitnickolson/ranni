@@ -15,7 +15,8 @@ class Bot
 
       unregister_flag_set?(args) ? unregister_commands(args) : initialize_commands
       initialize_leveling
-      register_events
+      initialize_servers
+      initialize_button_registry
       initialize_misc
 
       @running = true
@@ -39,15 +40,29 @@ class Bot
     leveling_initializer.call
   end
 
+  def initialize_servers
+    event_manager = Utility::EventManager.new(bot:)
+
+    bot.servers.each_key do |server_id|
+      server_service = Utility::ServerService.new(bot:, server_id:)
+
+      event_manager.register_server_specific_events(server_service:)
+
+      ticket_button_refresher = Utility::Tickets::TicketButtonRefresher.new(server_service:)
+      ticket_button_refresher.call
+    end
+
+    event_manager.register_global_events
+  end
+
+  def initialize_button_registry
+    Utility::Messages::Buttons::ButtonRegistry.instance.setup(bot:)
+  end
+
   def initialize_misc
     Status::StatusUpdater.call(bot:)
     voice_join_preventer = Utility::VoiceJoinPreventer.new(bot:)
     voice_join_preventer.call
-  end
-
-  def register_events
-    event_manager = Utility::EventManager.new(bot:)
-    event_manager.register_events
   end
 
   def unregister_flag_set?(args)
