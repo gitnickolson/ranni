@@ -15,6 +15,15 @@ module Utility
           channel.send_message(text, false, nil, nil, nil, nil, view)
         end
 
+        def update_message(message:, text:, buttons: [])
+          return message.edit(text) if buttons.empty?
+
+          view = Discordrb::Webhooks::View.new
+          build_action_row(view, buttons)
+
+          message.edit(text, nil, view)
+        end
+
         def send_embed_message(channel:, embed_builder:, attachment: nil)
           embed = embed_builder.call
 
@@ -55,19 +64,6 @@ module Utility
           delete_response(event:)
         end
 
-        def error_response(event:, text:, ephemeral: true, delete: true)
-          response(event:, text:, ephemeral:)
-
-          return unless delete
-
-          delete_response(event:)
-        end
-
-        def delete_response(event:)
-          sleep MESSAGE_DELETION_TIME
-          event.delete_response
-        end
-
         def update_embed_message(event:, embed_builder:, attachment: nil, ephemeral: false)
           embed = embed_builder.call
 
@@ -79,6 +75,19 @@ module Utility
           end
 
           event.update_message(embeds: [embed], attachments: [attachment].compact, ephemeral:)
+        end
+
+        def error_response(event:, text:, ephemeral: true, delete: true)
+          response(event:, text:, ephemeral:)
+
+          return unless delete
+
+          delete_response(event:)
+        end
+
+        def delete_response(event:)
+          sleep MESSAGE_DELETION_TIME
+          event.delete_response
         end
 
         private

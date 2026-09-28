@@ -521,6 +521,9 @@
         "ticket_channel_intro_without_topic": "## Ticket created by {user} on {date}\nPlease elaborate on your issue inside of this channel before we take action so that we can handle the problem properly!\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
         "embed_heading": "{username}'s ticket",
         "no_topic_specified": "No topic specified (Created via button press)."
+      },
+      "ticket_button_refresher": {
+        "button_label": "Create a ticket"
       }
     },
     "voice_join_preventer": {

@@ -521,6 +521,9 @@
         "ticket_channel_intro_without_topic": "## Ticket erstellt von {user} am {date}\nBitte erzähle uns in diesem Kanal etwas mehr von deinem Problem, damit wir sachgerecht handeln können!\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir Unterhalten.*",
         "embed_heading": "Ticket von {username}",
         "no_topic_specified": "Kein Thema spezifiziert (Via Knopfdruck erstellt)."
+      },
+      "ticket_button_refresher": {
+        "button_label": "Erstelle ein Ticket"
       }
     },
     "voice_join_preventer": {
