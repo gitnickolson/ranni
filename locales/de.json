@@ -212,8 +212,6 @@
         "set": {
           "description": "Setze den Kanal für Ticket-Erstellungen",
           "channel_successfully_set": "Ticket-Erstellungen sind nun in {channel} möglich.",
-          "intro_text": "# Ticket-Erstellung\nDu kannst den Knopf unten benutzen, um ein Ticket zu eröffnen. Dies gibt dir Zugriff auf einen privaten Kanal, auf den nur du und die Administratoren dieses Servers zugreifen könnt. Erstelle ein Ticket wenn du jemanden melden möchtest, wenn dir ein Problem mit irgendetwas Server-bezogenem auffällt oder du mit etwas bestimmtem Hilfe brauchst.\n\n-# Du kannst auch den `/ticket` Command benutzen.\n",
-          "button_label": "Erstelle ein Ticket",
           "parameters": {
             "channel": {
               "description": "Wähle einen neuen Kanal für Ticket-Erstellungen"
@@ -514,6 +512,10 @@
   },
   "utility": {
     "tickets": {
+      "ticket_creation_message_creator": {
+        "intro_text": "# Ticket-Erstellung\nDu kannst den Knopf unten benutzen, um ein Ticket zu eröffnen. Dies gibt dir Zugriff auf einen privaten Kanal, auf den nur du und die Administratoren dieses Servers zugreifen könnt. Erstelle ein Ticket wenn du jemanden melden möchtest, wenn dir ein Problem mit irgendetwas Server-bezogenem auffällt oder du mit etwas bestimmtem Hilfe brauchst.\n\n-# Du kannst auch den `/ticket` Command benutzen.\n",
+        "button_label": "Erstelle ein Ticket"
+      },
       "ticket_creator": {
         "tickets_disabled": "Tickets sind für diesen Server deaktiviert.",
         "ticket_successfully_created": "Dein Ticket wurde erfolgreich erstellt.",
@@ -521,9 +523,6 @@
         "ticket_channel_intro_without_topic": "## Ticket erstellt von {user} am {date}\nBitte erzähle uns in diesem Kanal etwas mehr von deinem Problem, damit wir sachgerecht handeln können!\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir Unterhalten.*",
         "embed_heading": "Ticket von {username}",
         "no_topic_specified": "Kein Thema spezifiziert (Via Knopfdruck erstellt)."
-      },
-      "ticket_button_refresher": {
-        "button_label": "Erstelle ein Ticket"
       }
     },
     "voice_join_preventer": {

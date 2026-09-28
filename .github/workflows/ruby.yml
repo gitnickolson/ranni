@@ -2,9 +2,9 @@ name: Ruby
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby-version: ['4.0.3']
+        ruby-version: ["4.0.7"]
 
     steps:
       - uses: actions/checkout@v4

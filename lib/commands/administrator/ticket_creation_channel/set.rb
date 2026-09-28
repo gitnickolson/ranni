@@ -8,7 +8,6 @@ module Commands
         DESCRIPTION = 'Set a channel for ticket creation'
         PARAMETERS = [{ type: :channel, name: :channel, required: true,
                         description: 'Choose the channel for ticket creation' }].freeze
-        INFINITE_BUTTON_TTL = 0
 
         private
 
@@ -16,33 +15,25 @@ module Commands
           channel_id = event.options['channel']
           channel = server_service.channel_from_id(channel_id:)
 
+          unless preferences_repository.ticket_creation_message_id.nil? || server_service.ticket_creation_channel.nil?
+            delete_old_message
+          end
+
           preferences_repository.set_ticket_creation_channel(channel_id:)
 
-          send_ticket_creation_button_message(channel:)
+          ticket_creation_message_manager.send_full_ticket_message
+
           transmitter.response(event:,
                                text: t('commands.administrator.ticket_creation_channel.set.channel_successfully_set',
                                        { channel: channel.mention }))
         end
 
-        def send_ticket_creation_button_message(channel:)
-          ticket_button = create_ticket_creation_button
-          message = transmitter.send_message(channel:,
-                                             text: t('commands.administrator.ticket_creation_channel.set.intro_text'),
-                                             buttons: [ticket_button])
-
-          preferences_repository.set_ticket_creation_message(message_id: message.id)
+        def delete_old_message
+          ticket_creation_message_manager.delete_ticket_creation_message
         end
 
-        def create_ticket_creation_button
-          Utility::Messages::Buttons::Button.new(
-            custom_id: "ticket_creation_button_#{Time.now.to_i}",
-            label: t('commands.administrator.ticket_creation_channel.set.button_label'),
-            style: 1,
-            ttl: Utility::Messages::Buttons::Button::INFINITE_TTL
-          ) do |event|
-            ticket_creator = Utility::Tickets::TicketCreator.new(server_service:, event:)
-            ticket_creator.call
-          end
+        def ticket_creation_message_manager
+          @ticket_creation_message_manager ||= Utility::Tickets::TicketCreationMessageManager.new(server_service:)
         end
 
         def preferences_repository
