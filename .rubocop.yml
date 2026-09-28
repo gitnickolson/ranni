@@ -9,5 +9,4 @@ Metrics/AbcSize:
 Style/Documentation:
   Enabled: false
 plugins:
-  - rubocop-factory_bot
   - rubocop-rake
