@@ -28,12 +28,16 @@ module Utility
 
         return if message.nil?
 
+        ::Utility::Messages::Buttons::ButtonRegistry.instance.unregister(
+          custom_id: /\Aticket_creation_button_#{server_service.server.id}_\d+\z/
+        )
+
         channel.delete_message(message)
       end
 
       def ticket_creation_button
         Utility::Messages::Buttons::Button.new(
-          custom_id: "ticket_creation_button_#{Time.now.to_i}",
+          custom_id: "ticket_creation_button_#{server_service.server.id}_#{Time.now.to_i}",
           label: t('utility.tickets.ticket_creation_message_creator.button_label'),
           style: 4,
           ttl: Utility::Messages::Buttons::Button::INFINITE_TTL
