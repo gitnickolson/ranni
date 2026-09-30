@@ -4,7 +4,7 @@ module Commands
   module Public
     class Leaderboard < Command
       NAME = :leaderboard
-      DESCRIPTION = 'Retreve the leveling leaderboard for this server'
+      DESCRIPTION = 'Retrieve the leveling leaderboard for this server'
 
       private
 

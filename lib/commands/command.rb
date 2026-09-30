@@ -27,7 +27,7 @@ module Commands
     rescue StandardError => e
       logger.error(message: "An error occured: #{e}")
       transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut oder schreibe ' \
-                                               'eine Nachricht an `nicknickolson`.')
+                                               'eine Nachricht an `Ichiro`.')
     end
 
     private

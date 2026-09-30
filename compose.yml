@@ -4,7 +4,7 @@ services:
     container_name: database
     restart: unless-stopped
     env_file:
-      - .env
+      - .env.test
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
