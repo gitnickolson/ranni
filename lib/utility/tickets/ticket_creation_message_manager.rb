@@ -39,7 +39,7 @@ module Utility
         Utility::Messages::Buttons::Button.new(
           custom_id: "ticket_creation_button_#{server_service.server.id}_#{Time.now.to_i}",
           label: t('utility.tickets.ticket_creation_message_creator.button_label'),
-          style: 4,
+          style: 3,
           ttl: Utility::Messages::Buttons::Button::INFINITE_TTL
         ) do |event|
           ticket_creator = Utility::Tickets::TicketCreator.new(server_service:, event:)
