@@ -9,6 +9,7 @@ module Commands
       private
 
       def command_action
+        event.channel.start_typing
         embed_builder = create_embed_builder
         transmitter.embed_response(event:, embed_builder:)
       end
