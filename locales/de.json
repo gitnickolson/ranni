@@ -6,7 +6,7 @@
     },
     "administrator": {
       "birthday_celebration_channel": {
-        "description": "Optionen zum Geburtstagsglückwünsche Kanal",
+        "description": "Optionen zum Geburtstagsglückwünsche-Kanal",
         "set": {
           "description": "Setze den Kanal für Geburtstagsglückwünsche",
           "channel_successfully_set": "Geburtstagsglückwünsche erscheinen nun in {channel}.",
@@ -29,13 +29,13 @@
           "role_successfully_set": "Nutzer erhalten nun die Rolle {role} an ihrem Geburtstag.",
           "parameters": {
             "role": {
-              "description": "Wähle die Rolle die als Geburtstagsrolle genutzt werden soll"
+              "description": "Wähle die Rolle, die als Geburtstagsrolle genutzt werden soll"
             }
           }
         },
         "remove": {
           "description": "Entferne die aktuelle Geburtstagsrolle",
-          "role_successfully_removed": "Nutzer erhalten an ihrem Geburtstag keine besondere Rolle mehr"
+          "role_successfully_removed": "Nutzer erhalten an ihrem Geburtstag keine besondere Rolle mehr."
         }
       },
       "custom_voice_channel_category": {
@@ -46,7 +46,7 @@
           "not_a_category": "Bitte wähle eine Kategorie, keinen Kanal.",
           "parameters": {
             "channel": {
-              "description": "Wähle eine neue Kategorie in der individuelle Sprachkanäle erscheinen sollen"
+              "description": "Wähle eine neue Kategorie, in der individuelle Sprachkanäle erscheinen sollen"
             }
           }
         },
@@ -70,14 +70,14 @@
         "description": "Passe die Anzeigefarbe des Bots an",
         "reset": {
           "description": "Setze die Anzeigefarbe des Bots auf den Standard zurück (8a43ff)",
-          "color_successfully_reset": "Anzeigefarbe erfolgreich zu `{color_code}` zurückgesetzt."
+          "color_successfully_reset": "Anzeigefarbe erfolgreich auf `{color_code}` zurückgesetzt."
         },
         "set": {
           "description": "Passe die Anzeigefarbe des Bots an",
-          "color_successfully_set": "Anzeigefarbe erfolgreich zu `{color_code}` verändert",
+          "color_successfully_set": "Anzeigefarbe erfolgreich auf `{color_code}` geändert.",
           "parameters": {
             "color_code": {
-              "description": "Gib den Hexcode der gewünschten Farbe an (z.B. FF3321)"
+              "description": "Gib den Hexcode der gewünschten Farbe an (z. B. FF3321)"
             }
           }
         }
@@ -86,7 +86,7 @@
         "description": "Passe die Sprache des Bots an",
         "set": {
           "description": "Setze die Sprache des Bots",
-          "language_successfully_set": "Die Sprache wurde erfolgreich zu **{locale}** geändert.",
+          "language_successfully_set": "Die Sprache wurde erfolgreich auf **{locale}** geändert.",
           "parameters": {
             "language": {
               "description": "Wähle eine neue Sprache aus"
@@ -98,7 +98,7 @@
         "description": "Bearbeite das Level eines Nutzers",
         "set": {
           "description": "Setze das Level eines Nutzers",
-          "level_successfully_set": "Das Level von **{display_name}** erfolgreich auf **{level}** gesetzt.",
+          "level_successfully_set": "Das Level von **{display_name}** wurde erfolgreich auf **{level}** gesetzt.",
           "parameters": {
             "user": {
               "description": "Wähle einen Nutzer"
@@ -110,7 +110,7 @@
         }
       },
       "level_up_messages_channel": {
-        "description": "Optionen zum Level-Up-Nachrichten Kanal",
+        "description": "Optionen zum Level-Up-Nachrichten-Kanal",
         "set": {
           "description": "Setze den Kanal für Level-Up-Nachrichten",
           "channel_successfully_set": "Level-Up-Nachrichten erscheinen nun in {channel}.",
@@ -129,7 +129,7 @@
         "description": "Bearbeite das maximale Level",
         "set": {
           "description": "Setze das maximale Level",
-          "max_level_successfully_set": "Maximales Level erfolgreich auf {level} gesetzt.",
+          "max_level_successfully_set": "Das maximale Level wurde erfolgreich auf {level} gesetzt.",
           "parameters": {
             "level": {
               "description": "Wähle das neue maximale Level aus"
@@ -164,7 +164,7 @@
         }
       },
       "suggestion_channel": {
-        "description": "Optionen zum Vorschläge Kanal",
+        "description": "Optionen zum Vorschläge-Kanal",
         "set": {
           "description": "Setze den Kanal für Vorschläge",
           "channel_successfully_set": "Vorschläge erscheinen nun in {channel}.",
@@ -198,7 +198,7 @@
           "not_a_category": "Bitte wähle eine Kategorie, keinen Kanal.",
           "parameters": {
             "channel": {
-              "description": "Wähle eine neue Kategorie in der Ticket-Kanäle erscheinen sollen"
+              "description": "Wähle eine neue Kategorie, in der Ticket-Kanäle erscheinen sollen"
             }
           }
         },
@@ -224,7 +224,7 @@
         }
       },
       "ticket_log_channel": {
-        "description": "Optionen zum Ticket-Log Kanal",
+        "description": "Optionen zum Ticket-Log-Kanal",
         "set": {
           "description": "Setze den Kanal für Ticket-Logging",
           "channel_successfully_set": "Ticket-Logs erscheinen nun in {channel}.",
@@ -262,10 +262,10 @@
         }
       },
       "voice_requirement": {
-        "description": "Bearbeite das minimale benötigte Level um Voice Chats beizutreten",
+        "description": "Bearbeite das minimal benötigte Level, um Voice-Chats beizutreten",
         "set": {
-          "description": "Setze das minimale benötigte Level um Voice Chats beizutreten",
-          "voice_requirement_successfully_set": "Das benötigte Level um Voice Chats beizutreten wurde erfolgreich auf **{level}** gesetzt.",
+          "description": "Setze das minimal benötigte Level, um Voice-Chats beizutreten",
+          "voice_requirement_successfully_set": "Das benötigte Level, um Voice-Chats beizutreten, wurde erfolgreich auf **{level}** gesetzt.",
           "parameters": {
             "level": {
               "description": "Gib das neue benötigte Level an"
@@ -274,7 +274,7 @@
         }
       },
       "welcome_messages_channel": {
-        "description": "Optionen zum Willkommensnachrichten Kanal",
+        "description": "Optionen zum Willkommensnachrichten-Kanal",
         "set": {
           "description": "Setze den Kanal für Willkommensnachrichten",
           "channel_successfully_set": "Willkommensnachrichten erscheinen nun in {channel}.",
@@ -325,21 +325,21 @@
         "language": "Sprache",
         "birthday_role": "Geburtstagsrolle",
         "max_level": "Maximales Level",
-        "voice_requirement": "Benötigtes Level um Voice Chats beizutreten",
-        "text_leveling_status": "Text-Leveling Status",
-        "voice_leveling_status": "Voice-Leveling Status",
+        "voice_requirement": "Benötigtes Level, um Voice-Chats beizutreten",
+        "text_leveling_status": "Text-Leveling-Status",
+        "voice_leveling_status": "Voice-Leveling-Status",
         "on": "Eingeschaltet",
         "off": "Ausgeschaltet",
-        "level_up_messages_channel": "Level-Up-Nachrichten Kanal",
-        "welcome_messages_channel": "Willkommensnachrichten Kanal",
-        "suggestion_channel": "Vorschläge Kanal",
+        "level_up_messages_channel": "Level-Up-Nachrichten-Kanal",
+        "welcome_messages_channel": "Willkommensnachrichten-Kanal",
+        "suggestion_channel": "Vorschläge-Kanal",
         "ticket_system_status": "Ticket-System",
         "ticket_category": "Ticket-Kategorie",
         "ticket_creation_channel": "Ticket-Erstellungs-Kanal",
         "ticket_log_channel": "Ticket-Log-Kanal",
-        "birthday_celebration_channel": "Geburtstagsglückwünsche Kanal",
+        "birthday_celebration_channel": "Geburtstagsglückwünsche-Kanal",
         "custom_voice_channels_status": "Individuelle Sprachkanäle",
-        "custom_voice_channel_category": "Kategorie für Individuelle Sprachkanäle"
+        "custom_voice_channel_category": "Kategorie für individuelle Sprachkanäle"
       },
       "synchronize_ranks": {
         "description": "Synchronisiere die Ränge aller Nutzer auf dem Server mit ihrem Level",
@@ -367,7 +367,7 @@
         "set": {
           "description": "Setze dein Geburtstagsdatum",
           "birthday_successfully_set": "Dein Geburtstag wurde erfolgreich gesetzt.",
-          "enter_a_valid_date": "Gib ein valides Datum ein.",
+          "enter_a_valid_date": "Gib ein gültiges Datum ein.",
           "parameters": {
             "day": {
               "description": "Gib den Tag des Monats ein"
@@ -417,19 +417,19 @@
         "xp": "XP"
       },
       "roulette": {
-        "description": "Versetze dich mit einer 1:6 Chance in einen timeout",
+        "description": "Versetze dich mit einer Chance von 1:6 in einen Timeout",
         "roulette_start": "**{display_name}** dreht die Trommel und zieht den Abzug...",
-        "bad_luck": "**{display_name}** hat den kürzeren gezogen.",
-        "good_luck": "**{display_name}** hat Glück gehabt, es ware eine Niete.",
-        "admin_abuse": "**{display_name}** ist der Kugel mit Admin Abuse ausgewichen."
+        "bad_luck": "**{display_name}** hat den Kürzeren gezogen.",
+        "good_luck": "**{display_name}** hat Glück gehabt, es war eine Niete.",
+        "admin_abuse": "**{display_name}** ist der Kugel mit Admin-Abuse ausgewichen."
       },
       "serverinfo": {
         "description": "Rufe Informationen zum Server ab",
-        "server_id": "Server ID",
+        "server_id": "Server-ID",
         "general_info": "Generelles",
         "owner": "Besitzer",
         "server_created": "Server erstellt",
-        "boost_status": "Boost Status",
+        "boost_status": "Boost-Status",
         "members": "Mitglieder",
         "bots": "Bots",
         "channels": "Kanäle",
@@ -439,7 +439,7 @@
         "active_boosts": "aktive Boosts"
       },
       "suggestion": {
-        "description": "Sende einen anonymen Vorschlag in den Vorschläge Kanal",
+        "description": "Sende einen anonymen Vorschlag in den Vorschläge-Kanal",
         "suggestions_disabled": "Vorschläge sind für diesen Server ausgeschaltet.",
         "suggestion_created": "Vorschlag erfolgreich erstellt. Schau ihn dir in {channel} an!",
         "parameters": {
@@ -452,7 +452,7 @@
         }
       },
       "ticket": {
-        "description": "Erstelle ein Ticket um Hilfe zu erhalten",
+        "description": "Erstelle ein Ticket, um Hilfe zu erhalten",
         "parameters": {
           "topic": {
             "description": "Gib das Thema deines Tickets oder den Grund für die Ticket-Eröffnung an"
@@ -460,7 +460,7 @@
         }
       },
       "userinfo": {
-        "description": "Rufe Informationen über dich oder einem anderen Nutzer ab",
+        "description": "Rufe Informationen über dich oder einen anderen Nutzer ab",
         "general_info": "Generelles",
         "rank": "Rang:",
         "status": "Status:",
@@ -492,12 +492,12 @@
     },
     "welcome": {
       "embed_title": "**Willkommen auf {server_name}!**",
-      "embed_description": "**{user_mention} ({username}) ist dem Server beigetreten.**\nMachs dir hier gemütlich!"
+      "embed_description": "**{user_mention} ({username}) ist dem Server beigetreten.**\nMach's dir hier gemütlich!"
     }
   },
   "validation": {
     "color_code_validator": {
-      "color_code_invalid": "Der Farbcode ist Ungültig."
+      "color_code_invalid": "Der Farbcode ist ungültig."
     },
     "level_validator": {
       "not_higher_than_min_level": "Das Level muss mindestens {min_level} betragen.",
@@ -513,21 +513,21 @@
   "utility": {
     "tickets": {
       "ticket_creation_message_creator": {
-        "intro_text": "# Ticket-Erstellung\nDu kannst den Knopf unten benutzen, um ein Ticket zu eröffnen. Dies gibt dir Zugriff auf einen privaten Kanal, auf den nur du und die Administratoren dieses Servers zugreifen könnt. Erstelle ein Ticket wenn du jemanden melden möchtest, wenn dir ein Problem mit irgendetwas Server-bezogenem auffällt oder du mit etwas bestimmtem Hilfe brauchst.\n\n-# Du kannst auch den `/ticket` Command benutzen.\n",
+        "intro_text": "# Ticket-Erstellung\nDu kannst den Knopf unten benutzen, um ein Ticket zu eröffnen. Dies gibt dir Zugriff auf einen privaten Kanal, auf den nur du und die Administratoren dieses Servers zugreifen können. Erstelle ein Ticket, wenn du jemanden melden möchtest, wenn dir ein Problem mit irgendetwas Serverbezogenem auffällt oder du bei etwas Bestimmtem Hilfe brauchst.\n\n-# Du kannst auch den `/ticket`-Command benutzen.\n",
         "button_label": "Erstelle ein Ticket"
       },
       "ticket_creator": {
         "tickets_disabled": "Tickets sind für diesen Server deaktiviert.",
         "ticket_successfully_created": "Dein Ticket wurde erfolgreich erstellt.",
-        "ticket_channel_intro": "## Ticket erstellt von {user} am {date}\nThema: {topic}\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir Unterhalten.*",
-        "ticket_channel_intro_without_topic": "## Ticket erstellt von {user} am {date}\nBitte erzähle uns in diesem Kanal etwas mehr von deinem Problem, damit wir sachgerecht handeln können!\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir Unterhalten.*",
+        "ticket_channel_intro": "## Ticket erstellt von {user} am {date}\nThema: {topic}\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir unterhalten.*",
+        "ticket_channel_intro_without_topic": "## Ticket erstellt von {user} am {date}\nBitte erzähle uns in diesem Kanal etwas mehr von deinem Problem, damit wir sachgerecht handeln können!\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir unterhalten.*",
         "embed_heading": "Ticket von {username}",
-        "no_topic_specified": "Kein Thema spezifiziert (Via Knopfdruck erstellt)."
+        "no_topic_specified": "Kein Thema spezifiziert (via Knopfdruck erstellt)."
       }
     },
     "voice_join_preventer": {
-      "pm": "Du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten.",
-      "channel_message": "{user_mention}, du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben um Sprachkanälen beizutreten."
+      "pm": "Du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben, um Sprachkanälen beizutreten.",
+      "channel_message": "{user_mention}, du musst mindestens **Level {voice_requirement}** durch das Schreiben von Nachrichten erreicht haben, um Sprachkanälen beizutreten."
     }
   },
   "embed_builder": {

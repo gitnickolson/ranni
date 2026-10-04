@@ -29,7 +29,7 @@
           "role_successfully_set": "The role {role} will now be handed out on user birthdays.",
           "parameters": {
             "role": {
-              "description": "Choose the role that should be used as birthday role"
+              "description": "Choose the role that should be used as the birthday role"
             }
           }
         },
@@ -69,15 +69,15 @@
       "display_color": {
         "description": "Change the display color of the bot",
         "reset": {
-          "description": "Reset the display color of the bot to default (8a43ff)",
+          "description": "Reset the display color of the bot to the default (8a43ff)",
           "color_successfully_reset": "Display color successfully reset to `{color_code}`."
         },
         "set": {
           "description": "Change the display color of the bot",
-          "color_successfully_set": "Display color successfully changed to `{color_code}`",
+          "color_successfully_set": "Display color successfully changed to `{color_code}`.",
           "parameters": {
             "color_code": {
-              "description": "Enter the hex code of the desired color (e.g. FF3321)"
+              "description": "Enter the hex code of the desired color (e.g., FF3321)"
             }
           }
         }
@@ -98,7 +98,7 @@
         "description": "Edit the level of a user",
         "set": {
           "description": "Set the level of a user",
-          "level_successfully_set": "The Level of **{display_name}** was successfully set to **{level}**.",
+          "level_successfully_set": "The level of **{display_name}** was successfully set to **{level}**.",
           "parameters": {
             "user": {
               "description": "Choose a user"
@@ -268,7 +268,7 @@
           "voice_requirement_successfully_set": "The new required level to join voice chats was successfully set to **{level}**.",
           "parameters": {
             "level": {
-              "description": "Gib das neue benötigte Level an"
+              "description": "Enter the new required level"
             }
           }
         }
@@ -345,12 +345,12 @@
         "description": "Synchronize the ranks of all users on the server with their current level",
         "synchronizing": "Synchronizing ranks...",
         "successfully_synchronized": "Successfully synchronized ranks!",
-        "error": "An error occured while synchronizing ranks."
+        "error": "An error occurred while synchronizing ranks."
       },
       "timeout": {
-        "description": "Timeout a user",
+        "description": "Time out a user",
         "admin_timeout": "This user is an administrator.",
-        "success_response": "**{display_name}** was successfully timeouted for {minutes} minutes.",
+        "success_response": "**{display_name}** was successfully timed out for {minutes} minutes.",
         "parameters": {
           "user": {
             "description": "Specify a user"
@@ -405,19 +405,19 @@
         "programming_language": "Programming language"
       },
       "help": {
-        "description": "Retrive a list of commands",
+        "description": "Retrieve a list of commands",
         "message_sent": "Message sent via DM.",
         "heading": "Commands on **{server_name}**"
       },
       "leaderboard": {
-        "description": "Retreve the leveling leaderboard for this server",
+        "description": "Retrieve the leveling leaderboard for this server",
         "heading": "{server_name} leaderboard",
         "personal_rank": "Personal rank: {personal_rank}",
         "level": "Level",
         "xp": "XP"
       },
       "roulette": {
-        "description": "Put yourself in timeout with a chance of 1/6",
+        "description": "Put yourself in a timeout with a 1 in 6 chance",
         "roulette_start": "**{display_name}** spins the drum and pulls the trigger...",
         "bad_luck": "**{display_name}** drew the short straw.",
         "good_luck": "**{display_name}** was lucky, it was a blank.",
@@ -465,7 +465,7 @@
         "rank": "Rank:",
         "status": "Status:",
         "birthday": "Birthday",
-        "boosting": "Boosting this server \n",
+        "boosting": "Boosting this server\n",
         "account_created": "Account created",
         "joined": "Joined",
         "boosting_since": "Boosting since",
@@ -513,16 +513,16 @@
   "utility": {
     "tickets": {
       "ticket_creation_message_creator": {
-        "intro_text": "# Ticket creation\nYou can use the button below to create a ticket. This will give you access to a channel that enables private conversations between you and the administrators of this server. Create a ticket if you would like to report someone, an issue of some server-related kind or if you need help with something specific.\n\n-# You can also use the `/ticket` command.\n",
+        "intro_text": "# Ticket creation\nYou can use the button below to create a ticket. This will give you access to a channel that enables private conversations between you and the administrators of this server. Create a ticket if you would like to report someone, if you notice an issue related to the server, or if you need help with something specific.\n\n-# You can also use the `/ticket` command.\n",
         "button_label": "Create a ticket"
       },
       "ticket_creator": {
         "tickets_disabled": "Tickets are disabled for this server.",
         "ticket_successfully_created": "Your ticket was successfully created.",
-        "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
-        "ticket_channel_intro_without_topic": "## Ticket created by {user} on {date}\nPlease elaborate on your issue inside of this channel before we take action so that we can handle the problem properly!\n\n*A moderator will enter the chat ASAP to discuss the topic with you.*",
+        "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat as soon as possible to discuss the topic with you.*",
+        "ticket_channel_intro_without_topic": "## Ticket created by {user} on {date}\nPlease describe your issue in more detail in this channel so that we can handle the problem properly!\n\n*A moderator will enter the chat as soon as possible to discuss the topic with you.*",
         "embed_heading": "{username}'s ticket",
-        "no_topic_specified": "No topic specified (Created via button press)."
+        "no_topic_specified": "No topic specified (created via button press)."
       }
     },
     "voice_join_preventer": {
