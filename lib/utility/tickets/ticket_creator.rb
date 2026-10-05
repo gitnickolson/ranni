@@ -27,16 +27,11 @@ module Utility
       attr_reader :server_service, :event, :topic
 
       def send_ticket_channel_message
-        channel_name = sanitized_channel_name
-        channel = server_service.server.channels.find { it.name == channel_name }
+        channel = find_or_create_ticket_channel
 
-        return button_creation_message(channel, channel_name) if topic.nil?
+        return button_creation_message(channel) if topic.nil?
 
-        command_creation_message(channel, channel_name)
-      end
-
-      def sanitized_channel_name
-        "#{event.user.username.downcase.gsub(/[^a-z0-9\-_]/, '-').squeeze('-')}-ticket"
+        command_creation_message(channel)
       end
 
       def send_ticket_log_channel_message
@@ -48,10 +43,28 @@ module Utility
         transmitter.send_embed_message(channel:, embed_builder:)
       end
 
-      def create_ticket_channel(channel_name)
+      def find_or_create_ticket_channel
         parent_category = server_service.ticket_category
-        server_service.server.create_channel(channel_name, topic:, parent: parent_category,
-                                                           permission_overwrites:)
+
+        channel = server_service.server.channels.find do |channel|
+          next unless channel.name == sanitized_channel_name
+          next channel if channel.parent_id == parent_category&.id
+
+          nil
+        end
+
+        return channel unless channel.nil?
+
+        server_service.server.create_channel(sanitized_channel_name, topic:, parent: parent_category,
+                                                                     permission_overwrites:)
+      end
+
+      def sanitized_channel_name
+        "#{event.user.username.downcase.gsub(/[^a-z0-9\-_]/, '-').squeeze('-')}-ticket-#{day_string}"
+      end
+
+      def day_string
+        "#{server_service.now.day}-#{server_service.now.month}-#{server_service.now.year}"
       end
 
       def create_embed_builder
@@ -88,14 +101,14 @@ module Utility
         { allow: user_permission_accepts, deny: nil }
       end
 
-      def button_creation_message(channel, channel_name)
-        transmitter.send_message(channel: channel || create_ticket_channel(channel_name),
+      def button_creation_message(channel)
+        transmitter.send_message(channel:,
                                  text: t('utility.tickets.ticket_creator.ticket_channel_intro_without_topic',
                                          { user: event.user.mention, date: parsed_date }))
       end
 
-      def command_creation_message(channel, channel_name)
-        transmitter.send_message(channel: channel || create_ticket_channel(channel_name),
+      def command_creation_message(channel)
+        transmitter.send_message(channel:,
                                  text: t('utility.tickets.ticket_creator.ticket_channel_intro',
                                          { user: event.user.mention, topic:,
                                            date: parsed_date }))
