@@ -45,6 +45,8 @@ module Utility
           return warn 'No migration files found'
         end
 
+        Sequel.extension(:migration)
+
         puts "Migrating to #{target ? "version #{target}" : 'latest'}"
         with_postgres_app_db do |db|
           Sequel::Migrator.run(db, MIGRATIONS_DIRECTORY, target:)

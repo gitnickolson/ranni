@@ -10,15 +10,23 @@ module Config
       def call
         env_path = File.join(PROJECT_ROOT, env_file_name)
 
-        Dotenv.load!(env_path)
-        Utility::Logger.instance.info(message: "Loading env from: #{env_path}")
+        if File.exist?(env_path)
+          Dotenv.load(env_path)
+          logger.info(message: "Loading env from: #{env_path}")
+        else
+          logger.info(message: "No env file at #{env_path}, using process environment")
+        end
       end
 
       private
 
       def env_file_name
-        env = ENV['ENV'].to_s.strip.downcase
-        env.empty? ? '.env' : ".env.#{env}"
+        environment = ENV['ENV'].to_s.strip.downcase
+        environment.empty? ? '.env' : ".env.#{environment}"
+      end
+
+      def logger
+        Utility::Logger.instance
       end
     end
   end
