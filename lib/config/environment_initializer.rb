@@ -8,8 +8,8 @@ module Config
       def call
         project_root = File.expand_path('../../', __dir__)
 
-        environment = ENV['ENV']&.downcase
-        env_path = environment == 'production' ? File.join(project_root, '.env') : File.join(project_root, '.env.test')
+        env = ENV['ENV']&.downcase
+        env_path = env == 'production' ? File.join(project_root, '.env.production') : File.join(project_root, '.env')
 
         Dotenv.load(env_path)
 
