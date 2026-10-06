@@ -5,18 +5,20 @@ require 'dotenv'
 module Config
   class EnvironmentInitializer
     class << self
+      PROJECT_ROOT = File.expand_path('../../', __dir__)
+
       def call
-        project_root = File.expand_path('../../', __dir__)
+        env_path = File.join(PROJECT_ROOT, env_file_name)
 
-        env = ENV['ENV']&.downcase
-        env_path = env == 'production' ? File.join(project_root, '.env.production') : File.join(project_root, '.env')
+        Dotenv.load!(env_path)
+        Utility::Logger.instance.info(message: "Loading env from: #{env_path}")
+      end
 
-        Dotenv.load(env_path)
+      private
 
-        env_message = "Loading env from: #{env_path}"
-
-        logger = Utility::Logger.instance
-        logger.info(message: env_message)
+      def env_file_name
+        env = ENV['ENV'].to_s.strip.downcase
+        env.empty? ? '.env' : ".env.#{env}"
       end
     end
   end
