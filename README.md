@@ -61,7 +61,7 @@ git clone https://github.com/gitnickolson/ranni.git
 
 On the Discord Developer Portal, go to your application and open the "Bot" tab. You'll find a "Reset Token" button there - click it and copy the freshly generated token.
 
-Inside the directory you just cloned, create a file called `.env.test` and add your token to it:
+Inside the directory you just cloned, create a file called `.env` and add your token to it:
 
 ```sh
 TOKEN="your_token"
