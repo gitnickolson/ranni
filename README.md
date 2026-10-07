@@ -69,7 +69,7 @@ TOKEN="your_token"
 
 ### Setting up Ranni's database
 
-In this step, you'll set up a database. It runs in a local database server, which needs some configuration data first. Add the following lines to your `.env.test` file:
+In this step, you'll set up a database. It runs in a local database server, which needs some configuration data first. Add the following lines to your `.env` file:
 
 ```sh
 POSTGRES_DB="ranni_db"
@@ -171,6 +171,7 @@ bundle exec bin/ranni --unregister
 ```
 
 Alternatively, you can specify the names of commands to only unregister the listed ones and therefore prevent the process from taking so long:
+
 ```sh
 bundle exec bin/ranni --unregister userinfo display_color rank language
 ```
