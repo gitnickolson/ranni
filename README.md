@@ -93,6 +93,12 @@ docker compose up -d
 
 This sets up and starts your database server inside a Docker container.
 
+Now you need to set up your ruby environment by installing the gems needed for the bot to run:
+
+```sh
+bundle install
+```
+
 Next, create the actual database by running the following from within the `ranni` directory:
 
 ```sh
