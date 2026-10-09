@@ -8,7 +8,10 @@ module Commands
       PARAMETERS = [{ type: :user, name: :user, required: true,
                       description: 'Choose a user' },
                     { type: :string, name: :reason, required: false,
-                      description: 'Specify a reason' }].freeze
+                      description: 'Specify a reason' },
+                    { type: :string, name: :cleanup, required: false,
+                      choices: { '✅' => 'true', '❌' => 'false' },
+                      description: 'Should messages from this user sent in the past 24h be deleted?' }].freeze
       ONE_DAY = 86_400
 
       private
@@ -26,7 +29,7 @@ module Commands
         transmitter.response(event:,
                              text: t('commands.administrator.ban.success_response',
                                      { display_name: }))
-        member.ban(message_seconds: ONE_DAY, reason:)
+        member.ban(message_seconds: clean_up_messages? ? ONE_DAY : 0, reason:)
       end
 
       def admin?(member)
@@ -37,6 +40,10 @@ module Commands
         transmitter.send_message(channel: member.pm,
                                  text: t('commands.administrator.ban.ban_dm',
                                          { server_name: server.name, reason: }))
+      end
+
+      def clean_up_messages?
+        event.options['cleanup'] == 'true' || event.options['cleanup'].nil?
       end
     end
   end
