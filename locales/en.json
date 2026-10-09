@@ -300,6 +300,9 @@
           },
           "reason": {
             "description": "Specify a reason"
+          },
+          "cleanup": {
+            "description": "Should messages from this user sent in the past 24h be deleted?"
           }
         }
       },

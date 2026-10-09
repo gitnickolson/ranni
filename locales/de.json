@@ -300,6 +300,9 @@
           },
           "reason": {
             "description": "Gib einen Grund an"
+          },
+          "cleanup": {
+            "description": "Sollen Nachrichten von diesem Nutzer aus den letzten 24h gelöscht werden?"
           }
         }
       },
