@@ -38,6 +38,9 @@ Go to your newly created app and open the "OAuth2" tab. Scroll down to the OAuth
 
 Paste that link into your browser's address bar. Discord will then prompt you to authorize and select the server the bot should be added to.
 
+Also note that it's necessary to turn on the "Server Members Intent" and "Message Content Intent" toggles in the "Bot" section, or else you will receive an error when starting
+the bot.
+
 ### Cloning the repository
 
 You'll also need the code on your machine. First, [install git](https://git-scm.com/install/) if you haven't already.
