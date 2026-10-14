@@ -24,7 +24,7 @@ module Events
       loop do
         sleep seconds_until_midnight
 
-        remove_birthday_role(previous_affected_members) if previous_affected_members.any? && birthday_role_set?
+        remove_birthday_role_from_members if birthday_role_set? && members_with_birthday_role.any?
 
         affected_members = find_affected_members
         @previous_affected_members = affected_members
@@ -53,8 +53,16 @@ module Events
       affected_members.each { it.add_role(server_service.birthday_role.id) }
     end
 
-    def remove_birthday_role(affected_members)
-      affected_members.each { it.remove_role(server_service.birthday_role.id) }
+    def remove_birthday_role_from_members
+      members_with_birthday_role.each { it.remove_role(server_service.birthday_role.id) }
+    end
+
+    def members_with_birthday_role
+      birthday_role_members = previous_affected_members + server_service.server.members.select do |member|
+        member.roles.include?(server_service.birthday_role)
+      end
+
+      birthday_role_members.uniq
     end
 
     def congratulate(members)
