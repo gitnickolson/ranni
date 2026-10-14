@@ -22,12 +22,11 @@ module Events
 
     def birthday_management_loop
       loop do
-        affected_members = find_affected_members
-
         sleep seconds_until_midnight
 
         remove_birthday_role(previous_affected_members) if previous_affected_members.any? && birthday_role_set?
 
+        affected_members = find_affected_members
         @previous_affected_members = affected_members
         next if affected_members.empty?
 
