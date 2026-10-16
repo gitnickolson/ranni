@@ -250,6 +250,18 @@
           "tickets_successfully_disabled": "Ticket creation has been successfully disabled."
         }
       },
+      "timezone": {
+        "description": "Change the bot's timezone",
+        "set": {
+          "description": "Set the bot's timezone",
+          "timezone_successfully_set": "The timezone was successfully changed to **{timezone}**.",
+          "parameters": {
+            "timezone": {
+              "description": "Enter the new timezone"
+            }
+          }
+        }
+      },
       "voice_leveling": {
         "description": "Enable or disable voice leveling",
         "enable": {
@@ -511,6 +523,9 @@
     "ranks_validator": {
       "rank_for_role_already_exists": "A rank with this role already exists.",
       "rank_for_level_already_exists": "A rank for this level already exists."
+    },
+    "timezone_validator": {
+      "invalid_timezone_string": "{timezone} is not a valid timezone."
     }
   },
   "utility": {
