@@ -34,8 +34,8 @@ module Commands
           field.new(name: t('commands.public.botinfo.uptime'), value: time_since_boot, inlined: true),
           field.new(name: t('commands.public.botinfo.programming_language'), value: 'Ruby'),
           field.new(name: t('commands.public.botinfo.contributors'), value: '`nicknickolson`', inlined: true),
-          field.new(name: t('commands.public.botinfo.bot_created'), value: "`#{created_at}`", inlined: true)
-
+          field.new(name: t('commands.public.botinfo.bot_created'), value: "`#{created_at}`", inlined: true),
+          field.new(name: t('commands.public.botinfo.bot_time'), value: "`#{bot_time}`")
         ]
       end
 
@@ -45,6 +45,10 @@ module Commands
 
       def created_at
         Utility::TimeParser.parse_to_readable_date(date: server.bot.creation_time)
+      end
+
+      def bot_time
+        Utility::TimeParser.hour_string_from_time(time: server_service.now)
       end
     end
   end

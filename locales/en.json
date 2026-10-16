@@ -253,7 +253,7 @@
       "timezone": {
         "description": "Change the bot's timezone",
         "set": {
-          "description": "Set the bot's timezone",
+          "description": "Set the bot's timezone (Case sensitive! Example: Europe/Berlin or Africa/Ceuta",
           "timezone_successfully_set": "The timezone was successfully changed to **{timezone}**.",
           "parameters": {
             "timezone": {
@@ -416,6 +416,7 @@
         "description": "Retrieve information regarding the bot",
         "contributors": "Contributors",
         "bot_created": "Bot created",
+        "bot_time": "Current bot time",
         "uptime": "Uptime",
         "programming_language": "Programming language"
       },

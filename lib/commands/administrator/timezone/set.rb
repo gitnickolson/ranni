@@ -6,8 +6,10 @@ module Commands
       class Set < Subcommand
         NAME = :set
         DESCRIPTION = 'Set the bot timezone'
-        PARAMETERS = [{ type: :string, name: :timezone, required: true,
-                        description: 'Enter the new timezone (e.g. Europe/Berlin or Africa/Ceuta)' }].freeze
+        PARAMETERS = [
+          { type: :string, name: :timezone, required: true,
+            description: 'Enter the new timezone (Case sensitive! Example: Europe/Berlin or Africa/Ceuta)' }
+        ].freeze
 
         private
 
