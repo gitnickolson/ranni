@@ -40,7 +40,7 @@ module Commands
       end
 
       def time_since_boot
-        Utility::TimeParser.parse_to_readable_time(time: Time.at((Time.now - self.class.start_time) - 1))
+        Utility::TimeParser.parse_to_readable_duration(duration: (Time.now - self.class.start_time) - 1)
       end
 
       def created_at
@@ -48,7 +48,7 @@ module Commands
       end
 
       def bot_time
-        Utility::TimeParser.hour_string_from_time(time: server_service.now)
+        Utility::TimeParser.parse_to_readable_time(time: server_service.now)
       end
     end
   end
