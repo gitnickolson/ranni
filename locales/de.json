@@ -250,6 +250,18 @@
           "tickets_successfully_disabled": "Ticket-Erstellung wurde erfolgreich ausgeschaltet."
         }
       },
+      "timezone": {
+        "description": "Passe die Zeitzone des Bots an",
+        "set": {
+          "description": "Setze die Zeitzone des Bots (Englisch & Case-Sensitive! Beispiel: Europe/Berlin oder Africa/Ceuta)",
+          "timezone_successfully_set": "Die Zeitzone wurde erfolgreich auf **{timezone}** geändert.",
+          "parameters": {
+            "timezone": {
+              "description": "Gib eine neue Zeitzone ein"
+            }
+          }
+        }
+      },
       "voice_leveling": {
         "description": "Schalte Voice-Leveling ein oder aus",
         "enable": {
@@ -396,6 +408,7 @@
         "description": "Rufe Informationen zum Bot ab",
         "contributors": "Mitwirkende",
         "bot_created": "Bot erstellt",
+        "bot_time": "Aktuelle Bot-Zeit",
         "uptime": "Laufzeit",
         "programming_language": "Programmiersprache"
       },
@@ -511,6 +524,9 @@
     "ranks_validator": {
       "rank_for_role_already_exists": "Ein Rang mit dieser Rolle existiert schon.",
       "rank_for_level_already_exists": "Ein Rang für dieses Level existiert schon."
+    },
+    "timezone_validator": {
+      "invalid_timezone_string": "{timezone} ist keine valide Zeitzone."
     }
   },
   "utility": {
