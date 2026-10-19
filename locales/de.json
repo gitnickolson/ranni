@@ -412,6 +412,16 @@
         "uptime": "Laufzeit",
         "programming_language": "Programmiersprache"
       },
+      "cat": {
+        "description": "Rufe eine zufällige Katze ab",
+        "text_too_long": "Der Text darf nicht länger als {max_length} Zeichen sein.",
+        "too_many_words": "Der Text darf nicht mehr als ein Wort beinhalten.",
+        "parameters": {
+          "text": {
+            "description": "Gib einen Text an, den die Katze sagen soll"
+          }
+        }
+      },
       "rank": {
         "list": {
           "description": "Rufe eine Liste aller Ränge ab",

@@ -420,6 +420,16 @@
         "uptime": "Uptime",
         "programming_language": "Programming language"
       },
+      "cat": {
+        "description": "Retrieve a random cat",
+        "text_too_long": "The text should not be longer than {max_length} symbols.",
+        "too_many_words": "The text should not contain more than a single word.",
+        "parameters": {
+          "text": {
+            "description": "Provide a text for the cat to say"
+          }
+        }
+      },
       "help": {
         "description": "Retrieve a list of commands",
         "message_sent": "Message sent via DM.",
