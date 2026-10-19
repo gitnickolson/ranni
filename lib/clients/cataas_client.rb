@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'httparty'
+
 module Clients
   class CataasClient
     class << self
