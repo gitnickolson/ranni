@@ -31,7 +31,7 @@ module Commands
 
       def fields
         [
-          field.new(name: t('commands.public.botinfo.uptime'), value: time_since_boot, inlined: true),
+          field.new(name: t('commands.public.botinfo.uptime'), value: "`#{time_since_boot}`", inlined: true),
           field.new(name: t('commands.public.botinfo.programming_language'), value: 'Ruby'),
           field.new(name: t('commands.public.botinfo.contributors'), value: '`nicknickolson`', inlined: true),
           field.new(name: t('commands.public.botinfo.bot_created'), value: "`#{created_at}`", inlined: true),
