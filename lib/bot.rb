@@ -13,22 +13,27 @@ class Bot
     bot.ready do
       next if running
 
-      unregister_flag_set?(args) ? unregister_commands(args) : initialize_commands
-      initialize_leveling
-      initialize_servers
-      initialize_button_registry
-      initialize_misc
-
+      after_connection_steps(args)
       @running = true
     end
 
     bot.run
+  rescue Interrupt
+    Utility::Logger.instance.info(message: 'Execution interrupted.')
   end
 
   private
 
   attr_accessor :running
   attr_reader :bot
+
+  def after_connection_steps(args)
+    unregister_flag_set?(args) ? unregister_commands(args) : initialize_commands
+    initialize_leveling
+    initialize_servers
+    initialize_button_registry
+    initialize_misc
+  end
 
   def initialize_commands
     command_manager.register_commands
