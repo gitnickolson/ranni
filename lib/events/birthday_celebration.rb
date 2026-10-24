@@ -43,7 +43,7 @@ module Events
 
     def find_affected_members
       now = server_service.now
-      target_date = Date.new(now.year, now.month, now.day) + 1
+      target_date = Date.new(now.year, now.month, now.day)
 
       birthdays = birthdays_repository.all(date: target_date, on_server: true)
       birthdays.map { server_service.member_from(identifier: it.user_id) }.compact
