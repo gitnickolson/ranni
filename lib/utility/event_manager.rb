@@ -8,6 +8,7 @@ module Utility
 
     def register_global_events
       Events::Welcome.listen(bot:)
+      Events::RankDelete.listen(bot:)
     end
 
     def register_server_specific_events(server_service:)
