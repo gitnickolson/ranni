@@ -6,13 +6,12 @@ module Events
       bot.server_role_delete do |event|
         server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
 
-        welcome_event = new(bot:, server_service:, event:)
+        welcome_event = new(server_service:, event:)
         welcome_event.call
       end
     end
 
-    def initialize(bot:, server_service:, event:)
-      @bot = bot
+    def initialize(server_service:, event:)
       @server_service = server_service
       @event = event
     end
@@ -26,7 +25,7 @@ module Events
 
     private
 
-    attr_reader :bot, :server_service, :event
+    attr_reader :server_service, :event
 
     def ranks_repository
       @ranks_repository ||= Repositories::RanksRepository.new(server_service:)

@@ -10,13 +10,12 @@ module Events
       bot.member_join do |event|
         server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
 
-        welcome_event = new(bot:, server_service:)
+        welcome_event = new(server_service:)
         welcome_event.call(event)
       end
     end
 
-    def initialize(bot:, server_service:)
-      @bot = bot
+    def initialize(server_service:)
       @server_service = server_service
     end
 
@@ -27,7 +26,7 @@ module Events
 
     private
 
-    attr_reader :bot, :server_service
+    attr_reader :server_service
 
     def sync_level_roles(event)
       level = levels_repository.find_by_user_id(user_id: event.user.id)
