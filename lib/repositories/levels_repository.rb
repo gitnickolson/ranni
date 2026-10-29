@@ -2,12 +2,14 @@
 
 module Repositories
   class LevelsRepository
+    ENTITY = Models::Level
+
     def initialize(server_service:)
       @server_service = server_service
     end
 
     def all(active: true)
-      levels = Models::Level.where(server_id:).order(Sequel.desc(:experience_points)).all
+      levels = ENTITY.where(server_id:).order(Sequel.desc(:experience_points)).all
 
       return levels unless active
 
@@ -15,17 +17,17 @@ module Repositories
     end
 
     def find_by_user_id(user_id:)
-      level = Models::Level.where(server_id:, user_id: user_id.to_s).first
+      level = ENTITY.where(server_id:, user_id: user_id.to_s).first
 
       return level unless level.nil?
 
-      Models::Level.create(user_id: user_id.to_s, server_id:)
+      ENTITY.create(user_id: user_id.to_s, server_id:)
     end
 
     def update_numeric(user_id:, numeric:)
       numeric = server_service.max_level if numeric > server_service.max_level
 
-      Models::Level.update_or_create(
+      ENTITY.update_or_create(
         { server_id:, user_id: user_id.to_s },
         numeric:,
         experience_points: xp_from_numeric(numeric)
@@ -33,7 +35,7 @@ module Repositories
     end
 
     def update_xp(user_id:, experience_points:)
-      Models::Level.update_or_create(server_id:, user_id: user_id.to_s) do |level|
+      ENTITY.update_or_create(server_id:, user_id: user_id.to_s) do |level|
         total_xp = (level.experience_points || 0) + experience_points
         total_xp = max_xp if total_xp > max_xp
 

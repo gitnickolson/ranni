@@ -2,12 +2,14 @@
 
 module Repositories
   class BirthdaysRepository
+    ENTITY = Models::Birthday
+
     def initialize(server_service:)
       @server_service = server_service
     end
 
     def all(date: nil, on_server: false)
-      dataset = Models::Birthday.order(:date)
+      dataset = ENTITY.order(:date)
       if date
         dataset = dataset.where(Sequel.lit('EXTRACT(MONTH FROM date) = ? AND EXTRACT(DAY FROM date) = ?',
                                            date.month,
@@ -20,15 +22,15 @@ module Repositories
     end
 
     def get_for(user_id:)
-      Models::Birthday.where(user_id: user_id.to_s).first
+      ENTITY.where(user_id: user_id.to_s).first
     end
 
     def update_or_create(user_id:, date:)
-      Models::Birthday.update_or_create(user_id: user_id.to_s) { |birthday| birthday.date = date }
+      ENTITY.update_or_create(user_id: user_id.to_s) { |birthday| birthday.date = date }
     end
 
     def delete(user_id:)
-      Models::Birthday.where(user_id: user_id.to_s).delete
+      ENTITY.where(user_id: user_id.to_s).delete
     end
 
     private
