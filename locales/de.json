@@ -38,6 +38,32 @@
           "role_successfully_removed": "Nutzer erhalten an ihrem Geburtstag keine besondere Rolle mehr."
         }
       },
+      "conditional_roles": {
+        "description": "Bearbeite die bedingten Rollen auf diesem Server",
+        "add": {
+          "description": "Füge eine neue bedingte Rolle hinzu",
+          "conditional_role_successfully_created": "Die bedingte Rolle wurde erfolgreich erstellt.",
+          "role_does_not_exist": "Diese Rolle existiert nicht.",
+          "parameters": {
+            "role": {
+              "description": "Wähle die zugehörige Rolle aus"
+            },
+            "condition": {
+              "description": "Gib die Bedingung an, die erfüllt werden muss, um die Rolle zu erhalten"
+            }
+          }
+        },
+        "remove": {
+          "description": "Entferne eine bedingte Rolle",
+          "conditional_role_successfully_removed": "Bedingte Rolle erfolgreich entfernt.",
+          "no_matching_conditional_role": "Für diese Rolle gibt es keine zugehörige bedingte Rolle.",
+          "parameters": {
+            "role": {
+              "description": "Wähle die Rolle aus, die aus den bedingten Rollen entfernt werden soll"
+            }
+          }
+        }
+      },
       "custom_voice_channel_category": {
         "description": "Optionen zur Kategorie für individuelle Sprachkanäle",
         "set": {
@@ -404,6 +430,22 @@
           "heading": "Geburtstage auf **{server_name}**"
         }
       },
+      "conditional_roles": {
+        "list": {
+          "description": "Rufe eine Liste aller bedingten Rollen ab",
+          "list_title": "Bedingte Rollen auf {server_name}",
+          "list_length": "{conditional_roles_count} bedingte Rollen",
+          "list_entry_title": "{role}"
+        }
+      },
+      "rank": {
+        "list": {
+          "description": "Rufe eine Liste aller Ränge ab",
+          "list_title": "Ränge auf {server_name}",
+          "list_length": "{ranks_count} Ränge",
+          "list_entry_title": "Level {level}"
+        }
+      },
       "botinfo": {
         "description": "Rufe Informationen zum Bot ab",
         "contributors": "Mitwirkende",
@@ -420,14 +462,6 @@
           "text": {
             "description": "Gib einen Text an, den die Katze sagen soll"
           }
-        }
-      },
-      "rank": {
-        "list": {
-          "description": "Rufe eine Liste aller Ränge ab",
-          "list_title": "Ränge auf {server_name}",
-          "list_length": "{ranks_count} Ränge",
-          "list_entry_title": "Level {level}"
         }
       },
       "help": {
@@ -524,6 +558,10 @@
   "validation": {
     "color_code_validator": {
       "color_code_invalid": "Der Farbcode ist ungültig."
+    },
+    "conditional_roles_validator": {
+      "condition_too_long": "Die Bedingung muss kürzer als 100 Zeichen sein.",
+      "conditional_role_for_role_already_exists": "Eine bedingte Rolle für diese Rolle existiert schon."
     },
     "level_validator": {
       "not_higher_than_min_level": "Das Level muss mindestens {min_level} betragen.",

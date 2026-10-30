@@ -2,6 +2,8 @@
 
 module Repositories
   class PreferencesRepository
+    ENTITY = Models::ServerPreferences
+
     def initialize(server_id:)
       @server_id = server_id
     end
@@ -163,7 +165,7 @@ module Repositories
     attr_reader :server_id
 
     def preference
-      @preference ||= Models::ServerPreferences.find_or_create(server_id: server_id.to_s)
+      @preference ||= ENTITY.find_or_create(server_id: server_id.to_s)
       @preference.reload
     end
   end
