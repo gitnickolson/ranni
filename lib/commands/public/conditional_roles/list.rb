@@ -32,7 +32,7 @@ module Commands
           conditional_roles.map do |conditional_role|
             role_mention = roles_repository.role_from_id(role_id: conditional_role.role_id.to_i).mention.to_s
             field.new(value: "#{t('commands.public.conditional_roles.list.list_entry_title',
-                                  { role: role_mention })}\n#{conditional_role.condition.capitalize}")
+                                  { role: role_mention })}\n#{conditional_role.condition}")
           end
         end
 
