@@ -38,6 +38,32 @@
           "role_successfully_removed": "Users will no longer receive a special role on their birthday."
         }
       },
+      "conditional_roles": {
+        "description": "Manage the conditional roles on this server",
+        "add": {
+          "description": "Add a new conditional role",
+          "conditional_role_successfully_created": "The conditional role was successfully created.",
+          "role_does_not_exist": "This role does not exist.",
+          "parameters": {
+            "role": {
+              "description": "Choose the corresponding role"
+            },
+            "condition": {
+              "description": "Enter the condition that has to be met to get the role"
+            }
+          }
+        },
+        "remove": {
+          "description": "Remove a conditional role",
+          "conditional_role_successfully_removed": "Conditional role successfully removed.",
+          "no_matching_conditional_role": "There is no conditional role associated with this role.",
+          "parameters": {
+            "role": {
+              "description": "Choose the role that should be removed from the conditional roles"
+            }
+          }
+        }
+      },
       "custom_voice_channel_category": {
         "description": "Options regarding the custom voice channel category",
         "set": {
@@ -404,6 +430,14 @@
           "heading": "Birthdays on **{server_name}**"
         }
       },
+      "conditional_roles": {
+        "list": {
+          "description": "Retrieve a list of all conditional roles",
+          "list_title": "Conditional roles on {server_name}",
+          "list_length": "{conditional_roles_count} conditional roles",
+          "list_entry_title": "{role}"
+        }
+      },
       "rank": {
         "list": {
           "description": "Retrieve a list of all ranks",
@@ -524,6 +558,10 @@
   "validation": {
     "color_code_validator": {
       "color_code_invalid": "The color code is invalid."
+    },
+    "conditional_roles_validator": {
+      "condition_too_long": "The condition must be shorter than 100 characters.",
+      "conditional_role_for_role_already_exists": "A conditional role for this role already exists."
     },
     "level_validator": {
       "not_higher_than_min_level": "The level must be at least {min_level}.",

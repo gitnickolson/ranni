@@ -34,7 +34,7 @@ module Commands
         end
 
         def ranks
-          ranks_repository.all
+          @ranks ||= ranks_repository.all
         end
 
         def ranks_repository
