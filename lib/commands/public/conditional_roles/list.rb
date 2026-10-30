@@ -41,7 +41,7 @@ module Commands
         end
 
         def conditional_roles_repository
-          @conditional_roles_repository ||= Repositories::ConditionalRolesRepository.new(server_service:)
+          Repositories::ConditionalRolesRepository.new(server_service:)
         end
 
         def roles_repository

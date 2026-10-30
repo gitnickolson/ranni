@@ -36,19 +36,19 @@ module Commands
         end
 
         def ranks_validator
-          @ranks_validator ||= Validation::RanksValidator.new(server_service:)
+          Validation::RanksValidator.new(server_service:)
         end
 
         def level_validator
-          @level_validator ||= Validation::LevelValidator.new(server_service:)
+          Validation::LevelValidator.new(server_service:)
         end
 
         def ranks_repository
-          @ranks_repository ||= Repositories::RanksRepository.new(server_service:)
+          Repositories::RanksRepository.new(server_service:)
         end
 
         def roles_repository
-          @roles_repository ||= Repositories::RolesRepository.new(server_service:)
+          Repositories::RolesRepository.new(server_service:)
         end
       end
     end
