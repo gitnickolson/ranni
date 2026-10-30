@@ -9,19 +9,22 @@ module Commands
                       required: false }].freeze
       MAX_TEXT_LENGTH = 20
       MAX_WORDS = 1
+      CACHE_INVALIDATION_VALUE = 100_000_0
 
       private
 
       def command_action
         text = event.options['text']
+        cat_id = Clients::CataasClient.random_cat_id
 
-        return transmitter.response(event:, text: "https://cataas.com/cat/gif?#{rand(100_000_0)}") if text.nil?
+        if text.nil?
+          return transmitter.response(event:, text: "https://cataas.com/cat/#{cat_id}?#{rand(CACHE_INVALIDATION_VALUE)}")
+        end
 
         return too_many_words_response if text.split.length > MAX_WORDS
         return text_too_long_response if text.length > MAX_TEXT_LENGTH
 
-        cat_id = Clients::CataasClient.random_cat_id
-        transmitter.response(event:, text: "https://cataas.com/cat/#{cat_id}/says/#{text}?#{rand(100_000_0)}")
+        transmitter.response(event:, text: "https://cataas.com/cat/#{cat_id}/says/#{text}?#{rand(CACHE_INVALIDATION_VALUE)}")
       end
 
       def text_too_long_response
