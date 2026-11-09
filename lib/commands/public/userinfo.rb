@@ -71,10 +71,10 @@ module Commands
       end
 
       def leveling_field_content(member)
-        level = levels_repository.find_by_user_id(user_id: member.id)
+        level = levels_repository.find_or_create_by_user_id(user_id: member.id)
 
-        numeric = level&.numeric || 0
-        xp = level&.experience_points || 0
+        numeric = level.numeric
+        xp = level.experience_points
 
         "#{t('commands.public.userinfo.level')}: #{numeric}\n" \
           "#{t('commands.public.userinfo.xp')}: `#{humanize(xp)}`/" \
