@@ -17,12 +17,8 @@ module Repositories
       levels.select { user_ids.include?(it.user_id.to_i) }
     end
 
-    def find_by_user_id(user_id:)
-      ENTITY.where(server_id:, user_id: user_id.to_s).first
-    end
-
     def find_or_create_by_user_id(user_id:)
-      find_by_user_id(user_id:) || ENTITY.create(user_id: user_id.to_s, server_id:)
+      ENTITY.where(server_id:, user_id: user_id.to_s).first || ENTITY.create(user_id: user_id.to_s, server_id:)
     end
 
     def update_numeric(user_id:, numeric:)
