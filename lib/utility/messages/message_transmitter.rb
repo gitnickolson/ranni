@@ -48,6 +48,10 @@ module Utility
           delete_response(event:)
         end
 
+        def edit_response(event:, text:, attachment: nil)
+          event.edit_response(content: text, attachments: [attachment].compact)
+        end
+
         def embed_response(event:, embed_builder:, attachment: nil, ephemeral: false, delete: false)
           embed = embed_builder.call
 
