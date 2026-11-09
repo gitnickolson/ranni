@@ -2,7 +2,8 @@
   "commands": {
     "command": {
       "not_permitted": "Du hast nicht die benötigten Berechtigungen.",
-      "no_functionality_implemented": "Keine Funktionalität für {command_name} implementiert."
+      "no_functionality_implemented": "Keine Funktionalität für {command_name} implementiert.",
+      "unexpected_error": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es erneut oder kontaktiere `nicknickolson`."
     },
     "administrator": {
       "birthday_celebration_channel": {
@@ -458,6 +459,7 @@
         "description": "Rufe eine zufällige Katze ab",
         "text_too_long": "Der Text darf nicht länger als {max_length} Zeichen sein.",
         "too_many_words": "Der Text darf nicht mehr als ein Wort beinhalten.",
+        "cat_unavailable": "Die Katze konnte nicht abgerufen werden. Bitte versuche es später erneut.",
         "parameters": {
           "text": {
             "description": "Gib einen Text an, den die Katze sagen soll"
@@ -586,6 +588,7 @@
       "ticket_creator": {
         "tickets_disabled": "Tickets sind für diesen Server deaktiviert.",
         "ticket_successfully_created": "Dein Ticket wurde erfolgreich erstellt.",
+        "ticket_creation_failed": "Das Ticket konnte nicht erstellt werden. Bitte versuche es später erneut.",
         "ticket_channel_intro": "## Ticket erstellt von {user} am {date}\nThema: {topic}\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir unterhalten.*",
         "ticket_channel_intro_without_topic": "## Ticket erstellt von {user} am {date}\nBitte erzähle uns in diesem Kanal etwas mehr von deinem Problem, damit wir sachgerecht handeln können!\n\n*Ein Moderator wird sich so bald wie möglich an dich wenden und sich hier mit dir unterhalten.*",
         "embed_heading": "Ticket von {username}",

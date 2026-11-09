@@ -13,15 +13,12 @@ module Repositories
 
       return levels unless active
 
-      levels.select { server_service.user_ids.include?(it.user_id.to_i) }
+      user_ids = server_service.user_ids.to_set
+      levels.select { user_ids.include?(it.user_id.to_i) }
     end
 
-    def find_by_user_id(user_id:)
-      level = ENTITY.where(server_id:, user_id: user_id.to_s).first
-
-      return level unless level.nil?
-
-      ENTITY.create(user_id: user_id.to_s, server_id:)
+    def find_or_create_by_user_id(user_id:)
+      ENTITY.where(server_id:, user_id: user_id.to_s).first || ENTITY.create(user_id: user_id.to_s, server_id:)
     end
 
     def update_numeric(user_id:, numeric:)
@@ -44,7 +41,7 @@ module Repositories
     end
 
     def required_xp_for(level_numeric:)
-      return max_xp if level_numeric > max_xp
+      return max_xp if level_numeric > server_service.max_level
 
       (level_numeric * (level_numeric + 1) / 2) * 100
     end

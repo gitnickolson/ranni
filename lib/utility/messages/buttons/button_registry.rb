@@ -63,6 +63,8 @@ module Utility
             loop do
               sleep REAPING_INTERVAL
               reap_expired_buttons
+            rescue StandardError => e
+              Utility::Logger.instance.error(message: "Button reaper error: #{e.class}: #{e.message}")
             end
           end
         end

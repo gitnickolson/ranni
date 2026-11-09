@@ -2,19 +2,32 @@
 
 module Translations
   class KeyTranslator
-    def self.translate_command_description(command_path:, locale:, fallback_description:)
-      translations = Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
-      translations.dig(:commands, *command_path, :description) || fallback_description
-    rescue StandardError
-      fallback_description
-    end
+    CACHE_MUTEX = Mutex.new
+    @translations = {}
 
-    def self.translate_parameter_description(command_path:, parameter_name:, locale:, fallback_description:)
-      translations = Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
-      translations.dig(:commands, *command_path, :parameters, parameter_name.to_sym,
-                       :description) || fallback_description
-    rescue StandardError
-      fallback_description
+    class << self
+      def translate_command_description(command_path:, locale:, fallback_description:)
+        translations = translations_for(locale:)
+        translations.dig(:commands, *command_path, :description) || fallback_description
+      rescue StandardError
+        fallback_description
+      end
+
+      def translate_parameter_description(command_path:, parameter_name:, locale:, fallback_description:)
+        translations = translations_for(locale:)
+        translations.dig(:commands, *command_path, :parameters, parameter_name.to_sym,
+                         :description) || fallback_description
+      rescue StandardError
+        fallback_description
+      end
+
+      def translations_for(locale:)
+        locale = locale.to_s
+
+        CACHE_MUTEX.synchronize do
+          @translations[locale] ||= Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
+        end
+      end
     end
 
     def initialize(server_service:)
@@ -44,8 +57,7 @@ module Translations
     end
 
     def translations
-      locale = server_service.locale
-      Utility::FileAccess::JsonReader.call(filepath: "locales/#{locale}")
+      self.class.translations_for(locale: server_service.locale)
     end
 
     def logger

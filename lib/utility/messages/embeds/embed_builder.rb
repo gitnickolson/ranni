@@ -73,7 +73,7 @@ module Utility
             return self
           end
 
-          @image = Discordrb::Webhooks::EmbedThumbnail.new(url: url)
+          @image = Discordrb::Webhooks::EmbedImage.new(url: url)
 
           self
         end
@@ -121,7 +121,7 @@ module Utility
           embed.description = description || ''
           embed.thumbnail = thumbnail
           embed.image = image
-          embed.color = server_service.server_color
+          embed.color = color || server_service.server_color
           embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: footer_text, icon_url:)
         end
 

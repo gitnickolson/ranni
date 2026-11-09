@@ -27,7 +27,7 @@ module Commands
         end
 
         def formatted_date(date)
-          Utility::TimeParser.parse_to_readable_date(date:)
+          Utility::TimeParser.parse_to_readable_date(date:, locale: server_service.locale)
         end
 
         def birthdays_repository

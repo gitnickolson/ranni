@@ -2,7 +2,8 @@
   "commands": {
     "command": {
       "not_permitted": "You do not have the required permissions.",
-      "no_functionality_implemented": "No functionality implemented for {command_name}."
+      "no_functionality_implemented": "No functionality implemented for {command_name}.",
+      "unexpected_error": "An unexpected error occurred. Please try again or contact `nicknickolson`."
     },
     "administrator": {
       "birthday_celebration_channel": {
@@ -458,6 +459,7 @@
         "description": "Retrieve a random cat",
         "text_too_long": "The text should not be longer than {max_length} symbols.",
         "too_many_words": "The text should not contain more than a single word.",
+        "cat_unavailable": "The cat could not be fetched. Please try again later.",
         "parameters": {
           "text": {
             "description": "Provide a text for the cat to say"
@@ -586,6 +588,7 @@
       "ticket_creator": {
         "tickets_disabled": "Tickets are disabled for this server.",
         "ticket_successfully_created": "Your ticket was successfully created.",
+        "ticket_creation_failed": "The ticket could not be created. Please try again later.",
         "ticket_channel_intro": "## Ticket created by {user} on {date}\nTopic: {topic}\n\n*A moderator will enter the chat as soon as possible to discuss the topic with you.*",
         "ticket_channel_intro_without_topic": "## Ticket created by {user} on {date}\nPlease describe your issue in more detail in this channel so that we can handle the problem properly!\n\n*A moderator will enter the chat as soon as possible to discuss the topic with you.*",
         "embed_heading": "{username}'s ticket",

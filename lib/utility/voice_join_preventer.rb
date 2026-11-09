@@ -22,7 +22,7 @@ module Utility
       server_service = Utility::ServerService.new(bot:, server_id: event.server.id)
       levels_repository = Repositories::LevelsRepository.new(server_service:)
 
-      user_level = levels_repository.find_by_user_id(user_id: event.user.id).numeric
+      user_level = levels_repository.find_or_create_by_user_id(user_id: event.user.id).numeric
       voice_requirement = server_service.voice_chat_level_requirement
 
       return if user_level >= voice_requirement

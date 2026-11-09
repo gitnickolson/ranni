@@ -3,6 +3,7 @@
 module Events
   class BirthdayCelebration
     ONE_DAY = (60 * 60 * 24)
+    ONE_MINUTE = 60
 
     include Translations::Translatable
 
@@ -22,18 +23,25 @@ module Events
 
     def birthday_management_loop
       loop do
+        celebrate_if_due
         sleep seconds_until_midnight
-
-        remove_birthday_role_from_members if birthday_role_set? && members_with_birthday_role.any?
-
-        affected_members = find_affected_members
-        @previous_affected_members = affected_members
-        next if affected_members.empty?
-
-        birthday_actions(affected_members)
       rescue StandardError => e
         logger.error(message: "Error in Birthday#birthday_management_loop: #{e.message}")
+        sleep ONE_MINUTE
       end
+    end
+
+    def celebrate_if_due
+      today = server_service.now.to_date
+      return if preferences_repository.last_birthday_celebration_date == today
+
+      remove_birthday_role_from_members if birthday_role_set? && members_with_birthday_role.any?
+
+      affected_members = find_affected_members
+      @previous_affected_members = affected_members
+
+      birthday_actions(affected_members) unless affected_members.empty?
+      preferences_repository.set_last_birthday_celebration_date(date: today)
     end
 
     def birthday_actions(affected_members)
@@ -110,6 +118,10 @@ module Events
 
     def birthdays_repository
       @birthdays_repository ||= Repositories::BirthdaysRepository.new(server_service:)
+    end
+
+    def preferences_repository
+      server_service.preferences_repository
     end
 
     def logger

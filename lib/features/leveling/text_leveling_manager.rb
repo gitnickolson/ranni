@@ -27,7 +27,7 @@ module Features
 
       def update_user_level(user_id, message_length, server_service)
         levels_repository = Repositories::LevelsRepository.new(server_service:)
-        previous_level = levels_repository.find_by_user_id(user_id:)
+        previous_level = levels_repository.find_or_create_by_user_id(user_id:)
         updated_level = levels_repository.update_xp(user_id:,
                                                     experience_points: calculate_experience_points(previous_level,
                                                                                                    message_length))

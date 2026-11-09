@@ -33,7 +33,7 @@ module Commands
         [locale,
          Translations::KeyTranslator.translate_command_description(
            command_path: translation_path,
-           locale: locale == ENGLISH_LOCALES.include?(locale) ? SUPPORTED_ENGLISH_LOCALE : locale,
+           locale: ENGLISH_LOCALES.include?(locale) ? SUPPORTED_ENGLISH_LOCALE : locale,
            fallback_description: self::DESCRIPTION
          )]
       end
@@ -45,7 +45,7 @@ module Commands
          Translations::KeyTranslator.translate_parameter_description(
            command_path: translation_path,
            parameter_name: parameter[:name],
-           locale: locale == ENGLISH_LOCALES.include?(locale) ? SUPPORTED_ENGLISH_LOCALE : locale,
+           locale: ENGLISH_LOCALES.include?(locale) ? SUPPORTED_ENGLISH_LOCALE : locale,
            fallback_description: parameter[:description]
          )]
       end

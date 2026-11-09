@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+
 module Commands
   class Command
     NAME = :command
@@ -25,9 +27,8 @@ module Commands
 
       command_action
     rescue StandardError => e
-      logger.error(message: "An error occured: #{e}")
-      transmitter.error_response(event:, text: 'Ein Fehler ist aufgetreten. Bitte versuche es erneut oder schreibe ' \
-                                               'eine Nachricht an `nicknickolson`.')
+      logger.error(message: "An error occurred: #{e.full_message}")
+      send_unexpected_error_response
     end
 
     private
@@ -36,6 +37,19 @@ module Commands
 
     def command_action
       unimplemented_command_response
+    end
+
+    def send_unexpected_error_response
+      transmitter.error_response(event:, text: t('commands.command.unexpected_error'))
+    rescue StandardError => e
+      logger.error(message: "Failed to send unexpected error response: #{e.full_message}")
+      edit_unexpected_error_response
+    end
+
+    def edit_unexpected_error_response
+      transmitter.edit_response(event:, text: t('commands.command.unexpected_error'))
+    rescue StandardError => e
+      logger.error(message: "Failed to edit unexpected error response: #{e.full_message}")
     end
 
     def unimplemented_command_response
@@ -74,7 +88,7 @@ module Commands
     end
 
     def pagination_key
-      "#{self.class::NAME}-#{event.user.id}-#{Time.now.to_i}"
+      "#{self.class::NAME}-#{event.user.id}-#{SecureRandom.hex(8)}"
     end
 
     def server

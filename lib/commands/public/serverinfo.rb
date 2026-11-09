@@ -54,7 +54,10 @@ module Commands
       end
 
       def parsed_creation_time
-        @parsed_creation_time ||= Utility::TimeParser.parse_to_readable_date(date: server.creation_time)
+        @parsed_creation_time ||= Utility::TimeParser.parse_to_readable_date(
+          date: server.creation_time,
+          locale: server_service.locale
+        )
       end
     end
   end

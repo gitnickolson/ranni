@@ -44,7 +44,7 @@ module Commands
       end
 
       def created_at
-        Utility::TimeParser.parse_to_readable_date(date: server.bot.creation_time)
+        Utility::TimeParser.parse_to_readable_date(date: server.bot.creation_time, locale: server_service.locale)
       end
 
       def bot_time

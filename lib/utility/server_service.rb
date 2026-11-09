@@ -14,8 +14,11 @@ module Utility
     end
 
     def member_from(identifier:, nickname_check: false)
+      member = member_by_id(identifier)
+      return member unless member.nil?
+
       server.members.find do |member|
-        matching_id?(identifier, member) || matching_name_identifier?(identifier, member, nickname_check:)
+        matching_name_identifier?(identifier, member, nickname_check:)
       end
     end
 
@@ -123,8 +126,11 @@ module Utility
 
     attr_reader :bot
 
-    def matching_id?(identifier, member)
-      identifier == member.id.to_s || identifier == member.id
+    def member_by_id(identifier)
+      id = identifier.to_s
+      return unless id.match?(/\A\d+\z/)
+
+      server.member(id.to_i, false)
     end
 
     def matching_name_identifier?(identifier, member, nickname_check: false)

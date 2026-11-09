@@ -30,9 +30,9 @@ module Features
             next unless voice_states.any? { |_, user_ids| user_ids.any? }
 
             voice_states_mutex.synchronize { add_xp_to_users }
+          rescue StandardError => e
+            logger.error(message: "Voice XP loop error: #{e.class}: #{e.message}")
           end
-        rescue StandardError => e
-          logger.error(message: "Voice XP loop error: #{e.class}: #{e.message}")
         end
       end
 
@@ -54,7 +54,7 @@ module Features
 
       def update_user_level(user_id, server_service)
         levels_repository = Repositories::LevelsRepository.new(server_service:)
-        previous_level = levels_repository.find_by_user_id(user_id:)
+        previous_level = levels_repository.find_or_create_by_user_id(user_id:)
         updated_level = levels_repository.update_xp(user_id:,
                                                     experience_points: calculate_experience_points(previous_level))
 
@@ -67,12 +67,23 @@ module Features
       def handle_action(user_id, server_id, action)
         case action
         when :join
-          users = voice_states[server_id]
-          users.nil? ? voice_states[server_id] = [user_id] : voice_states[server_id] << user_id
+          add_user_to_voice_state(user_id, server_id)
         when :leave
-          voice_states[server_id]&.delete(user_id)
-          voice_states.delete(server_id) if voice_states[server_id] && voice_states[server_id].empty?
+          remove_user_from_voice_state(user_id, server_id)
         end
+      end
+
+      def add_user_to_voice_state(user_id, server_id)
+        users = voice_states[server_id] ||= []
+        users << user_id unless users.include?(user_id)
+      end
+
+      def remove_user_from_voice_state(user_id, server_id)
+        users = voice_states[server_id]
+        return if users.nil?
+
+        users.delete(user_id)
+        voice_states.delete(server_id) if users.empty?
       end
 
       def calculate_experience_points(level)
