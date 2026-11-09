@@ -42,17 +42,25 @@ module Status
       def call(bot:)
         Thread.new do
           loop do
-            if bot.connected?
-              update_status(bot)
-              sleep ONE_HOUR
-            else
-              sleep ONE_MINUTE
-            end
+            update_status_when_connected(bot)
+          rescue StandardError => e
+            logger.error(message: "Status updater error: #{e.class}: #{e.message}")
+            sleep ONE_MINUTE
           end
         end
       end
 
       private
+
+      def update_status_when_connected(bot)
+        unless bot.connected?
+          sleep ONE_MINUTE
+          return
+        end
+
+        update_status(bot)
+        sleep ONE_HOUR
+      end
 
       def update_status(bot)
         status = STATUSES.sample
@@ -60,6 +68,10 @@ module Status
         status_type = status[1]
 
         bot.update_status('online', "#{status_name} | Type \"/help\" for commands", nil, 0, false, status_type)
+      end
+
+      def logger
+        @logger ||= Utility::Logger.instance
       end
     end
   end
