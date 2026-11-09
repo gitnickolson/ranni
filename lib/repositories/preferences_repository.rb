@@ -3,6 +3,18 @@
 module Repositories
   class PreferencesRepository
     ENTITY = Models::ServerPreferences
+    CACHE_MUTEX = Mutex.new
+    @cache = {}
+
+    class << self
+      attr_reader :cache
+
+      def cached_preference(server_id)
+        CACHE_MUTEX.synchronize do
+          cache[server_id.to_s] ||= ENTITY.find_or_create(server_id: server_id.to_s)
+        end
+      end
+    end
 
     def initialize(server_id:)
       @server_id = server_id
@@ -13,7 +25,7 @@ module Repositories
     end
 
     def set_birthday_role(role_id:)
-      preference.update(birthday_role_id: role_id.to_s)
+      update(birthday_role_id: role_id.to_s)
     end
 
     def birthday_celebration_channel_id
@@ -21,7 +33,15 @@ module Repositories
     end
 
     def set_birthday_celebration_channel_id(channel_id:)
-      preference.update(birthday_celebration_channel_id: channel_id.to_s)
+      update(birthday_celebration_channel_id: channel_id.to_s)
+    end
+
+    def last_birthday_celebration_date
+      preference.last_birthday_celebration_date
+    end
+
+    def set_last_birthday_celebration_date(date:)
+      update(last_birthday_celebration_date: date)
     end
 
     def welcome_message_channel_id
@@ -29,7 +49,7 @@ module Repositories
     end
 
     def set_welcome_message_channel(channel_id:)
-      preference.update(welcome_message_channel_id: channel_id.to_s)
+      update(welcome_message_channel_id: channel_id.to_s)
     end
 
     def ticket_category_id
@@ -37,7 +57,7 @@ module Repositories
     end
 
     def set_ticket_category(category_id:)
-      preference.update(ticket_category_id: category_id.to_s)
+      update(ticket_category_id: category_id.to_s)
     end
 
     def custom_voice_channels_enabled?
@@ -45,7 +65,7 @@ module Repositories
     end
 
     def set_custom_voice_channels_creation(enabled:)
-      preference.update(custom_voice_channels_enabled: enabled)
+      update(custom_voice_channels_enabled: enabled)
     end
 
     def custom_voice_channel_category_id
@@ -53,7 +73,7 @@ module Repositories
     end
 
     def set_custom_voice_channel_category(category_id:)
-      preference.update(custom_voice_channel_category_id: category_id.to_s)
+      update(custom_voice_channel_category_id: category_id.to_s)
     end
 
     def suggestion_channel_id
@@ -61,7 +81,7 @@ module Repositories
     end
 
     def set_suggestion_channel(channel_id:)
-      preference.update(suggestion_channel_id: channel_id.to_s)
+      update(suggestion_channel_id: channel_id.to_s)
     end
 
     def ticket_creation_channel_id
@@ -69,7 +89,7 @@ module Repositories
     end
 
     def set_ticket_creation_channel(channel_id:)
-      preference.update(ticket_creation_channel_id: channel_id.to_s)
+      update(ticket_creation_channel_id: channel_id.to_s)
     end
 
     def ticket_creation_message_id
@@ -77,7 +97,7 @@ module Repositories
     end
 
     def set_ticket_creation_message(message_id:)
-      preference.update(ticket_creation_message_id: message_id.to_s)
+      update(ticket_creation_message_id: message_id.to_s)
     end
 
     def ticket_log_channel_id
@@ -85,7 +105,7 @@ module Repositories
     end
 
     def set_ticket_log_channel(channel_id:)
-      preference.update(ticket_log_channel_id: channel_id.to_s)
+      update(ticket_log_channel_id: channel_id.to_s)
     end
 
     def level_up_congratulation_channel_id
@@ -93,7 +113,7 @@ module Repositories
     end
 
     def set_level_up_congratulation_channel(channel_id:)
-      preference.update(level_up_congratulation_channel_id: channel_id.to_s)
+      update(level_up_congratulation_channel_id: channel_id.to_s)
     end
 
     def tickets_enabled?
@@ -101,7 +121,7 @@ module Repositories
     end
 
     def set_ticket_creation(enabled:)
-      preference.update(tickets_enabled: enabled)
+      update(tickets_enabled: enabled)
     end
 
     def voice_leveling_enabled?
@@ -109,7 +129,7 @@ module Repositories
     end
 
     def set_voice_leveling(enabled:)
-      preference.update(voice_leveling_enabled: enabled)
+      update(voice_leveling_enabled: enabled)
     end
 
     def text_leveling_enabled?
@@ -117,7 +137,7 @@ module Repositories
     end
 
     def set_text_leveling(enabled:)
-      preference.update(text_leveling_enabled: enabled)
+      update(text_leveling_enabled: enabled)
     end
 
     def max_level
@@ -125,7 +145,7 @@ module Repositories
     end
 
     def set_max_level(level:)
-      preference.update(max_level: level)
+      update(max_level: level)
     end
 
     def voice_chat_level_requirement
@@ -133,7 +153,7 @@ module Repositories
     end
 
     def set_voice_chat_level_requirement(level:)
-      preference.update(voice_chat_level_requirement: level)
+      update(voice_chat_level_requirement: level)
     end
 
     def timezone
@@ -141,7 +161,7 @@ module Repositories
     end
 
     def set_timezone(timezone:)
-      preference.update(timezone:)
+      update(timezone:)
     end
 
     def locale
@@ -149,7 +169,7 @@ module Repositories
     end
 
     def set_locale(locale:)
-      preference.update(locale:)
+      update(locale:)
     end
 
     def server_color
@@ -157,7 +177,7 @@ module Repositories
     end
 
     def set_server_color(color_code:)
-      preference.update(server_color: color_code)
+      update(server_color: color_code)
     end
 
     private
@@ -165,8 +185,11 @@ module Repositories
     attr_reader :server_id
 
     def preference
-      @preference ||= ENTITY.find_or_create(server_id: server_id.to_s)
-      @preference.reload
+      self.class.cached_preference(server_id)
+    end
+
+    def update(values)
+      preference.update(values)
     end
   end
 end
