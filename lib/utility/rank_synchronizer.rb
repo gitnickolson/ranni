@@ -6,10 +6,10 @@ module Utility
       @server_service = server_service
     end
 
-    def call(level:, member: nil)
+    def call(level:)
       return if level.nil?
 
-      member ||= server_service.member_from(identifier: level.user_id)
+      member = server_service.member_from(identifier: level.user_id)
       return if member.nil?
 
       target_rank = ranks_repository.find_current_for_level(level: level.numeric)

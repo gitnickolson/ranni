@@ -29,7 +29,7 @@ module Commands
           next if member.bot_account?
 
           level = levels_repository.find_or_create_by_user_id(user_id: member.id)
-          rank_synchronizer.call(level:, member:)
+          rank_synchronizer.call(level:)
 
           sleep RATE_LIMIT_AVOIDANCE_TIME
         end
