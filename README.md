@@ -3,7 +3,7 @@
   <img style="margin-top: 0; padding-top: 0" src="dark_moon_ring.png" />
 </div>
 
-Ranni is a self-hostable, general-purpose Discord bot written in Ruby using the [discordrb](https://github.com/shardlab/discordrb) library.
+Ranni is a self-hostable, general-purpose Discord bot written in Ruby using the [discordrb](https://github.com/shardlab/discordrb) library. It pins a [fork of discordrb](https://github.com/gitnickolson/discordrb) that adds localization for slash-command and parameter descriptions.
 
 It supports administrative commands, text- and voice-leveling, event reactions like welcome messages, and general information about various things (e.g. `/userinfo` to get info about a user, or `/serverinfo` to get info about a Discord server). There's a bit more to it, but you can check out all the existing commands with `/help`.
 
@@ -70,6 +70,8 @@ Inside the directory you just cloned, create a file called `.env` and add your t
 TOKEN="your_token"
 ```
 
+By default Ranni loads `.env`. To load `.env.production` instead, set `ENV=production` in the process environment before starting the bot (for example, `ENV=production bundle exec bin/ranni`).
+
 ### Setting up Ranni's database
 
 In this step, you'll set up a database. It runs in a local database server, which needs some configuration data first. Add the following lines to your `.env` file:
@@ -132,19 +134,19 @@ I've built a framework that makes adding new commands a lot simpler. The amount 
 
 Documentation for any of the used discordrb library methods can be found in its [corresponding documentation](https://drb.shardlab.dev/v3.8.0/).
 
-To add a command, create a Ruby file or a folder (depending on the command type - see below) named after the command inside the `./lib/commands/public` folder. If the command should only be accessible to admins or server boosters, place the file/folder inside `./lib/commands/administrator` or `./lib/commands/booster` instead.
+To add a command, create a Ruby file or a folder (depending on the command type - see below) named after the command inside the `./lib/commands/public` folder. If the command should only be accessible to admins, place the file/folder inside `./lib/commands/administrator` instead.
 
 ### Adding a simple command (without subcommands)
 
 Let's say you want to create a command called `/random_gif`. First, create a file called `random_gif.rb` in the folder matching the desired permission level.
 
-Then create a new class named `RandomGif` inside that file. The class should inherit from `Command` and be nested inside modules matching the folder structure, since this project uses [zeitwerk](https://github.com/fxn/zeitwerk) for autoloading. If that doesn't quite click, just copy the structure of an existing command (e.g. `./lib/commands/public/userinfo`) as a starting point.
+Then create a new class named `RandomGif` inside that file. The class should inherit from `Command` and be nested inside modules matching the folder structure, since this project uses [zeitwerk](https://github.com/fxn/zeitwerk) for autoloading. If that doesn't quite click, just copy the structure of an existing command (e.g. `./lib/commands/public/userinfo.rb`) as a starting point.
 
 Your command class also needs to define `NAME` and `DESCRIPTION` constants. `NAME` should be a symbol and will be used by Discord to display the name of the command (so `:random_gif`, following the example above). `DESCRIPTION` is what Discord shows in the slash-command dropdown.
 
 You'll then add a private `#command_action` method containing all of your command's logic.
 
-If your command needs custom parameters, you'll also need to add a `PARAMETERS` array constant. You can find an example of this in `./lib/commands/public/userinfo`, which defines a custom `user` parameter that lets someone select a user when using the command on Discord.
+If your command needs custom parameters, you'll also need to add a `PARAMETERS` array constant. You can find an example of this in `./lib/commands/public/userinfo.rb`, which defines a custom `user` parameter that lets someone select a user when using the command on Discord.
 
 Custom parameters can then be read from an options hash on the event object available inside each command instance - just call `event.options['your_custom_parameter_name']` from any instance method to access what the user entered.
 
@@ -161,11 +163,11 @@ The main command file, `game_info.rb`, should then define a new class named `Gam
 
 Your command class needs to define `NAME`, `DESCRIPTION`, and `SUBCOMMANDS` constants. `NAME` should be a symbol and will be used by Discord to display the name of the command (so `:game_info`, following the example above). `DESCRIPTION` is what Discord shows in the slash-command dropdown. `SUBCOMMANDS` should be an array of the subcommand classes you'll create next. For the `GameInfo` example, it would look like this: `SUBCOMMANDS = [Lol, Valorant]`.
 
-That's it for the main command class. Follow the same steps as before to create the subcommand classes: Create the corresponding Ruby files inside the `game_info` folder and define classes nested inside modules matching the folder structure. Subcommand classes should inherit from `Subcommand` instead of `ParentCommand`, unlike the main command class. They don't need a `SUBCOMMANDS` constant as well - just `NAME` and `DESCRIPTION`. Again, feel free to reference an existing command like in `./lib/commands/administrator/display_color` to see how the pieces fit together. If you want to see an example of a command that has both administrator and public permission levels on its subcommands, check out the `.lib/commands/administrator/rank/rank.rb` command. Its `/rank list` subcommand is public as you can see in the corresponding `SUBCOMMANDS` array.
+That's it for the main command class. Follow the same steps as before to create the subcommand classes: Create the corresponding Ruby files inside the `game_info` folder and define classes nested inside modules matching the folder structure. Subcommand classes should inherit from `Subcommand` instead of `ParentCommand`, unlike the main command class. They don't need a `SUBCOMMANDS` constant as well - just `NAME` and `DESCRIPTION`. Again, feel free to reference an existing command like in `./lib/commands/administrator/display_color` to see how the pieces fit together. If you want to see an example of a command that has both administrator and public permission levels on its subcommands, check out the `./lib/commands/administrator/rank/rank.rb` command. Its `/rank list` subcommand is public as you can see in the corresponding `SUBCOMMANDS` array.
 
 Each subcommand also needs a private `#command_action` instance method containing its logic.
 
-If a subcommand needs custom parameters, add a `PARAMETERS` array constant definition, just like for the simple commands. You can find an example in `./lib/commands/administrator/display_color/change.rb`, which defines a custom `color` parameter that lets someone enter a color code when using the command on Discord.
+If a subcommand needs custom parameters, add a `PARAMETERS` array constant definition, just like for the simple commands. You can find an example in `./lib/commands/administrator/display_color/set.rb`, which defines a custom `color_code` parameter that lets someone enter a color code when using the command on Discord.
 
 As before, custom parameters can be read via `event.options['your_custom_parameter_name']` from any instance method within the class.
 
