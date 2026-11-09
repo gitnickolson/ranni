@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+
 module Utility
   module Tickets
     class TicketCreationMessageManager
@@ -29,7 +31,7 @@ module Utility
         return if message.nil?
 
         ::Utility::Messages::Buttons::ButtonRegistry.instance.unregister(
-          custom_id: /\Aticket_creation_button_#{server_service.server.id}_\d+\z/
+          custom_id: /\Aticket_creation_button_#{server_service.server.id}_\h+\z/
         )
 
         channel.delete_message(message)
@@ -37,7 +39,7 @@ module Utility
 
       def ticket_creation_button
         Utility::Messages::Buttons::Button.new(
-          custom_id: "ticket_creation_button_#{server_service.server.id}_#{Time.now.to_i}",
+          custom_id: "ticket_creation_button_#{server_service.server.id}_#{SecureRandom.hex(8)}",
           label: t('utility.tickets.ticket_creation_message_creator.button_label'),
           style: 3,
           ttl: Utility::Messages::Buttons::Button::INFINITE_TTL

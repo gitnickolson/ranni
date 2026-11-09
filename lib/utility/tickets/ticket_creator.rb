@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'securerandom'
+
 module Utility
   module Tickets
     class TicketCreator
@@ -16,15 +18,28 @@ module Utility
           return transmitter.error_response(event:, text: t('utility.tickets.ticket_creator.tickets_disabled'))
         end
 
-        send_ticket_channel_message
-        send_ticket_log_channel_message
-        transmitter.response(event:, text: t('utility.tickets.ticket_creator.ticket_successfully_created'),
-                             ephemeral: true)
+        event.defer(ephemeral: true)
+        create_ticket
+      rescue StandardError => e
+        logger.error(message: "Ticket creation failed: #{e.full_message}")
+        send_creation_failed_response
       end
 
       private
 
       attr_reader :server_service, :event, :topic
+
+      def create_ticket
+        send_ticket_channel_message
+        send_ticket_log_channel_message
+        transmitter.edit_response(event:, text: t('utility.tickets.ticket_creator.ticket_successfully_created'))
+      end
+
+      def send_creation_failed_response
+        transmitter.edit_response(event:, text: t('utility.tickets.ticket_creator.ticket_creation_failed'))
+      rescue StandardError => e
+        logger.error(message: "Failed to send ticket creation error response: #{e.full_message}")
+      end
 
       def send_ticket_channel_message
         channel = find_or_create_ticket_channel
@@ -115,15 +130,19 @@ module Utility
       end
 
       def parsed_date
-        Utility::TimeParser.parse_to_readable_date(date: server_service.now.to_date)
+        Utility::TimeParser.parse_to_readable_date(date: server_service.now.to_date, locale: server_service.locale)
       end
 
       def transmitter
         ::Utility::Messages::MessageTransmitter
       end
 
+      def logger
+        @logger ||= Utility::Logger.instance
+      end
+
       def pagination_key
-        "#ticket_creator-#{event.user.id}-#{Time.now.to_i}"
+        "ticket_creator-#{event.user.id}-#{SecureRandom.hex(8)}"
       end
     end
   end
