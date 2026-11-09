@@ -1,7 +1,18 @@
 # frozen_string_literal: true
 
+require 'date'
+
 module Utility
   class TimeParser
+    DEFAULT_LOCALE = 'en'
+    DATE_FORMATS = {
+      'en' => '%A, %B %d, %Y',
+      'de' => '%A, %d.%m.%Y'
+    }.freeze
+    WEEKDAY_ABBREVIATIONS = {
+      'de' => %w[So Mo Di Mi Do Fr Sa]
+    }.freeze
+
     class << self
       def parse_to_readable_duration(duration:)
         seconds = duration.to_i % 60
@@ -12,9 +23,11 @@ module Utility
         format_time(seconds, minutes, hours, days)
       end
 
-      def parse_to_readable_date(date:)
-        date_string = date.strftime('%A, %d.%m.%Y')
-        translate_date(date_string)
+      def parse_to_readable_date(date:, locale: DEFAULT_LOCALE)
+        locale = supported_locale(locale)
+        formatted_date = date.strftime(DATE_FORMATS.fetch(locale))
+
+        localize_weekday(formatted_date, date, locale)
       end
 
       def parse_to_readable_time(time:)
@@ -39,22 +52,20 @@ module Utility
         number < 10 ? number.to_s.prepend('0') : number
       end
 
-      def translate_date(date_string)
-        day_name, rest_of_date = date_string.split(', ', 2)
-        translated_day = days_hash[day_name]
-        "#{translated_day}, #{rest_of_date}"
+      def supported_locale(locale)
+        locale = locale.to_s.downcase
+
+        DATE_FORMATS.key?(locale) ? locale : DEFAULT_LOCALE
       end
 
-      def days_hash
-        {
-          'Monday' => 'Mo',
-          'Tuesday' => 'Di',
-          'Wednesday' => 'Mi',
-          'Thursday' => 'Do',
-          'Friday' => 'Fr',
-          'Saturday' => 'Sa',
-          'Sunday' => 'So'
-        }
+      def localize_weekday(formatted_date, date, locale)
+        abbreviation = WEEKDAY_ABBREVIATIONS.dig(locale, date.wday)
+
+        return formatted_date if abbreviation.nil?
+
+        _, rest_of_date = formatted_date.split(', ', 2)
+
+        "#{abbreviation}, #{rest_of_date}"
       end
     end
   end

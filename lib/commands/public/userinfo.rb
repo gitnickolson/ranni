@@ -72,10 +72,9 @@ module Commands
 
       def leveling_field_content(member)
         level = levels_repository.find_by_user_id(user_id: member.id)
-        return if level.nil?
 
-        numeric = level.numeric
-        xp = level.experience_points
+        numeric = level&.numeric || 0
+        xp = level&.experience_points || 0
 
         "#{t('commands.public.userinfo.level')}: #{numeric}\n" \
           "#{t('commands.public.userinfo.xp')}: `#{humanize(xp)}`/" \
@@ -97,7 +96,7 @@ module Commands
       end
 
       def parse_date(date)
-        Utility::TimeParser.parse_to_readable_date(date:)
+        Utility::TimeParser.parse_to_readable_date(date:, locale: server_service.locale)
       end
 
       def birthdays_repository

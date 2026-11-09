@@ -36,7 +36,7 @@ module Commands
       end
 
       def parsed_date
-        Utility::TimeParser.parse_to_readable_date(date: server_service.now.to_date)
+        Utility::TimeParser.parse_to_readable_date(date: server_service.now.to_date, locale: server_service.locale)
       end
     end
   end
