@@ -27,14 +27,17 @@ module Commands
         end
 
         def fields
-          ranks.map do |rank|
+          ranks.map do |rank, role|
             field.new(name: t('commands.public.rank.list.list_entry_title', { level: rank.required_level }),
-                      value: roles_repository.role_from_id(role_id: rank.role_id.to_i).mention.to_s)
+                      value: role.mention.to_s)
           end
         end
 
         def ranks
-          @ranks ||= ranks_repository.all
+          @ranks ||= ranks_repository.all.filter_map do |rank|
+            role = roles_repository.role_from_id(role_id: rank.role_id.to_i)
+            [rank, role] unless role.nil?
+          end
         end
 
         def ranks_repository

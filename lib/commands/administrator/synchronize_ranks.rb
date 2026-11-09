@@ -28,8 +28,8 @@ module Commands
         server_service.server.members.each do |member|
           next if member.bot_account?
 
-          level = levels_repository.find_by_user_id(user_id: member.id)
-          rank_synchronizer.call(level:)
+          level = levels_repository.find_or_create_by_user_id(user_id: member.id)
+          rank_synchronizer.call(level:, member:)
 
           sleep RATE_LIMIT_AVOIDANCE_TIME
         end

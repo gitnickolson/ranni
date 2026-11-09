@@ -29,15 +29,17 @@ module Commands
         end
 
         def fields
-          conditional_roles.map do |conditional_role|
-            role_mention = roles_repository.role_from_id(role_id: conditional_role.role_id.to_i).mention.to_s
+          conditional_roles.map do |conditional_role, role|
             field.new(value: "#{t('commands.public.conditional_roles.list.list_entry_title',
-                                  { role: role_mention })}\n#{conditional_role.condition}")
+                                  { role: role.mention.to_s })}\n#{conditional_role.condition}")
           end
         end
 
         def conditional_roles
-          @conditional_roles ||= conditional_roles_repository.all
+          @conditional_roles ||= conditional_roles_repository.all.filter_map do |conditional_role|
+            role = roles_repository.role_from_id(role_id: conditional_role.role_id.to_i)
+            [conditional_role, role] unless role.nil?
+          end
         end
 
         def conditional_roles_repository

@@ -30,7 +30,7 @@ module Events
     attr_reader :server_service, :event
 
     def sync_level_roles
-      level = levels_repository.find_by_user_id(user_id: event.user.id)
+      level = levels_repository.find_or_create_by_user_id(user_id: event.user.id)
 
       rank_synchronizer.call(level:)
     end
