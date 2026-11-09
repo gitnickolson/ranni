@@ -70,7 +70,10 @@ Inside the directory you just cloned, create a file called `.env` and add your t
 TOKEN="your_token"
 ```
 
-By default Ranni loads `.env`. To load `.env.production` instead, set `ENV=production` in the process environment before starting the bot (for example, `ENV=production bundle exec bin/ranni`).
+By default Ranni loads `.env`. To load `.env.production` instead, set `ENV=production` in the process environment before starting the bot (for example, `ENV=production bundle exec bin/ranni`). This is useful if you'd like to create two bots built on the same codebase, e.g. a test bot that runs on a test server and the production counterpart. The test bot would then
+use the default `.env` file (so that file should contain its token). The token for the separated production bot would then be placed inside `.env.production`.
+
+If you don't need that kind of setup with a differentiation between a test bot and a production bot, just keep on using the default `.env` file.
 
 ### Setting up Ranni's database
 
@@ -134,7 +137,7 @@ I've built a framework that makes adding new commands a lot simpler. The amount 
 
 Documentation for any of the used discordrb library methods can be found in its [corresponding documentation](https://drb.shardlab.dev/v3.8.0/).
 
-To add a command, create a Ruby file or a folder (depending on the command type - see below) named after the command inside the `./lib/commands/public` folder. If the command should only be accessible to admins, place the file/folder inside `./lib/commands/administrator` instead.
+To add a command, create a Ruby file or a folder (depending on the command type - see below) named after the command inside the `./lib/commands/public` folder. If the command should only be accessible to admins, place the file/folder inside `./lib/commands/administrator` instead. If it should only be available to server boosters (and admins), place it inside `.lib/commands/booster`.
 
 ### Adding a simple command (without subcommands)
 
