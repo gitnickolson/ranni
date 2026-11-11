@@ -1,4 +1,4 @@
-name: Ruby
+name: RuboCop
 
 on:
   push:
@@ -9,30 +9,22 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   rubocop:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        ruby-version: ["4.0.7"]
+    timeout-minutes: 10
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
-
-      - name: Install SDL2 libraries
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
-
-      - name: Install dependencies
-        run: bundle install
 
       - name: Run rubocop
         run: bundle exec rubocop
