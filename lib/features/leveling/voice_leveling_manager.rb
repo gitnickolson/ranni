@@ -93,7 +93,7 @@ module Features
         random_xp_amount * level.multiplier
       end
 
-      def user_voice_chat(user_id, server_service)
+      def voice_member_count(user_id, server_service)
         user_voice_channel = server_service.server.voice_channels.find do |channel|
           channel.users.map(&:id).include?(user_id)
         end
