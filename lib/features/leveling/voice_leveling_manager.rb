@@ -91,7 +91,7 @@ module Features
       end
 
       def random_xp_amount
-        rand(10...200)
+        rand(5...100)
       end
 
       def logger
