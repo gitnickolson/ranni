@@ -4,6 +4,7 @@ module Features
   module Leveling
     class VoiceLevelingManager
       FIFTEEN_MINUTES = 900
+      MIN_LEVELING_USERS = 2
 
       def initialize(bot:)
         @bot = bot
@@ -47,6 +48,8 @@ module Features
           next unless server_service.voice_leveling_enabled?
 
           user_ids.each do |user_id|
+            next unless voice_member_count(user_id, server_service) >= MIN_LEVELING_USERS
+
             update_user_level(user_id, server_service)
           end
         end
@@ -88,6 +91,14 @@ module Features
 
       def calculate_experience_points(level)
         random_xp_amount * level.multiplier
+      end
+
+      def user_voice_chat(user_id, server_service)
+        user_voice_channel = server_service.server.voice_channels.find do |channel|
+          channel.users.map(&:id).include?(user_id)
+        end
+
+        user_voice_channel.users.count
       end
 
       def random_xp_amount
