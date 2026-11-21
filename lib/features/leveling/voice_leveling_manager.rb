@@ -98,6 +98,8 @@ module Features
           channel.users.map(&:id).include?(user_id)
         end
 
+        return 0 unless user_voice_channel
+
         user_voice_channel.users.count
       end
 
